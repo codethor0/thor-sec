@@ -557,13 +557,13 @@ section p:last-child {
 .svg-text {
   fill: var(--svg-text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .svg-label {
   fill: var(--svg-label);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .svg-line {
