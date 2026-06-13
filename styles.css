@@ -727,6 +727,12 @@ section p:last-child {
   font-size: 0.875rem;
 }
 
+.publication-channel-copy {
+  margin: 0 0 0.625rem;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
 .credentials-list {
   margin: 0;
   padding: 0;
