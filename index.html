@@ -22,17 +22,23 @@
   <header class="site-header">
     <div class="container">
       <a class="site-brand" href="./">THOR-SEC</a>
-      <nav class="site-nav" aria-label="Primary">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#open-source">Open Source</a></li>
-          <li><a href="#responsible-use">Responsible Use</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#writing">Writing</a></li>
-          <li><a href="#connect">Connect</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#open-source">Open Source</a></li>
+            <li><a href="#responsible-use">Responsible Use</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#writing">Writing</a></li>
+            <li><a href="#connect">Connect</a></li>
+          </ul>
+        </nav>
+        <div class="theme-toggle">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle color theme">
+          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -100,32 +106,68 @@
       <div class="container">
         <h2 id="opensource-heading">Open-Source Research</h2>
         <p>Published repositories with source code, documentation, and defensive use guidance.</p>
-        <ul class="card-grid card-grid-single">
+        <ul class="card-grid card-grid-stack">
           <li class="card card-featured">
             <p class="card-label">Featured project</p>
             <h3><a class="card-title" href="https://github.com/codethor0/llm-agent-control-plane">llm-agent-control-plane</a></h3>
             <p>A defensive reference implementation for tool-connected LLM agents. Agents may propose actions; an external control plane authorizes them.</p>
-            <figure class="architecture-diagram" aria-label="Control plane authorization flow">
+            <figure class="flowchart-wrap">
               <figcaption>Authorization flow</figcaption>
-              <div class="architecture-flow">
-                <span class="flow-box">User request</span>
-                <span class="flow-arrow" aria-hidden="true">→</span>
-                <span class="flow-box">LLM agent proposes action</span>
-                <span class="flow-arrow" aria-hidden="true">→</span>
-                <span class="flow-box flow-box-accent">Control plane authorizes</span>
-                <span class="flow-arrow" aria-hidden="true">→</span>
-                <span class="flow-box">Tool execution</span>
-              </div>
+              <svg class="flowchart" viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flowchart-title">
+                <title id="flowchart-title">Control plane authorization flow</title>
+                <defs>
+                  <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                    <polygon points="0 0, 8 4, 0 8" class="svg-arrowhead"></polygon>
+                  </marker>
+                </defs>
+                <rect x="260" y="16" width="200" height="36" rx="18" class="svg-node-start"></rect>
+                <text x="360" y="39" text-anchor="middle" class="svg-text">User request</text>
+                <line x1="360" y1="52" x2="360" y2="72" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <rect x="210" y="76" width="300" height="36" rx="4" class="svg-node"></rect>
+                <text x="360" y="99" text-anchor="middle" class="svg-text">LLM agent proposes action</text>
+                <line x1="360" y1="112" x2="360" y2="132" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <rect x="170" y="136" width="380" height="36" rx="4" class="svg-node-accent"></rect>
+                <text x="360" y="159" text-anchor="middle" class="svg-text">Control plane evaluates policy + identity</text>
+                <line x1="360" y1="172" x2="360" y2="196" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <polygon points="360,200 420,240 360,280 300,240" class="svg-node-decision"></polygon>
+                <text x="360" y="245" text-anchor="middle" class="svg-text">Allowed?</text>
+                <line x1="330" y1="260" x2="180" y2="310" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <line x1="390" y1="260" x2="540" y2="310" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <text x="240" y="292" class="svg-label">Yes</text>
+                <text x="470" y="292" class="svg-label">No</text>
+                <rect x="80" y="316" width="200" height="36" rx="4" class="svg-node"></rect>
+                <text x="180" y="339" text-anchor="middle" class="svg-text">Tool executes</text>
+                <rect x="440" y="316" width="200" height="36" rx="4" class="svg-node-deny"></rect>
+                <text x="540" y="339" text-anchor="middle" class="svg-text">Action blocked</text>
+                <line x1="180" y1="352" x2="180" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <line x1="540" y1="352" x2="540" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <line x1="180" y1="392" x2="360" y2="412" class="svg-line"></line>
+                <line x1="540" y1="392" x2="360" y2="412" class="svg-line"></line>
+                <line x1="360" y1="412" x2="360" y2="432" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <rect x="260" y="436" width="200" height="36" rx="4" class="svg-node-audit"></rect>
+                <text x="360" y="459" text-anchor="middle" class="svg-text">Audit log</text>
+              </svg>
             </figure>
             <pre class="code-snippet"><code># Agent proposes; control plane authorizes
 proposal = agent.plan(user_input)
 decision = control_plane.authorize(proposal, policy, identity)
 if decision.allowed:
     executor.run(proposal.action)</code></pre>
+            <p class="card-source">Source: <a href="https://github.com/codethor0/llm-agent-control-plane/blob/main/src/agent_control_plane/policy_engine.py">policy_engine.py</a> in llm-agent-control-plane</p>
             <p class="card-link"><a href="https://github.com/codethor0/llm-agent-control-plane">View repository on GitHub</a></p>
           </li>
+          <li class="card card-research">
+            <p class="card-label">Research note &middot; June 2026</p>
+            <h3>Detection Engineering Note: OAuth Anomaly Baseline</h3>
+            <p>Baseline OAuth grant volume and client diversity per user, then alert on statistically unusual token activity. Useful for spotting consent phishing, token theft, and misconfigured integrations in authorized environments.</p>
+            <pre class="code-snippet"><code>index=authentication sourcetype=oauth:token
+| stats dc(client_id) AS clients dc(scope) AS scopes count BY user
+| eventstats avg(count) AS avg_grant stdev(count) AS stdev_grant BY user
+| eval threshold=avg_grant+(3*stdev_grant)
+| where count &gt; threshold AND clients &gt; 1</code></pre>
+            <span class="card-badge">Research note</span>
+          </li>
         </ul>
-        <p class="section-note">Additional work on detection engineering labs and AI security architecture patterns is in development and will be published here when ready.</p>
       </div>
     </section>
 
@@ -202,7 +244,7 @@ if decision.allowed:
     <section id="connect" class="connect-section" aria-labelledby="connect-heading">
       <div class="container">
         <h2 id="connect-heading">Connect</h2>
-        <p>For research questions, collaboration, or responsible disclosure, reach out directly.</p>
+        <p>Research questions, collaboration, and responsible disclosure.</p>
         <ul class="contact-list">
           <li>Email: <a href="mailto:codethor@gmail.com">codethor@gmail.com</a></li>
           <li>GitHub: <a href="https://github.com/codethor0">github.com/codethor0</a></li>
