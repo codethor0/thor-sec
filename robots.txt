@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://codethor0.github.io/thor-sec/sitemap.xml
