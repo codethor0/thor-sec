@@ -113,39 +113,39 @@
             <p>A defensive reference implementation for tool-connected LLM agents. Agents may propose actions; an external control plane authorizes them.</p>
             <figure class="flowchart-wrap">
               <figcaption>Authorization flow</figcaption>
-              <svg class="flowchart" viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flowchart-title">
+              <svg class="flowchart" viewBox="0 0 760 560" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flowchart-title">
                 <title id="flowchart-title">Control plane authorization flow</title>
                 <defs>
                   <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                     <polygon points="0 0, 8 4, 0 8" class="svg-arrowhead"></polygon>
                   </marker>
                 </defs>
-                <rect x="260" y="16" width="200" height="36" rx="18" class="svg-node-start"></rect>
-                <text x="360" y="39" text-anchor="middle" class="svg-text">User request</text>
-                <line x1="360" y1="52" x2="360" y2="72" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <rect x="210" y="76" width="300" height="36" rx="4" class="svg-node"></rect>
-                <text x="360" y="99" text-anchor="middle" class="svg-text">LLM agent proposes action</text>
-                <line x1="360" y1="112" x2="360" y2="132" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <rect x="170" y="136" width="380" height="36" rx="4" class="svg-node-accent"></rect>
-                <text x="360" y="159" text-anchor="middle" class="svg-text">Control plane evaluates policy + identity</text>
-                <line x1="360" y1="172" x2="360" y2="196" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <polygon points="360,200 420,240 360,280 300,240" class="svg-node-decision"></polygon>
-                <text x="360" y="245" text-anchor="middle" class="svg-text">Allowed?</text>
-                <line x1="330" y1="260" x2="180" y2="310" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <line x1="390" y1="260" x2="540" y2="310" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <text x="240" y="292" class="svg-label">Yes</text>
-                <text x="470" y="292" class="svg-label">No</text>
-                <rect x="80" y="316" width="200" height="36" rx="4" class="svg-node"></rect>
-                <text x="180" y="339" text-anchor="middle" class="svg-text">Tool executes</text>
-                <rect x="440" y="316" width="200" height="36" rx="4" class="svg-node-deny"></rect>
-                <text x="540" y="339" text-anchor="middle" class="svg-text">Action blocked</text>
-                <line x1="180" y1="352" x2="180" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <line x1="540" y1="352" x2="540" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <line x1="180" y1="392" x2="360" y2="412" class="svg-line"></line>
-                <line x1="540" y1="392" x2="360" y2="412" class="svg-line"></line>
-                <line x1="360" y1="412" x2="360" y2="432" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <rect x="260" y="436" width="200" height="36" rx="4" class="svg-node-audit"></rect>
-                <text x="360" y="459" text-anchor="middle" class="svg-text">Audit log</text>
+                <rect x="290" y="8" width="180" height="44" rx="22" class="svg-node-start"></rect>
+                <text x="380" y="36" text-anchor="middle" class="svg-text">User request</text>
+                <line x1="380" y1="52" x2="380" y2="68" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <rect x="200" y="72" width="360" height="44" rx="4" class="svg-node"></rect>
+                <text x="380" y="100" text-anchor="middle" class="svg-text">LLM agent proposes action</text>
+                <line x1="380" y1="116" x2="380" y2="132" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <rect x="70" y="136" width="620" height="44" rx="4" class="svg-node-accent"></rect>
+                <text x="380" y="164" text-anchor="middle" class="svg-text">Control plane evaluates policy + identity</text>
+                <line x1="380" y1="180" x2="380" y2="200" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <polygon points="380,204 444,248 380,292 316,248" class="svg-node-decision"></polygon>
+                <text x="380" y="253" text-anchor="middle" class="svg-text">Allowed?</text>
+                <line x1="340" y1="268" x2="170" y2="300" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <line x1="420" y1="268" x2="590" y2="300" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <text x="255" y="288" class="svg-label">Yes</text>
+                <text x="505" y="288" class="svg-label">No</text>
+                <rect x="50" y="300" width="240" height="44" rx="4" class="svg-node"></rect>
+                <text x="170" y="328" text-anchor="middle" class="svg-text">Tool executes</text>
+                <rect x="470" y="300" width="240" height="44" rx="4" class="svg-node-deny"></rect>
+                <text x="590" y="328" text-anchor="middle" class="svg-text">Action blocked</text>
+                <line x1="170" y1="344" x2="170" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <line x1="590" y1="344" x2="590" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <line x1="170" y1="392" x2="380" y2="412" class="svg-line"></line>
+                <line x1="590" y1="392" x2="380" y2="412" class="svg-line"></line>
+                <line x1="380" y1="412" x2="380" y2="432" class="svg-line" marker-end="url(#arrowhead)"></line>
+                <rect x="290" y="436" width="180" height="44" rx="4" class="svg-node-audit"></rect>
+                <text x="380" y="464" text-anchor="middle" class="svg-text">Audit log</text>
               </svg>
             </figure>
             <pre class="code-snippet"><code># Agent proposes; control plane authorizes
