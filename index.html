@@ -28,7 +28,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#research">Research</a></li>
             <li><a href="#open-source">Open Source</a></li>
-            <li><a href="#responsible-use">Responsible Use</a></li>
+            <li><a href="#responsible-use">Use</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#writing">Writing</a></li>
             <li><a href="#credentials">Learning</a></li>
@@ -113,10 +113,12 @@
             <p class="card-label">Featured project</p>
             <h3><a class="card-title" href="https://github.com/codethor0/llm-agent-control-plane">llm-agent-control-plane</a></h3>
             <p>A defensive reference implementation for tool-connected LLM agents. Agents may propose actions; an external control plane authorizes them.</p>
+            <p>llm-agent-control-plane models a defensive pattern for tool-connected LLM systems: agents can propose actions, but a separate policy layer decides whether those actions are allowed. The project focuses on authorization boundaries, auditability, and safer automation patterns rather than treating model output as trusted execution.</p>
             <figure class="flowchart-wrap">
               <figcaption>Authorization flow</figcaption>
-              <svg class="flowchart" viewBox="0 0 760 560" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flowchart-title">
-                <title id="flowchart-title">Control plane authorization flow</title>
+              <svg class="flowchart" viewBox="0 0 760 560" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flowchart-title flowchart-desc">
+                <title id="flowchart-title">Authorization flow for tool-connected LLM actions</title>
+                <desc id="flowchart-desc">A user request is converted into a proposed agent action. A control plane evaluates policy and identity context. Allowed actions execute through tools and are logged. Denied actions are blocked and logged.</desc>
                 <defs>
                   <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
                     <polygon points="0 0, 8 4, 0 8" class="svg-arrowhead"></polygon>
@@ -150,7 +152,8 @@
                 <text x="380" y="464" text-anchor="middle" class="svg-text">Audit log</text>
               </svg>
             </figure>
-            <pre class="code-snippet"><code># Agent proposes; control plane authorizes
+            <p class="code-label" id="control-plane-snippet-label">Example authorization pattern</p>
+            <pre class="code-snippet" aria-labelledby="control-plane-snippet-label" tabindex="0"><code># Agent proposes; control plane authorizes
 proposal = agent.plan(user_input)
 decision = control_plane.authorize(proposal, policy, identity)
 if decision.allowed:
@@ -162,7 +165,8 @@ if decision.allowed:
             <p class="card-label">Research note &middot; June 2026</p>
             <h3>Detection Engineering Note: OAuth Anomaly Baseline</h3>
             <p>Baseline OAuth grant volume and client diversity per user, then alert on statistically unusual token activity. Useful for spotting consent phishing, token theft, and misconfigured integrations in authorized environments.</p>
-            <pre class="code-snippet"><code>index=authentication sourcetype=oauth:token
+            <p class="code-label" id="oauth-spl-label">Splunk SPL baseline example</p>
+            <pre class="code-snippet" aria-labelledby="oauth-spl-label" tabindex="0"><code>index=authentication sourcetype=oauth:token
 | stats dc(client_id) AS clients dc(scope) AS scopes count BY user
 | eventstats avg(count) AS avg_grant stdev(count) AS stdev_grant BY user
 | eval threshold=avg_grant+(3*stdev_grant)
@@ -231,11 +235,10 @@ if decision.allowed:
     <section id="writing" aria-labelledby="writing-heading">
       <div class="container">
         <h2 id="writing-heading">Cybersecurity Writing and Publications</h2>
-        <p>Thor publishes work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation for defensive security teams.</p>
+        <p>Published work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation.</p>
         <ul class="publication-list">
           <li class="publication-card">
             <h3 class="publication-title">Exploit the Reader: Cybersecurity Writing for Reports That Survive Reality</h3>
-            <p class="publication-author">Thor Thor</p>
             <ul class="publication-links">
               <li><a href="https://www.amazon.com/dp/B0H2R5WPRQ">View Kindle edition</a></li>
               <li><a href="https://www.amazon.com/dp/B0H2S3VPDJ">View paperback edition</a></li>
@@ -243,15 +246,13 @@ if decision.allowed:
           </li>
           <li class="publication-card">
             <h3 class="publication-title">Prompting as a Programming Language: A Practical Guide to Prompt-Oriented Programming, AI Workflows, and Automation</h3>
-            <p class="publication-author">Thor Thor</p>
             <ul class="publication-links">
               <li><a href="https://www.amazon.com/dp/B0H21VSPJQ">View Kindle edition</a></li>
               <li><a href="https://www.amazon.com/dp/B0H231MBBX">View paperback edition</a></li>
             </ul>
           </li>
           <li class="publication-card publication-channel">
-            <h3 class="publication-title">Substack Writing</h3>
-            <p class="publication-channel-copy">Selected essays and research notes are published on Substack.</p>
+            <h3 class="publication-title">Selected Essays</h3>
             <ul class="publication-links">
               <li><a href="https://substack.com/@uniqueviolation">Unique Violation on Substack</a></li>
             </ul>
@@ -262,8 +263,8 @@ if decision.allowed:
 
     <section id="credentials" aria-labelledby="credentials-heading">
       <div class="container">
-        <h2 id="credentials-heading">Credentials and Learning</h2>
-        <p>Selected public learning records and badge portfolios are available for verification. These links support the site&rsquo;s focus on cybersecurity, AI, cloud infrastructure, data analysis, and technical support practice.</p>
+        <h2 id="credentials-heading">Learning Records</h2>
+        <p>Public learning and badge records are available for verification.</p>
         <ul class="credentials-list">
           <li>Coursera Learning Profile: <a href="https://www.coursera.org/learner/th0rth0r">coursera.org/learner/th0rth0r</a></li>
           <li>Credly Badge Portfolio: <a href="https://www.credly.com/users/isaac-thor/">credly.com/users/isaac-thor</a></li>
@@ -273,10 +274,10 @@ if decision.allowed:
 
     <section id="research-requests" aria-labelledby="research-requests-heading">
       <div class="container">
-        <h2 id="research-requests-heading">Research Requests</h2>
-        <p>Have a defensive security topic, AI security question, detection idea, or research request? Send a concise proposal by email with the scope, environment, authorization status, timeline, and whether funding is available.</p>
-        <p class="research-request-action"><a class="btn btn-secondary" href="mailto:codethor@gmail.com?subject=Research%20Request%20for%20THOR-SEC&amp;body=Research%20topic%3A%0A%0AScope%20and%20objective%3A%0A%0AAuthorization%20status%3A%0A%0AEnvironment%20or%20technology%20area%3A%0A%0ATimeline%3A%0A%0AFunding%20or%20budget%20range%3A%0A%0ANotes%3A%0A">Email a research request</a></p>
-        <p class="research-request-note">Do not send secrets, credentials, exploit code, customer data, or confidential logs in the first message.</p>
+        <h2 id="research-requests-heading">Research Collaboration</h2>
+        <p>For defensive security questions, research ideas, or collaboration proposals, send a concise email with the topic, authorization context, and intended scope.</p>
+        <p class="research-request-action"><a class="btn btn-secondary" href="mailto:codethor@gmail.com?subject=Research%20Proposal%20for%20THOR-SEC&amp;body=Research%20topic%3A%0A%0AScope%20and%20objective%3A%0A%0AAuthorization%20status%3A%0A%0AEnvironment%20or%20technology%20area%3A%0A%0ATimeline%3A%0A%0AFunding%20or%20budget%20range%3A%0A%0ANotes%3A%0A">Email a research proposal</a></p>
+        <p class="research-request-note">Do not send secrets, credentials, customer data, exploit code, or confidential logs in the first message.</p>
       </div>
     </section>
 
