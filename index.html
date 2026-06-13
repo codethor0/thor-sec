@@ -14,6 +14,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="THOR-SEC | Independent Defensive Cybersecurity Research">
   <meta name="twitter:description" content="Independent open-source defensive cybersecurity research and AI security engineering by Thor Thor.">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research Notes" href="https://codethor0.github.io/thor-sec/feed.xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -161,17 +162,38 @@ if decision.allowed:
             <p class="card-source">Source: <a href="https://github.com/codethor0/llm-agent-control-plane/blob/main/src/agent_control_plane/policy_engine.py">policy_engine.py</a> in llm-agent-control-plane</p>
             <p class="card-link"><a href="https://github.com/codethor0/llm-agent-control-plane">View repository on GitHub</a></p>
           </li>
-          <li class="card card-research">
-            <p class="card-label">Research note &middot; June 2026</p>
-            <h3>Detection Engineering Note: OAuth Anomaly Baseline</h3>
-            <p>Baseline OAuth grant volume and client diversity per user, then alert on statistically unusual token activity. Useful for spotting consent phishing, token theft, and misconfigured integrations in authorized environments.</p>
+        </ul>
+      </div>
+    </section>
+
+    <section id="field-notes" aria-labelledby="field-notes-heading">
+      <div class="container">
+        <h2 id="field-notes-heading">Field Notes</h2>
+        <p>Short research notes from authorized lab work, detection engineering, and defensive security analysis.</p>
+        <ul class="card-grid card-grid-stack field-notes-list">
+          <li class="card card-research field-note" id="oauth-anomaly-baseline">
+            <p class="field-note-meta"><span class="field-note-date">June 2026</span> &middot; <span class="field-note-status">Research note</span></p>
+            <h3>OAuth Anomaly Baseline</h3>
+            <p>A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline. The goal is to surface unusual client and scope combinations for defensive review.</p>
             <p class="code-label" id="oauth-spl-label">Splunk SPL baseline example</p>
             <pre class="code-snippet" aria-labelledby="oauth-spl-label" tabindex="0"><code>index=authentication sourcetype=oauth:token
 | stats dc(client_id) AS clients dc(scope) AS scopes count BY user
 | eventstats avg(count) AS avg_grant stdev(count) AS stdev_grant BY user
 | eval threshold=avg_grant+(3*stdev_grant)
 | where count &gt; threshold AND clients &gt; 1</code></pre>
-            <span class="card-badge">Research note</span>
+          </li>
+          <li class="card card-research field-note" id="llm-agent-authorization-boundary">
+            <p class="field-note-meta"><span class="field-note-date">June 2026</span> &middot; <span class="field-note-status">Research note</span></p>
+            <h3>LLM Agent Authorization Boundary</h3>
+            <p>A defensive design note for tool-connected LLM systems. The agent may propose an action, but authorization should happen in a separate policy layer with identity context, allow/deny decisions, and audit logging.</p>
+            <p class="code-label" id="llm-auth-snippet-label">Authorization pattern</p>
+            <pre class="code-snippet" aria-labelledby="llm-auth-snippet-label" tabindex="0"><code>decision = control_plane.authorize(action, identity, policy)
+
+if decision.allowed:
+    audit.log(action, identity, "allowed")
+    tool.execute(action)
+else:
+    audit.log(action, identity, "blocked")</code></pre>
           </li>
         </ul>
       </div>
@@ -297,7 +319,7 @@ if decision.allowed:
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="https://github.com/codethor0/thor-sec/blob/main/LICENSE">MIT License</a> &middot; Independent defensive cybersecurity research</p>
+      <p>&copy; 2026 THOR-SEC &middot; <a href="https://github.com/codethor0/thor-sec/blob/main/LICENSE">MIT License</a> &middot; <a href="./.well-known/security.txt">Security.txt</a> &middot; <a href="./feed.xml">RSS feed</a> &middot; <a href="./now.html">Now</a> &middot; Independent defensive cybersecurity research</p>
       <p class="footer-meta">Last updated: June 2026</p>
     </div>
   </footer>

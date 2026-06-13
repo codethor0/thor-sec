@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>THOR-SEC Research Notes</title>
+  <link href="https://codethor0.github.io/thor-sec/" rel="alternate"/>
+  <link href="https://codethor0.github.io/thor-sec/feed.xml" rel="self"/>
+  <id>https://codethor0.github.io/thor-sec/feed.xml</id>
+  <updated>2026-06-13T00:00:00Z</updated>
+  <author>
+    <name>THOR-SEC</name>
+    <uri>https://codethor0.github.io/thor-sec/</uri>
+  </author>
+  <entry>
+    <title>OAuth Anomaly Baseline</title>
+    <link href="https://codethor0.github.io/thor-sec/#field-notes" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/#oauth-anomaly-baseline</id>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <published>2026-06-01T00:00:00Z</published>
+    <summary>A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline.</summary>
+  </entry>
+  <entry>
+    <title>LLM Agent Authorization Boundary</title>
+    <link href="https://codethor0.github.io/thor-sec/#field-notes" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/#llm-agent-authorization-boundary</id>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <published>2026-06-01T00:00:00Z</published>
+    <summary>A defensive design note for tool-connected LLM systems with separate policy-layer authorization, identity context, and audit logging.</summary>
+  </entry>
+  <entry>
+    <title>Cybersecurity Writing and Publications</title>
+    <link href="https://codethor0.github.io/thor-sec/#writing" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/#writing</id>
+    <updated>2026-06-01T00:00:00Z</updated>
+    <published>2026-06-01T00:00:00Z</published>
+    <summary>Published work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation.</summary>
+  </entry>
+</feed>
