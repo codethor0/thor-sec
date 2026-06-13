@@ -120,6 +120,12 @@ a:focus-visible {
 .hero {
   padding: 3rem 0 2.5rem;
   border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
+}
+
+.hero .container {
+  border-left: 3px solid #1a1a1a;
+  padding-left: 1.25rem;
 }
 
 .hero h1 {
@@ -227,6 +233,25 @@ section p:last-child {
   border-radius: 0 4px 4px 0;
 }
 
+.subsection-heading {
+  margin: 1.5rem 0 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #555;
+}
+
+.subsection-heading:first-of-type {
+  margin-top: 0;
+}
+
+.section-note {
+  margin: 1rem 0 0;
+  font-size: 0.9375rem;
+  color: #555;
+}
+
 /* Cards grid */
 
 .card-grid {
@@ -242,6 +267,32 @@ section p:last-child {
   .card-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.card-grid-single {
+  grid-template-columns: 1fr;
+}
+
+.card-featured {
+  border-left: 3px solid #1a1a1a;
+}
+
+.card-label {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.card-link {
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+}
+
+.card-link a {
+  font-weight: 500;
 }
 
 .card {
@@ -319,7 +370,7 @@ section p:last-child {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 0 0 1.5rem;
+  margin: 0 0 0.5rem;
   padding: 0;
   list-style: none;
 }
@@ -365,6 +416,163 @@ section p:last-child {
 
 .contact-list li {
   padding: 0.375rem 0;
+}
+
+.connect-section {
+  background-color: #f5f5f5;
+}
+
+a[href^="http"]::after,
+a[href^="mailto:"]::after {
+  content: "";
+}
+
+.card-link a[href^="http"]::after,
+.contact-list a[href^="http"]::after,
+.contact-list a[href^="mailto:"]::after,
+.hero-actions a[href^="http"]::after {
+  content: " \2197";
+  font-size: 0.75em;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #e8e8e8;
+    background-color: #121212;
+  }
+
+  a {
+    color: #7eb8da;
+  }
+
+  a:hover,
+  a:focus {
+    color: #a8d4ef;
+  }
+
+  .site-header {
+    background-color: rgba(18, 18, 18, 0.95);
+    border-bottom-color: #333;
+  }
+
+  .site-brand,
+  .site-brand:hover,
+  .site-brand:focus {
+    color: #e8e8e8;
+  }
+
+  .site-nav a {
+    color: #bbb;
+  }
+
+  .hero {
+    border-bottom-color: #333;
+    background: linear-gradient(180deg, #161616 0%, #121212 100%);
+  }
+
+  .hero .container {
+    border-left-color: #e8e8e8;
+  }
+
+  .hero-tagline,
+  .hero-meta,
+  .section-note {
+    color: #aaa;
+  }
+
+  .hero-intro,
+  section p {
+    color: #ccc;
+  }
+
+  section {
+    border-bottom-color: #333;
+  }
+
+  .disclaimer {
+    background-color: #1e1e1e;
+    border-left-color: #555;
+    color: #aaa;
+  }
+
+  .card {
+    background-color: #1a1a1a;
+    border-color: #333;
+  }
+
+  .card p,
+  .card-label {
+    color: #aaa;
+  }
+
+  .card a.card-title {
+    color: #e8e8e8;
+  }
+
+  .card-badge,
+  .skills-grid li {
+    background-color: #2a2a2a;
+    color: #bbb;
+  }
+
+  .experience-list li {
+    border-bottom-color: #333;
+    color: #ccc;
+  }
+
+  .experience-list .employer,
+  .subsection-heading {
+    color: #999;
+  }
+
+  .writing-list .title {
+    color: #e8e8e8;
+  }
+
+  .writing-list li {
+    border-bottom-color: #333;
+  }
+
+  .connect-section {
+    background-color: #1a1a1a;
+  }
+
+  .site-footer {
+    background-color: #1a1a1a;
+    border-top-color: #333;
+  }
+
+  .site-footer p {
+    color: #888;
+  }
+
+  .btn-primary {
+    background-color: #e8e8e8;
+    color: #121212;
+    border-color: #e8e8e8;
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #fff;
+    color: #121212;
+  }
+
+  .btn-secondary {
+    color: #e8e8e8;
+    border-color: #555;
+  }
+
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    background-color: #2a2a2a;
+    color: #e8e8e8;
+  }
+
+  .skip-link {
+    background: #e8e8e8;
+    color: #121212;
+  }
 }
 
 /* Footer */
