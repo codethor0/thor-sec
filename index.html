@@ -42,7 +42,8 @@
         <h1 id="hero-heading">THOR-SEC</h1>
         <p class="hero-tagline">Independent Defensive Cybersecurity Research, AI Security Engineering, and Cybersecurity Writing</p>
         <p class="hero-intro">THOR-SEC is an independent open-source cybersecurity research portfolio by Thor Thor, focused on defensive security, AI security, detection engineering, incident response, secure automation, and cybersecurity writing.</p>
-        <p class="hero-meta">Thor Thor &middot; He/Him &middot; Minneapolis, Minnesota, United States<br>Cybersecurity Researcher &middot; Open-Source Builder &middot; Author</p>
+        <p class="hero-output">Research is published with reproducible methods, defensive use guidance, and artifacts you can inspect and run locally.</p>
+        <p class="hero-meta">Thor Thor &middot; He/Him &middot; Minneapolis, Minnesota, United States</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/codethor0">View GitHub</a>
           <a class="btn btn-secondary" href="#connect">Connect</a>
@@ -104,6 +105,23 @@
             <p class="card-label">Featured project</p>
             <h3><a class="card-title" href="https://github.com/codethor0/llm-agent-control-plane">llm-agent-control-plane</a></h3>
             <p>A defensive reference implementation for tool-connected LLM agents. Agents may propose actions; an external control plane authorizes them.</p>
+            <figure class="architecture-diagram" aria-label="Control plane authorization flow">
+              <figcaption>Authorization flow</figcaption>
+              <div class="architecture-flow">
+                <span class="flow-box">User request</span>
+                <span class="flow-arrow" aria-hidden="true">→</span>
+                <span class="flow-box">LLM agent proposes action</span>
+                <span class="flow-arrow" aria-hidden="true">→</span>
+                <span class="flow-box flow-box-accent">Control plane authorizes</span>
+                <span class="flow-arrow" aria-hidden="true">→</span>
+                <span class="flow-box">Tool execution</span>
+              </div>
+            </figure>
+            <pre class="code-snippet"><code># Agent proposes; control plane authorizes
+proposal = agent.plan(user_input)
+decision = control_plane.authorize(proposal, policy, identity)
+if decision.allowed:
+    executor.run(proposal.action)</code></pre>
             <p class="card-link"><a href="https://github.com/codethor0/llm-agent-control-plane">View repository on GitHub</a></p>
           </li>
         </ul>
@@ -169,7 +187,7 @@
     <section id="writing" aria-labelledby="writing-heading">
       <div class="container">
         <h2 id="writing-heading">Cybersecurity Writing and Publications</h2>
-        <p>Published work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation. Public links will be added when available.</p>
+        <p>Published work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation.</p>
         <ul class="writing-list">
           <li>
             <span class="title">Exploit the Reader: Cybersecurity Writing for Reports That Survive Reality</span>
@@ -196,7 +214,8 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC. Independent defensive cybersecurity research.</p>
+      <p>&copy; 2026 THOR-SEC &middot; <a href="https://github.com/codethor0/thor-sec/blob/main/LICENSE">MIT License</a> &middot; Independent defensive cybersecurity research</p>
+      <p class="footer-meta">Last updated: June 2026</p>
     </div>
   </footer>
 </body>
