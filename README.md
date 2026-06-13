@@ -6,7 +6,7 @@ Independent defensive cybersecurity research portfolio and public website for Th
 
 ## Purpose
 
-THOR-SEC is a static public website for open-source defensive cybersecurity research, AI security work, technical writing, and security engineering projects. Views and research are personal. THOR-SEC is not affiliated with, endorsed by, or representative of any employer.
+THOR-SEC is a static public website for open-source defensive cybersecurity research, AI security work, cybersecurity writing, and security engineering projects. Views and research are personal. THOR-SEC is not affiliated with, endorsed by, or representative of any employer.
 
 ## Local Preview
 
