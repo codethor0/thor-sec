@@ -2,26 +2,27 @@
 
 ## Scope
 
-This repository contains static website content and defensive cybersecurity research materials. It is intended for authorized defensive security work only.
+THOR-SEC is an independent open-source cybersecurity research portfolio. This repository contains static website content and defensive cybersecurity research materials. It is intended for authorized defensive security work only.
 
 ## Reporting a Vulnerability
 
 If you discover a security issue related to this repository or its published content, contact:
 
-**Email:** codethor@gmail.com
+**Email:** [codethor@gmail.com](mailto:codethor@gmail.com)
 
-Please do not submit sensitive data, credentials, or customer information through public GitHub issues.
+Do not send secrets, credentials, customer data, exploit code, private logs, or confidential information in the first message. Do not submit sensitive data through public GitHub issues.
 
 ## What to Include
 
 Vulnerability reports should include:
 
+- The affected URL or file
 - A clear description of the issue
-- Steps to reproduce the problem
-- The potential impact of the issue
-- Any suggested remediation, if available
+- The potential impact
+- Safe reproduction steps, if applicable
+- Any suggested remediation, if known
 
-Provide only the detail needed for responsible disclosure. Do not include exploit code or instructions beyond what is necessary to demonstrate and fix the issue.
+Provide only the detail needed for responsible disclosure.
 
 ## Response
 

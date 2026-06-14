@@ -14,7 +14,7 @@ jobs:
 
       - name: Verify required files
         run: |
-          for file in index.html styles.css README.md SECURITY.md LICENSE 404.html robots.txt sitemap.xml .gitignore; do
+          for file in index.html styles.css README.md SECURITY.md LICENSE 404.html robots.txt sitemap.xml .gitignore .well-known/security.txt; do
             test -f "$file" || { echo "Missing required file: $file"; exit 1; }
           done
 
@@ -30,7 +30,7 @@ jobs:
         run: |
           python3 -m http.server 8080 &
           sleep 2
-          for path in / /robots.txt /sitemap.xml /404.html /LICENSE /SECURITY.md /README.md; do
+          for path in / /robots.txt /sitemap.xml /404.html /LICENSE /SECURITY.md /README.md /.well-known/security.txt; do
             code=$(curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:8080${path}")
             if [ "$code" != "200" ]; then
               echo "Unexpected HTTP $code for $path"
