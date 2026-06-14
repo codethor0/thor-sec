@@ -445,7 +445,7 @@ section p:last-child {
 
 .about-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(180px, 260px);
+  grid-template-columns: minmax(0, 1fr) minmax(140px, 200px);
   gap: 2rem;
   align-items: start;
 }
@@ -460,7 +460,9 @@ section p:last-child {
 
 .profile-card {
   margin: 0;
-  padding: 0.85rem;
+  max-width: 200px;
+  justify-self: end;
+  padding: 0.65rem;
   border: 1px solid var(--border);
   border-radius: 1rem;
   background: var(--bg-elevated);
@@ -469,7 +471,7 @@ section p:last-child {
 .profile-card img {
   display: block;
   width: 100%;
-  max-width: 240px;
+  max-width: 170px;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
@@ -478,8 +480,8 @@ section p:last-child {
 }
 
 .profile-card figcaption {
-  margin-top: 0.65rem;
-  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
   color: var(--text-soft);
   text-align: center;
 }
@@ -490,8 +492,13 @@ section p:last-child {
   }
 
   .profile-card {
-    max-width: 220px;
+    max-width: 190px;
+    justify-self: center;
     margin: 0 auto;
+  }
+
+  .profile-card img {
+    max-width: 160px;
   }
 }
 
