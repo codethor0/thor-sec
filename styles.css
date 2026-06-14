@@ -809,6 +809,49 @@ section p:last-child {
   font-size: 0.875rem;
 }
 
+.article-list-intro {
+  margin: 0 0 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+.article-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.article-list-item {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.875rem;
+}
+
+.article-list-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.article-list-item a {
+  display: block;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.article-list-item a:hover,
+.article-list-item a:focus {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.article-label {
+  display: block;
+  margin-top: 0.125rem;
+  font-size: 0.8125rem;
+  color: var(--text-soft);
+}
+
 .credentials-list {
   margin: 0;
   padding: 0;
@@ -866,6 +909,7 @@ a[href^="mailto:"]::after {
 .card-link a[href^="http"]::after,
 .card-source a[href^="http"]::after,
 .publication-links a[href^="http"]::after,
+.article-list a[href^="http"]::after,
 .credentials-list a[href^="http"]::after,
 .contact-list a[href^="http"]::after,
 .contact-list a[href^="mailto:"]::after,
