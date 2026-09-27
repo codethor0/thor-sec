@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="author" content="Thor Thor">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <title>Research Archive | THOR-SEC</title>
+  <meta name="description" content="Chronological archive of independent THOR-SEC cybersecurity research, publications, defensive tools, and field notes by Thor Thor.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research Notes" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="./">THOR-SEC</a>
+      <nav class="site-nav" aria-label="Research archive">
+        <ul>
+          <li><a href="./">Home</a></li>
+          <li><a href="./inventions.html">Inventions</a></li>
+          <li><a href="./security.html">Security</a></li>
+          <li><a href="./feed.xml">RSS/Atom</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main" class="standalone-page">
+    <div class="container">
+      <header class="standalone-page-header">
+        <p class="eyebrow">Independent research record</p>
+        <h1>Research Archive</h1>
+        <p>Formal publications, open-source security research, field notes, and technical writing. Formal claims are separated from prototypes and research hypotheses.</p>
+      </header>
+
+      <section class="archive-group" aria-labelledby="formal-heading">
+        <h2 id="formal-heading">Formal Publications</h2>
+        <p>DOI-backed and citable research outputs.</p>
+        <ol class="archive-list">
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-09-27">September 27, 2026</time> &middot; Research paper &middot; v1.0.0</p>
+            <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
+            <p>Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity.</p>
+            <ul class="inline-links">
+              <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI</a></li>
+              <li><a href="https://github.com/codethor0/miam">Repository</a></li>
+              <li><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">Release</a></li>
+            </ul>
+          </li>
+        </ol>
+      </section>
+
+      <section class="archive-group" aria-labelledby="software-heading">
+        <h2 id="software-heading">Open-Source Research &amp; Software</h2>
+        <p>Selected public defensive-security implementations, newest public projects first.</p>
+        <ol class="archive-list">
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-07-08">July 8, 2026</time> &middot; AI security</p>
+            <h3><a href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
+            <p>Analyzes LLM identity drift, suspicious provider/route mismatch, and downgrade or substitution signals while explicitly distinguishing behavioral checks from cryptographic attestation.</p>
+          </li>
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-05-30">May 30, 2026</time> &middot; LLM infrastructure security</p>
+            <h3><a href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
+            <p>Defensive lab for comparing vulnerable and hardened infrastructure boundaries after a model or agent is tricked.</p>
+          </li>
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-05-17">May 17, 2026</time> &middot; Agent security</p>
+            <h3><a href="https://github.com/codethor0/llm-agent-control-plane">LLM Agent Control Plane</a></h3>
+            <p>Reference implementation that keeps authorization, policy, approvals, provenance checks, filtering, and audit logging outside the model.</p>
+          </li>
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-02-27">February 27, 2026</time> &middot; Security architecture</p>
+            <h3><a href="https://github.com/codethor0/security-stack-engineering">Security Stack Engineering (SSE)</a></h3>
+            <p>Multi-layer reference architecture for governed and measurable security operations.</p>
+          </li>
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-02-21">February 21, 2026</time> &middot; Risk quantification</p>
+            <h3><a href="https://github.com/codethor0/impact-forecast">Impact Forecast Algorithm (IFA)</a></h3>
+            <p>Bayesian-inspired implementation for updating material-impact probability from explicit evidence likelihood ratios.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="archive-group" aria-labelledby="notes-heading">
+        <h2 id="notes-heading">Field Notes</h2>
+        <ol class="archive-list">
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-06">June 2026</time> &middot; Detection engineering</p>
+            <h3><a href="./#oauth-anomaly-baseline">OAuth Anomaly Baseline</a></h3>
+            <p>Rolling-baseline detection pattern for unusual OAuth grant behavior.</p>
+          </li>
+          <li class="archive-item">
+            <p class="archive-meta"><time datetime="2026-06">June 2026</time> &middot; AI security</p>
+            <h3><a href="./#llm-agent-authorization-boundary">LLM Agent Authorization Boundary</a></h3>
+            <p>Design note for separating model proposals from external authorization and audit decisions.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="archive-group" aria-labelledby="identity-heading">
+        <h2 id="identity-heading">Research Identity</h2>
+        <ul class="contact-list">
+          <li>ORCID: <a rel="me" href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
+          <li>GitHub: <a rel="me" href="https://github.com/codethor0">github.com/codethor0</a></li>
+          <li>Substack: <a rel="me" href="https://substack.com/@uniqueviolation">Unique Violation</a></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 THOR-SEC &middot; <a href="./">Home</a> &middot; <a href="./inventions.html">Inventions</a> &middot; <a href="./security.html">Site Security</a> &middot; <a href="./feed.xml">RSS/Atom</a> &middot; <a href="https://github.com/codethor0/thor-sec">Source</a></p>
+      <p class="footer-meta">Last updated: September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

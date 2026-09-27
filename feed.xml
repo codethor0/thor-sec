@@ -4,33 +4,54 @@
   <link href="https://codethor0.github.io/thor-sec/" rel="alternate"/>
   <link href="https://codethor0.github.io/thor-sec/feed.xml" rel="self"/>
   <id>https://codethor0.github.io/thor-sec/feed.xml</id>
-  <updated>2026-06-13T00:00:00Z</updated>
+  <updated>2026-09-27T00:00:00Z</updated>
   <author>
-    <name>THOR-SEC</name>
-    <uri>https://codethor0.github.io/thor-sec/</uri>
+    <name>Thor Thor</name>
+    <uri>https://orcid.org/0009-0001-6573-385X</uri>
   </author>
+
   <entry>
-    <title>OAuth Anomaly Baseline</title>
-    <link href="https://codethor0.github.io/thor-sec/#field-notes" rel="alternate"/>
-    <id>https://codethor0.github.io/thor-sec/#oauth-anomaly-baseline</id>
-    <updated>2026-06-01T00:00:00Z</updated>
-    <published>2026-06-01T00:00:00Z</published>
-    <summary>A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline.</summary>
+    <title>Mission-Invariant Architecture Morphing (MIAM)</title>
+    <link href="https://doi.org/10.5281/zenodo.23001045" rel="alternate"/>
+    <id>https://doi.org/10.5281/zenodo.23001045</id>
+    <updated>2026-09-27T00:00:00Z</updated>
+    <published>2026-09-27T00:00:00Z</published>
+    <summary>Formal design proposal for application-level service-graph morphing against post-access reconnaissance, with cryptographic epoch isolation and mission-domain state continuity.</summary>
   </entry>
+
+  <entry>
+    <title>Model Identity Verifier</title>
+    <link href="https://github.com/codethor0/model-identity-verifier" rel="alternate"/>
+    <id>https://github.com/codethor0/model-identity-verifier</id>
+    <updated>2026-08-26T00:00:00Z</updated>
+    <published>2026-07-08T00:00:00Z</published>
+    <summary>Open-source CLI research tooling for LLM identity drift, suspicious provider or route mismatch, and downgrade or substitution signals.</summary>
+  </entry>
+
+  <entry>
+    <title>BoundaryLayer</title>
+    <link href="https://github.com/codethor0/boundary-layer" rel="alternate"/>
+    <id>https://github.com/codethor0/boundary-layer</id>
+    <updated>2026-09-24T00:00:00Z</updated>
+    <published>2026-05-30T00:00:00Z</published>
+    <summary>Defensive LLM infrastructure security lab for comparing vulnerable and hardened blast-radius controls.</summary>
+  </entry>
+
   <entry>
     <title>LLM Agent Authorization Boundary</title>
-    <link href="https://codethor0.github.io/thor-sec/#field-notes" rel="alternate"/>
+    <link href="https://codethor0.github.io/thor-sec/#llm-agent-authorization-boundary" rel="alternate"/>
     <id>https://codethor0.github.io/thor-sec/#llm-agent-authorization-boundary</id>
     <updated>2026-06-01T00:00:00Z</updated>
     <published>2026-06-01T00:00:00Z</published>
     <summary>A defensive design note for tool-connected LLM systems with separate policy-layer authorization, identity context, and audit logging.</summary>
   </entry>
+
   <entry>
-    <title>Cybersecurity Writing and Publications</title>
-    <link href="https://codethor0.github.io/thor-sec/#writing" rel="alternate"/>
-    <id>https://codethor0.github.io/thor-sec/#writing</id>
+    <title>OAuth Anomaly Baseline</title>
+    <link href="https://codethor0.github.io/thor-sec/#oauth-anomaly-baseline" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/#oauth-anomaly-baseline</id>
     <updated>2026-06-01T00:00:00Z</updated>
     <published>2026-06-01T00:00:00Z</published>
-    <summary>Published work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation.</summary>
+    <summary>A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline.</summary>
   </entry>
 </feed>

@@ -6,32 +6,48 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
-      - name: Verify required files
+      - name: Run static security audit
         run: |
-          for file in index.html styles.css README.md SECURITY.md LICENSE 404.html robots.txt sitemap.xml .gitignore .well-known/security.txt; do
-            test -f "$file" || { echo "Missing required file: $file"; exit 1; }
-          done
-
-      - name: Scan for public attribution leakage
-        run: |
-          if grep -RniE 'co-authored-by:|generated (by|with)|ai-generated|assistant attribution|tool attribution|master prompt|prompt artifact|private build workflow' \
-            --include='*.html' --include='*.md' --include='*.css' --exclude='styles.css' .; then
-            echo "Public attribution or private-build marker found"
-            exit 1
-          fi
+          set -euo pipefail
+          python3 scripts/site_audit.py
 
       - name: Serve site and verify responses
         run: |
-          python3 -m http.server 8080 &
+          set -euo pipefail
+          python3 -m http.server 8080 >/tmp/thor-sec-http.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           sleep 2
-          for path in / /robots.txt /sitemap.xml /404.html /LICENSE /SECURITY.md /README.md /.well-known/security.txt; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "http://127.0.0.1:8080${path}")
+
+          for path in \
+            / \
+            /research.html \
+            /inventions.html \
+            /security.html \
+            /now.html \
+            /robots.txt \
+            /sitemap.xml \
+            /feed.xml \
+            /404.html \
+            /LICENSE \
+            /SECURITY.md \
+            /README.md \
+            /.well-known/security.txt; do
+            code=$(curl --fail --silent --show-error --output /dev/null --write-out "%{http_code}" "http://127.0.0.1:8080${path}")
             if [ "$code" != "200" ]; then
               echo "Unexpected HTTP $code for $path"
               exit 1

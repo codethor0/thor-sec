@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; upgrade-insecure-requests">
+  <meta name="author" content="Thor Thor">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
   <title>THOR-SEC | Independent Defensive Cybersecurity Research</title>
   <meta name="description" content="THOR-SEC is an independent open-source cybersecurity research portfolio by Thor Thor, focused on defensive security, AI security, detection engineering, incident response, and cybersecurity writing.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
   <meta property="og:type" content="website">
   <meta property="og:title" content="THOR-SEC | Independent Defensive Cybersecurity Research">
   <meta property="og:description" content="Independent open-source defensive cybersecurity research, AI security engineering, detection engineering, and cybersecurity writing by Thor Thor.">
@@ -27,15 +32,14 @@
       <div class="header-right">
         <nav class="site-nav" aria-label="Primary">
           <ul>
-            <li><a href="#about">About</a></li>
+            <li><a href="#latest">Latest</a></li>
             <li><a href="#research">Research</a></li>
+            <li><a href="./research.html">Archive</a></li>
             <li><a href="#publications">Publications</a></li>
-            <li><a href="#open-source">Open Source</a></li>
-            <li><a href="#responsible-use">Use</a></li>
-            <li><a href="#experience">Experience</a></li>
+            <li><a href="./inventions.html">Inventions</a></li>
             <li><a href="#writing">Writing</a></li>
-            <li><a href="#credentials">Learning</a></li>
-            <li><a href="#research-requests">Collaboration</a></li>
+            <li><a href="./security.html">Security</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#connect">Connect</a></li>
           </ul>
         </nav>
@@ -56,10 +60,51 @@
         <p class="hero-output">Research is published with reproducible methods, defensive use guidance, and artifacts you can inspect and run locally.</p>
         <p class="hero-meta">Thor Thor &middot; He/Him &middot; Minneapolis, Minnesota, United States</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/codethor0">View GitHub</a>
-          <a class="btn btn-secondary" href="https://orcid.org/0009-0001-6573-385X">ORCID</a>
-          <a class="btn btn-secondary" href="#connect">Connect</a>
+          <a class="btn btn-primary" href="#latest">Latest Research</a>
+          <a class="btn btn-secondary" href="./research.html">Research Archive</a>
+          <a class="btn btn-secondary" rel="me" href="https://orcid.org/0009-0001-6573-385X">ORCID</a>
+          <a class="btn btn-secondary" rel="me" href="https://github.com/codethor0">GitHub</a>
         </div>
+        <ul class="hero-stats" aria-label="Research portfolio summary">
+          <li><strong>1</strong><span>formal paper</span></li>
+          <li><strong>5</strong><span>selected public security projects</span></li>
+          <li><strong>2</strong><span>published books</span></li>
+          <li><strong>0</strong><span>third-party scripts</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="latest" class="latest-section" aria-labelledby="latest-heading">
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">Research desk</p>
+            <h2 id="latest-heading">Latest Research</h2>
+          </div>
+          <a class="section-action" href="./research.html">View research archive</a>
+        </div>
+        <ol class="latest-list">
+          <li class="latest-item">
+            <p class="latest-meta"><time datetime="2026-09-27">September 27, 2026</time> &middot; Formal publication</p>
+            <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
+            <p>A formal design proposal for application-level service-graph morphing against post-access reconnaissance, with cryptographic epoch isolation and mission-domain state continuity.</p>
+            <ul class="inline-links">
+              <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI</a></li>
+              <li><a href="https://github.com/codethor0/miam">Source</a></li>
+              <li><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">Release</a></li>
+            </ul>
+          </li>
+          <li class="latest-item">
+            <p class="latest-meta"><time datetime="2026-08">August 2026</time> &middot; AI security tool</p>
+            <h3><a href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
+            <p>CLI research tooling for detecting LLM identity drift, suspicious route/provider mismatch, and downgrade or substitution signals without overstating self-identification as attestation.</p>
+          </li>
+          <li class="latest-item">
+            <p class="latest-meta"><time datetime="2026-05">May 2026</time> &middot; Defensive lab</p>
+            <h3><a href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
+            <p>A local lab for testing the infrastructure boundaries that determine blast radius after an AI model or agent is tricked.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -223,6 +268,24 @@ if decision.allowed:
             <p>Reference implementation of a multi-layer architecture for governed security operations. The proof of concept separates governance, attack surface, identity, telemetry, adversary simulation, detection, response, engineering, and assurance into explicit cooperating layers.</p>
             <p class="card-link"><a href="https://github.com/codethor0/security-stack-engineering">View repository on GitHub</a></p>
           </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="inventions" aria-labelledby="inventions-heading">
+      <div class="container">
+        <div class="section-heading-row">
+          <div>
+            <p class="eyebrow">Public invention record</p>
+            <h2 id="inventions-heading">Patents &amp; Inventions</h2>
+          </div>
+          <a class="section-action" href="./inventions.html">View disclosures</a>
+        </div>
+        <p>THOR-SEC separates public invention disclosures from patent status. A research concept, algorithm, or repository is not labeled patented or patent-pending unless a public identifier is available and intentionally disclosed.</p>
+        <ul class="compact-list">
+          <li><strong>MIAM</strong> &mdash; formally published defensive architecture with DOI-backed public record.</li>
+          <li><strong>Security Stack Engineering</strong> &mdash; public reference architecture for governed security operations.</li>
+          <li><strong>Impact Forecast Algorithm</strong> &mdash; public risk-quantification algorithm and implementation.</li>
         </ul>
       </div>
     </section>
@@ -408,10 +471,13 @@ else:
         <p>Research questions, collaboration, and responsible disclosure.</p>
         <ul class="contact-list">
           <li>Email: <a href="mailto:codethor@gmail.com">codethor@gmail.com</a></li>
-          <li>GitHub: <a href="https://github.com/codethor0">github.com/codethor0</a></li>
-          <li>ORCID: <a href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
-          <li>LinkedIn: <a href="https://www.linkedin.com/in/thor-thor0/">linkedin.com/in/thor-thor0</a></li>
-          <li>Substack: <a href="https://substack.com/@uniqueviolation">substack.com/@uniqueviolation</a></li>
+          <li>GitHub: <a rel="me" href="https://github.com/codethor0">github.com/codethor0</a></li>
+          <li>ORCID: <a rel="me" href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
+          <li>LinkedIn: <a rel="me" href="https://www.linkedin.com/in/thor-thor0/">linkedin.com/in/thor-thor0</a></li>
+          <li>Substack: <a rel="me" href="https://substack.com/@uniqueviolation">substack.com/@uniqueviolation</a></li>
+          <li>Research archive: <a href="./research.html">research.html</a></li>
+          <li>Site security: <a href="./security.html">security.html</a></li>
+          <li>RSS/Atom: <a href="./feed.xml">feed.xml</a></li>
         </ul>
       </div>
     </section>
@@ -419,7 +485,7 @@ else:
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="https://github.com/codethor0/thor-sec/blob/main/LICENSE">MIT License</a> &middot; <a href="./SECURITY.md">Security Policy</a> &middot; <a href="./.well-known/security.txt">Security.txt</a> &middot; <a href="./feed.xml">RSS feed</a> &middot; <a href="./now.html">Now</a> &middot; Independent defensive cybersecurity research</p>
+      <p>&copy; 2026 THOR-SEC &middot; <a href="./research.html">Research Archive</a> &middot; <a href="./inventions.html">Inventions</a> &middot; <a href="./security.html">Site Security</a> &middot; <a href="./.well-known/security.txt">Security.txt</a> &middot; <a href="./feed.xml">RSS/Atom</a> &middot; <a href="./now.html">Now</a> &middot; <a href="https://github.com/codethor0/thor-sec">Source</a></p>
       <p class="footer-meta">Last updated: September 2026</p>
     </div>
   </footer>

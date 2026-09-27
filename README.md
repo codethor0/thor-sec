@@ -20,6 +20,27 @@ Independent defensive cybersecurity research portfolio and public website for Th
 - **Impact Forecast Algorithm (IFA):** https://github.com/codethor0/impact-forecast
 - **Security Stack Engineering (SSE):** https://github.com/codethor0/security-stack-engineering
 
+## Site Architecture
+
+THOR-SEC uses a static-first publication model:
+
+- No client-side JavaScript
+- No forms
+- No cookies or analytics
+- No third-party fonts or runtime assets
+- Same-origin CSS and images
+- Restrictive meta Content Security Policy
+- `no-referrer` browser policy
+- Public `security.txt` and vulnerability disclosure policy
+- CI security audit on every push and pull request
+
+Public indexes:
+
+- **Research archive:** https://codethor0.github.io/thor-sec/research.html
+- **Patents & inventions:** https://codethor0.github.io/thor-sec/inventions.html
+- **Site security & privacy:** https://codethor0.github.io/thor-sec/security.html
+- **RSS/Atom:** https://codethor0.github.io/thor-sec/feed.xml
+
 ## Purpose
 
 THOR-SEC is a static public website for open-source defensive cybersecurity research, AI security work, cybersecurity writing, and security engineering projects. Views and research are personal. THOR-SEC is not affiliated with, endorsed by, or representative of any employer.
