@@ -12,6 +12,14 @@ Independent defensive cybersecurity research portfolio and public website for Th
 - **DOI:** https://doi.org/10.5281/zenodo.23001045
 - **Source and reproducibility artifacts:** https://github.com/codethor0/miam
 
+## Selected Research Projects
+
+- **llm-agent-control-plane:** https://github.com/codethor0/llm-agent-control-plane
+- **Model Identity Verifier:** https://github.com/codethor0/model-identity-verifier
+- **BoundaryLayer:** https://github.com/codethor0/boundary-layer
+- **Impact Forecast Algorithm (IFA):** https://github.com/codethor0/impact-forecast
+- **Security Stack Engineering (SSE):** https://github.com/codethor0/security-stack-engineering
+
 ## Purpose
 
 THOR-SEC is a static public website for open-source defensive cybersecurity research, AI security work, cybersecurity writing, and security engineering projects. Views and research are personal. THOR-SEC is not affiliated with, endorsed by, or representative of any employer.
