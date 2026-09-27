@@ -4,46 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
-  <meta name="author" content="Thor Thor">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
   <title>Now | THOR-SEC</title>
-  <meta name="description" content="Current research focus for THOR-SEC independent defensive cybersecurity research.">
+  <meta name="description" content="Current research focus at THOR-SEC.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/now.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Now | THOR-SEC">
+  <meta property="og:description" content="Current research focus at THOR-SEC.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/now.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-thor-profile.jpg">
+  <meta property="og:image:alt" content="Portrait of Thor Thor">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
-
   <header class="site-header">
     <div class="container">
       <a class="site-brand" href="./">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="./research.html">Research</a></li>
+            <li><a href="./#projects">Projects</a></li>
+            <li><a href="./#writing">Writing</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="nav-cta" href="./work.html">Commission</a></li>
+          </ul>
+        </nav>
+        <div class="theme-toggle">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
+          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
+        </div>
+      </div>
     </div>
   </header>
 
-  <main id="main" class="now-page">
-    <div class="container">
-      <h1>Now</h1>
-      <p class="now-lead">Current focus</p>
-      <p>THOR-SEC is currently focused on MIAM prototype evaluation, defensive AI infrastructure, external authorization for tool-connected agents, model identity verification, security risk quantification, and reproducible cybersecurity research.</p>
-      <p>Current work is limited to authorized lab environments, independent open-source research, defensive reference implementations, and public technical documentation.</p>
-      <nav class="page-nav" aria-label="Related pages">
-        <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="./research.html">Research Archive</a></li>
-          <li><a href="./inventions.html">Inventions</a></li>
-          <li><a href="./security.html">Site Security</a></li>
-          <li><a href="./#connect">Connect</a></li>
-        </ul>
-      </nav>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Now</p>
+        <h1>Current focus</h1>
+        <p class="lead">What THOR-SEC is working on this month.</p>
+      </div>
     </div>
+
+    <section aria-labelledby="now-heading">
+      <div class="container prose">
+        <h2 id="now-heading" class="eyebrow">September 2026</h2>
+        <ul class="bullet-list">
+          <li>Following up the MIAM paper: prototype design and the evaluation protocol from Section 15.</li>
+          <li>External authorization for tool-connected AI agents.</li>
+          <li>Model identity verification and LLM infrastructure security.</li>
+          <li>Opening THOR-SEC to commissioned research engagements.</li>
+        </ul>
+        <p>All work is limited to authorized lab environments and public research.</p>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="https://github.com/codethor0/thor-sec/blob/main/LICENSE">MIT License</a> &middot; <a href="./.well-known/security.txt">Security.txt</a> &middot; <a href="./feed.xml">RSS feed</a> &middot; <a href="./now.html">Now</a> &middot; Independent defensive cybersecurity research</p>
-      <p class="footer-meta">Last updated: September 2026</p>
+      <ul>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./inventions.html">Inventions</a></li>
+        <li><a href="./work.html">Commission research</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./now.html">Now</a></li>
+        <li><a href="./security.html">Site security</a></li>
+        <li><a href="./.well-known/security.txt">security.txt</a></li>
+        <li><a href="./feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
     </div>
   </footer>
 </body>

@@ -37,6 +37,8 @@ THOR-SEC uses a static-first publication model:
 Public indexes:
 
 - **Research archive:** https://codethor0.github.io/thor-sec/research.html
+- **Commission research:** https://codethor0.github.io/thor-sec/work.html
+- **About:** https://codethor0.github.io/thor-sec/about.html
 - **Patents & inventions:** https://codethor0.github.io/thor-sec/inventions.html
 - **Site security & privacy:** https://codethor0.github.io/thor-sec/security.html
 - **RSS/Atom:** https://codethor0.github.io/thor-sec/feed.xml
@@ -48,7 +50,7 @@ THOR-SEC is a static public website for open-source defensive cybersecurity rese
 ## Local Preview
 
 ```bash
-cd thor-sec-public-site
+cd thor-sec
 python3 -m http.server 8080
 ```
 

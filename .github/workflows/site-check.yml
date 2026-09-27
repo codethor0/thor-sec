@@ -36,6 +36,8 @@ jobs:
           for path in \
             / \
             /research.html \
+            /work.html \
+            /about.html \
             /inventions.html \
             /security.html \
             /now.html \

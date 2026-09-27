@@ -4,15 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
-  <meta name="author" content="Thor Thor">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <title>Research Archive | THOR-SEC</title>
-  <meta name="description" content="Chronological archive of independent THOR-SEC cybersecurity research, publications, defensive tools, and field notes by Thor Thor.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>Research | THOR-SEC</title>
+  <meta name="description" content="Papers, open-source security tools, and field notes by Thor Thor: MIAM, LLM agent authorization, model identity verification, and more.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/research.html">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
-  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research Notes" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Research | THOR-SEC">
+  <meta property="og:description" content="Papers, open-source security tools, and field notes by Thor Thor: MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-thor-profile.jpg">
+  <meta property="og:image:alt" content="Portrait of Thor Thor">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,103 +28,165 @@
   <header class="site-header">
     <div class="container">
       <a class="site-brand" href="./">THOR-SEC</a>
-      <nav class="site-nav" aria-label="Research archive">
-        <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="./inventions.html">Inventions</a></li>
-          <li><a href="./security.html">Security</a></li>
-          <li><a href="./feed.xml">RSS/Atom</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a aria-current="page" href="./research.html">Research</a></li>
+            <li><a href="./#projects">Projects</a></li>
+            <li><a href="./#writing">Writing</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="nav-cta" href="./work.html">Commission</a></li>
+          </ul>
+        </nav>
+        <div class="theme-toggle">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
+          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
+        </div>
+      </div>
     </div>
   </header>
-  <main id="main" class="standalone-page">
-    <div class="container">
-      <header class="standalone-page-header">
-        <p class="eyebrow">Independent research record</p>
-        <h1>Research Archive</h1>
-        <p>Formal publications, open-source security research, field notes, and technical writing. Formal claims are separated from prototypes and research hypotheses.</p>
-      </header>
 
-      <section class="archive-group" aria-labelledby="formal-heading">
-        <h2 id="formal-heading">Formal Publications</h2>
-        <p>DOI-backed and citable research outputs.</p>
-        <ol class="archive-list">
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-09-27">September 27, 2026</time> &middot; Research paper &middot; v1.0.0</p>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research archive</p>
+        <h1>Research</h1>
+        <p class="lead">Formal publications, open-source research tools, and field notes, newest first. Design proposals are labeled as such; nothing here claims results it has not measured.</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="papers-heading">
+      <div class="container">
+        <h2 id="papers-heading">Papers</h2>
+        <ol class="entry-list">
+          <li class="entry" id="miam">
+            <p class="entry-meta"><time datetime="2026-09-27">2026-09-27</time> &middot; <span class="tag">preprint</span> &middot; version 1.0.0 &middot; CC BY 4.0</p>
             <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
             <p>Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity.</p>
+            <p>A design proposal and formal model. It develops a reconnaissance-transfer model, architecture-distance measures, a recurrence-aware retention model, per-epoch cryptographic isolation, a graph-delta-driven State Continuity Firewall, and an ablation-based evaluation protocol. It reports no empirical results.</p>
             <ul class="inline-links">
-              <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI</a></li>
-              <li><a href="https://github.com/codethor0/miam">Repository</a></li>
+              <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI 10.5281/zenodo.23001045</a></li>
+              <li><a href="https://github.com/codethor0/miam/blob/main/paper/MIAM.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/miam">Source</a></li>
               <li><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">Release</a></li>
             </ul>
+            <details>
+              <summary>Cite this paper</summary>
+              <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Mission-Invariant Architecture Morphing: Service-Graph
+Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch
+Isolation and Mission-Domain State Continuity (1.0.0). Zenodo.
+https://doi.org/10.5281/zenodo.23001045</code></pre>
+            </details>
           </li>
         </ol>
-      </section>
+      </div>
+    </section>
 
-      <section class="archive-group" aria-labelledby="software-heading">
-        <h2 id="software-heading">Open-Source Research &amp; Software</h2>
-        <p>Selected public defensive-security implementations, newest public projects first.</p>
-        <ol class="archive-list">
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-07-08">July 8, 2026</time> &middot; AI security</p>
+    <section aria-labelledby="tools-heading">
+      <div class="container">
+        <h2 id="tools-heading">Tools and reference implementations</h2>
+        <ol class="entry-list">
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-07-08">2026-07-08</time> &middot; <span class="tag">AI assurance</span></p>
             <h3><a href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
-            <p>Analyzes LLM identity drift, suspicious provider/route mismatch, and downgrade or substitution signals while explicitly distinguishing behavioral checks from cryptographic attestation.</p>
+            <p>Analyzes LLM identity drift, suspicious provider or route mismatch, and downgrade or substitution signals, and separates behavioral checks from cryptographic attestation.</p>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-05-30">May 30, 2026</time> &middot; LLM infrastructure security</p>
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-05-30">2026-05-30</time> &middot; <span class="tag">LLM infrastructure</span></p>
             <h3><a href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
-            <p>Defensive lab for comparing vulnerable and hardened infrastructure boundaries after a model or agent is tricked.</p>
+            <p>Defensive lab comparing vulnerable and hardened infrastructure boundaries after a model or agent is tricked.</p>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-05-17">May 17, 2026</time> &middot; Agent security</p>
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-05-17">2026-05-17</time> &middot; <span class="tag">agent security</span></p>
             <h3><a href="https://github.com/codethor0/llm-agent-control-plane">LLM Agent Control Plane</a></h3>
-            <p>Reference implementation that keeps authorization, policy, approvals, provenance checks, filtering, and audit logging outside the model.</p>
+            <p>Keeps authorization, policy, approvals, provenance checks, filtering, and audit logging outside the model. Agents propose; the control plane decides.</p>
+            <figure class="diagram">
+              <figcaption>Authorization flow</figcaption>
+              <svg viewBox="0 0 640 300" role="img" aria-labelledby="flow-title flow-desc" xmlns="http://www.w3.org/2000/svg">
+                <title id="flow-title">Authorization flow for tool-connected LLM actions</title>
+                <desc id="flow-desc">The agent proposes an action. A separate control plane evaluates policy and identity. Allowed actions run through tools; denied actions are blocked. Both outcomes are written to an audit log.</desc>
+                <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><polygon points="0 0, 8 4, 0 8" class="svg-arrowhead"></polygon></marker></defs>
+                <rect x="220" y="10" width="200" height="40" rx="20" class="svg-node"></rect>
+                <text x="320" y="35" text-anchor="middle" class="svg-text">Agent proposes action</text>
+                <line x1="320" y1="50" x2="320" y2="76" class="svg-line" marker-end="url(#arrow)"></line>
+                <rect x="140" y="80" width="360" height="40" rx="6" class="svg-node-accent"></rect>
+                <text x="320" y="105" text-anchor="middle" class="svg-text">Control plane: policy + identity</text>
+                <line x1="260" y1="120" x2="160" y2="166" class="svg-line" marker-end="url(#arrow)"></line>
+                <line x1="380" y1="120" x2="480" y2="166" class="svg-line" marker-end="url(#arrow)"></line>
+                <text x="190" y="146" class="svg-label">allow</text>
+                <text x="430" y="146" class="svg-label">deny</text>
+                <rect x="60" y="170" width="200" height="40" rx="6" class="svg-node"></rect>
+                <text x="160" y="195" text-anchor="middle" class="svg-text">Tool executes</text>
+                <rect x="380" y="170" width="200" height="40" rx="6" class="svg-node"></rect>
+                <text x="480" y="195" text-anchor="middle" class="svg-text">Action blocked</text>
+                <line x1="160" y1="210" x2="300" y2="246" class="svg-line" marker-end="url(#arrow)"></line>
+                <line x1="480" y1="210" x2="340" y2="246" class="svg-line" marker-end="url(#arrow)"></line>
+                <rect x="240" y="250" width="160" height="40" rx="6" class="svg-node"></rect>
+                <text x="320" y="275" text-anchor="middle" class="svg-text">Audit log</text>
+              </svg>
+            </figure>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-02-27">February 27, 2026</time> &middot; Security architecture</p>
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-02-27">2026-02-27</time> &middot; <span class="tag">security architecture</span></p>
             <h3><a href="https://github.com/codethor0/security-stack-engineering">Security Stack Engineering (SSE)</a></h3>
-            <p>Multi-layer reference architecture for governed and measurable security operations.</p>
+            <p>Multi-layer reference architecture for governed and measurable security operations. Background: <a href="https://uniqueviolation.substack.com/p/security-stack-engineering">the SSE essay</a>.</p>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-02-21">February 21, 2026</time> &middot; Risk quantification</p>
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-02-21">2026-02-21</time> &middot; <span class="tag">risk quantification</span></p>
             <h3><a href="https://github.com/codethor0/impact-forecast">Impact Forecast Algorithm (IFA)</a></h3>
             <p>Bayesian-inspired implementation for updating material-impact probability from explicit evidence likelihood ratios.</p>
           </li>
         </ol>
-      </section>
+      </div>
+    </section>
 
-      <section class="archive-group" aria-labelledby="notes-heading">
-        <h2 id="notes-heading">Field Notes</h2>
-        <ol class="archive-list">
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-06">June 2026</time> &middot; Detection engineering</p>
-            <h3><a href="./#oauth-anomaly-baseline">OAuth Anomaly Baseline</a></h3>
-            <p>Rolling-baseline detection pattern for unusual OAuth grant behavior.</p>
+    <section id="field-notes" aria-labelledby="notes-heading">
+      <div class="container">
+        <h2 id="notes-heading">Field notes</h2>
+        <ol class="entry-list">
+          <li class="entry" id="oauth-anomaly-baseline">
+            <p class="entry-meta"><time datetime="2026-06-01">2026-06</time> &middot; <span class="tag">detection engineering</span></p>
+            <h3>OAuth anomaly baseline</h3>
+            <p>Flags unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline, surfacing uncommon client and scope combinations for review.</p>
+            <p class="code-label">Splunk SPL</p>
+            <pre class="code-snippet" tabindex="0"><code>index=authentication sourcetype=oauth:token
+| stats dc(client_id) AS clients dc(scope) AS scopes count BY user
+| eventstats avg(count) AS avg_grant stdev(count) AS stdev_grant BY user
+| eval threshold=avg_grant+(3*stdev_grant)
+| where count &gt; threshold AND clients &gt; 1</code></pre>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta"><time datetime="2026-06">June 2026</time> &middot; AI security</p>
-            <h3><a href="./#llm-agent-authorization-boundary">LLM Agent Authorization Boundary</a></h3>
-            <p>Design note for separating model proposals from external authorization and audit decisions.</p>
+          <li class="entry" id="llm-agent-authorization-boundary">
+            <p class="entry-meta"><time datetime="2026-06-01">2026-06</time> &middot; <span class="tag">AI security</span></p>
+            <h3>LLM agent authorization boundary</h3>
+            <p>The agent may propose an action, but authorization belongs in a separate policy layer with identity context, allow and deny decisions, and audit logging.</p>
+            <p class="code-label">Pattern</p>
+            <pre class="code-snippet" tabindex="0"><code>decision = control_plane.authorize(action, identity, policy)
+
+if decision.allowed:
+    audit.log(action, identity, "allowed")
+    tool.execute(action)
+else:
+    audit.log(action, identity, "blocked")</code></pre>
           </li>
         </ol>
-      </section>
-
-      <section class="archive-group" aria-labelledby="identity-heading">
-        <h2 id="identity-heading">Research Identity</h2>
-        <ul class="contact-list">
-          <li>ORCID: <a rel="me" href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
-          <li>GitHub: <a rel="me" href="https://github.com/codethor0">github.com/codethor0</a></li>
-          <li>Substack: <a rel="me" href="https://substack.com/@uniqueviolation">Unique Violation</a></li>
-        </ul>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="./">Home</a> &middot; <a href="./inventions.html">Inventions</a> &middot; <a href="./security.html">Site Security</a> &middot; <a href="./feed.xml">RSS/Atom</a> &middot; <a href="https://github.com/codethor0/thor-sec">Source</a></p>
-      <p class="footer-meta">Last updated: September 2026</p>
+      <ul>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./inventions.html">Inventions</a></li>
+        <li><a href="./work.html">Commission research</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./now.html">Now</a></li>
+        <li><a href="./security.html">Site security</a></li>
+        <li><a href="./.well-known/security.txt">security.txt</a></li>
+        <li><a href="./feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
     </div>
   </footer>
 </body>

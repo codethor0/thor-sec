@@ -4,14 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
-  <meta name="author" content="Thor Thor">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
-  <title>Patents &amp; Inventions | THOR-SEC</title>
-  <meta name="description" content="Public invention disclosures and research concepts from THOR-SEC, separated from unverified or non-public patent status.">
+  <title>Inventions | THOR-SEC</title>
+  <meta name="description" content="Public invention disclosures from THOR-SEC, kept separate from patent status.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/inventions.html">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Inventions | THOR-SEC">
+  <meta property="og:description" content="Public invention disclosures from THOR-SEC, kept separate from patent status.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/inventions.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-thor-profile.jpg">
+  <meta property="og:image:alt" content="Portrait of Thor Thor">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -19,56 +28,78 @@
   <header class="site-header">
     <div class="container">
       <a class="site-brand" href="./">THOR-SEC</a>
-      <nav class="site-nav" aria-label="Inventions page">
-        <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="./research.html">Research</a></li>
-          <li><a href="./security.html">Security</a></li>
-          <li><a href="https://orcid.org/0009-0001-6573-385X">ORCID</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="./research.html">Research</a></li>
+            <li><a href="./#projects">Projects</a></li>
+            <li><a href="./#writing">Writing</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="nav-cta" href="./work.html">Commission</a></li>
+          </ul>
+        </nav>
+        <div class="theme-toggle">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
+          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
+        </div>
+      </div>
     </div>
   </header>
-  <main id="main" class="standalone-page">
-    <div class="container">
-      <header class="standalone-page-header">
-        <p class="eyebrow">Public invention record</p>
-        <h1>Patents &amp; Inventions</h1>
-        <p>This page records independently published invention concepts and technical architectures. It deliberately separates a public research disclosure from a patent or patent application.</p>
-      </header>
 
-      <section class="archive-group" aria-labelledby="disclosures-heading">
-        <h2 id="disclosures-heading">Public Invention Disclosures</h2>
-        <ol class="archive-list">
-          <li class="archive-item">
-            <p class="archive-meta">2026 &middot; Defensive architecture &middot; DOI-backed publication</p>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Public invention record</p>
+        <h1>Inventions</h1>
+        <p class="lead">Independently published invention concepts and technical architectures. A public disclosure is kept separate from any patent or patent application.</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="disclosures-heading">
+      <div class="container">
+        <h2 id="disclosures-heading">Public disclosures</h2>
+        <ol class="entry-list">
+          <li class="entry">
+            <p class="entry-meta">2026 &middot; <span class="tag">defensive architecture</span> &middot; DOI-backed publication</p>
             <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
-            <p>Application-level service-graph morphing with cryptographic epoch isolation and mission-domain state continuity. Published as an independent research proposal with source and reproducibility artifacts.</p>
+            <p>Application-level service-graph morphing with cryptographic epoch isolation and mission-domain state continuity. Appendix A of the paper is a reference claim set released as a defensive publication.</p>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta">2026 &middot; Security architecture &middot; Public reference implementation</p>
+          <li class="entry">
+            <p class="entry-meta">2026 &middot; <span class="tag">security architecture</span> &middot; public reference implementation</p>
             <h3><a href="https://github.com/codethor0/security-stack-engineering">Security Stack Engineering (SSE)</a></h3>
             <p>Layered architecture for governed security operations with explicit inputs, outputs, invariants, and assurance feedback.</p>
           </li>
-          <li class="archive-item">
-            <p class="archive-meta">2026 &middot; Risk algorithm &middot; Public implementation</p>
+          <li class="entry">
+            <p class="entry-meta">2026 &middot; <span class="tag">risk algorithm</span> &middot; public implementation</p>
             <h3><a href="https://github.com/codethor0/impact-forecast">Impact Forecast Algorithm (IFA)</a></h3>
             <p>Bayesian-inspired method for updating material-impact probability using explicit evidence likelihood ratios.</p>
           </li>
         </ol>
-      </section>
+      </div>
+    </section>
 
-      <section class="archive-group" aria-labelledby="patent-status-heading">
-        <h2 id="patent-status-heading">Patent Status Policy</h2>
-        <p>THOR-SEC does not currently publish independent patent or patent-application numbers on this page. A public project is not described as patented, patent-pending, or filed unless a public identifier is available and its disclosure is intentional and appropriate.</p>
-        <p>This keeps the public research record precise and avoids conflating research novelty, defensive publication, internal invention review, and formal patent status.</p>
-      </section>
-    </div>
+    <section aria-labelledby="policy-heading">
+      <div class="container">
+        <h2 id="policy-heading">Patent status policy</h2>
+        <p class="prose">No work on this page is described as patented, patent-pending, or filed unless a public identifier exists and its disclosure is intentional. Publication places a mechanism in the public record as prior art; it does not grant a patent license and is not legal advice.</p>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="./">Home</a> &middot; <a href="./research.html">Research Archive</a> &middot; <a href="./security.html">Site Security</a> &middot; <a href="https://github.com/codethor0/thor-sec">Source</a></p>
-      <p class="footer-meta">Last updated: September 2026</p>
+      <ul>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./inventions.html">Inventions</a></li>
+        <li><a href="./work.html">Commission research</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./now.html">Now</a></li>
+        <li><a href="./security.html">Site security</a></li>
+        <li><a href="./.well-known/security.txt">security.txt</a></li>
+        <li><a href="./feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
     </div>
   </footer>
 </body>

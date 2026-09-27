@@ -4,13 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
-  <meta name="author" content="Thor Thor">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
-  <title>Site Security &amp; Privacy | THOR-SEC</title>
-  <meta name="description" content="Public security and privacy posture for the THOR-SEC static cybersecurity research site.">
+  <title>Site Security and Privacy | THOR-SEC</title>
+  <meta name="description" content="Security and privacy posture of the THOR-SEC static research site.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/security.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Site Security and Privacy | THOR-SEC">
+  <meta property="og:description" content="Security and privacy posture of the THOR-SEC static research site.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/security.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-thor-profile.jpg">
+  <meta property="og:image:alt" content="Portrait of Thor Thor">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,75 +28,92 @@
   <header class="site-header">
     <div class="container">
       <a class="site-brand" href="./">THOR-SEC</a>
-      <nav class="site-nav" aria-label="Security page">
-        <ul>
-          <li><a href="./">Home</a></li>
-          <li><a href="./research.html">Research</a></li>
-          <li><a href="./inventions.html">Inventions</a></li>
-          <li><a href="./.well-known/security.txt">security.txt</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="./research.html">Research</a></li>
+            <li><a href="./#projects">Projects</a></li>
+            <li><a href="./#writing">Writing</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="nav-cta" href="./work.html">Commission</a></li>
+          </ul>
+        </nav>
+        <div class="theme-toggle">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
+          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
+        </div>
+      </div>
     </div>
   </header>
-  <main id="main" class="standalone-page">
-    <div class="container">
-      <header class="standalone-page-header">
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
         <p class="eyebrow">Auditable by design</p>
-        <h1>Site Security &amp; Privacy</h1>
-        <p>THOR-SEC is intentionally built as a minimal static site. The security model favors fewer moving parts, public source, and checks that can fail closed before deployment.</p>
-      </header>
-
-      <div class="security-grid">
-        <section class="security-panel" aria-labelledby="runtime-heading">
-          <h2 id="runtime-heading">Runtime Surface</h2>
-          <ul>
-            <li>No client-side JavaScript.</li>
-            <li>No HTML forms.</li>
-            <li>No cookies or analytics.</li>
-            <li>No third-party fonts or runtime assets.</li>
-            <li>Same-origin CSS and images.</li>
-          </ul>
-        </section>
-
-        <section class="security-panel" aria-labelledby="browser-heading">
-          <h2 id="browser-heading">Browser Policy</h2>
-          <ul>
-            <li>Restrictive meta Content Security Policy.</li>
-            <li>Scripts, forms, frames, workers, objects, and network connections are denied.</li>
-            <li>Remote runtime images and styles are denied.</li>
-            <li>Referrer policy is <code>no-referrer</code>.</li>
-          </ul>
-        </section>
-
-        <section class="security-panel" aria-labelledby="ci-heading">
-          <h2 id="ci-heading">Deployment Gates</h2>
-          <ul>
-            <li>GitHub Actions runs a static security audit on every push and pull request.</li>
-            <li>The audit checks local links, duplicate IDs, forbidden active-content tags, inline handlers/styles, insecure URLs, XML validity, and security metadata.</li>
-            <li>The workflow uses read-only repository permissions and a commit-pinned checkout action.</li>
-          </ul>
-        </section>
-
-        <section class="security-panel" aria-labelledby="disclosure-heading">
-          <h2 id="disclosure-heading">Disclosure</h2>
-          <ul>
-            <li><a href="./.well-known/security.txt">security.txt</a></li>
-            <li><a href="./SECURITY.md">Security policy</a></li>
-            <li><a href="mailto:codethor@gmail.com">codethor@gmail.com</a></li>
-            <li><a href="https://github.com/codethor0/thor-sec">Public source repository</a></li>
-          </ul>
-        </section>
-      </div>
-
-      <div class="integrity-note">
-        <strong>Hosting boundary:</strong> THOR-SEC is hosted on GitHub Pages. Repository content can enforce applicable in-document browser controls and CI policy, but it cannot independently configure every HTTP response header served by the hosting platform. External links also leave the THOR-SEC security boundary.
+        <h1>Site security and privacy</h1>
+        <p class="lead">THOR-SEC is a static site with a deliberately small attack surface. Everything below is enforced in the public source and checked on every change.</p>
       </div>
     </div>
+
+    <section aria-labelledby="surface-heading">
+      <div class="container">
+        <ul class="card-grid">
+          <li class="card">
+            <p class="card-kind">Runtime surface</p>
+            <h3 id="surface-heading">Nothing runs in your browser</h3>
+            <ul class="bullet-list">
+              <li>No JavaScript, forms, cookies, or analytics.</li>
+              <li>No third-party fonts, scripts, or runtime assets.</li>
+              <li>Same-origin CSS and images only.</li>
+            </ul>
+          </li>
+          <li class="card">
+            <p class="card-kind">Browser policy</p>
+            <h3>Deny by default</h3>
+            <ul class="bullet-list">
+              <li>Content Security Policy blocks scripts, forms, frames, workers, objects, and network connections.</li>
+              <li>Remote images and styles are blocked.</li>
+              <li>Referrer policy is <code>no-referrer</code>.</li>
+            </ul>
+          </li>
+          <li class="card">
+            <p class="card-kind">Deployment gates</p>
+            <h3>Checked before publish</h3>
+            <ul class="bullet-list">
+              <li>A static security audit runs on every push and pull request.</li>
+              <li>It checks links, duplicate IDs, active content, inline handlers and styles, insecure URLs, XML validity, and security metadata.</li>
+              <li>The workflow runs with read-only permissions and a commit-pinned checkout action.</li>
+            </ul>
+          </li>
+          <li class="card">
+            <p class="card-kind">Disclosure</p>
+            <h3>Report an issue</h3>
+            <ul class="bullet-list">
+              <li><a href="./.well-known/security.txt">security.txt</a></li>
+              <li><a href="https://github.com/codethor0/thor-sec/blob/main/SECURITY.md">Security policy</a></li>
+              <li><a href="mailto:codethor@gmail.com">codethor@gmail.com</a></li>
+            </ul>
+          </li>
+        </ul>
+        <p class="note">Hosting boundary: the site is served by GitHub Pages. Repository content enforces in-document browser controls and CI policy but cannot set every HTTP response header the host sends. External links leave the THOR-SEC boundary.</p>
+      </div>
+    </section>
   </main>
+
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="./">Home</a> &middot; <a href="./research.html">Research Archive</a> &middot; <a href="./.well-known/security.txt">security.txt</a> &middot; <a href="https://github.com/codethor0/thor-sec">Source</a></p>
-      <p class="footer-meta">Last updated: September 2026</p>
+      <ul>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./inventions.html">Inventions</a></li>
+        <li><a href="./work.html">Commission research</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./now.html">Now</a></li>
+        <li><a href="./security.html">Site security</a></li>
+        <li><a href="./.well-known/security.txt">security.txt</a></li>
+        <li><a href="./feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
     </div>
   </footer>
 </body>

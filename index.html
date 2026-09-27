@@ -3,48 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Thor Thor">
-  <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
-  <meta name="robots" content="index,follow,max-image-preview:large">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
-  <title>THOR-SEC | Independent Defensive Cybersecurity Research</title>
-  <meta name="description" content="THOR-SEC is an independent open-source cybersecurity research portfolio by Thor Thor, focused on defensive security, AI security, detection engineering, incident response, and cybersecurity writing.">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>THOR-SEC | Independent Security Research by Thor Thor</title>
+  <meta name="description" content="Independent security research by Thor Thor on AI and LLM security, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="THOR-SEC | Independent Defensive Cybersecurity Research">
-  <meta property="og:description" content="Independent open-source defensive cybersecurity research, AI security engineering, detection engineering, and cybersecurity writing by Thor Thor.">
-  <meta property="og:url" content="https://codethor0.github.io/thor-sec/">
   <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="THOR-SEC | Independent Security Research by Thor Thor">
+  <meta property="og:description" content="Independent security research by Thor Thor on AI and LLM security, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-thor-profile.jpg">
+  <meta property="og:image:alt" content="Portrait of Thor Thor">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="THOR-SEC | Independent Defensive Cybersecurity Research">
-  <meta name="twitter:description" content="Independent open-source defensive cybersecurity research and AI security engineering by Thor Thor.">
-  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research Notes" href="https://codethor0.github.io/thor-sec/feed.xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
-
   <header class="site-header">
     <div class="container">
       <a class="site-brand" href="./">THOR-SEC</a>
       <div class="header-right">
         <nav class="site-nav" aria-label="Primary">
           <ul>
-            <li><a href="#latest">Latest</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="./research.html">Archive</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="./inventions.html">Inventions</a></li>
-            <li><a href="#writing">Writing</a></li>
-            <li><a href="./security.html">Security</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#connect">Connect</a></li>
+            <li><a href="./research.html">Research</a></li>
+            <li><a href="./#projects">Projects</a></li>
+            <li><a href="./#writing">Writing</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="nav-cta" href="./work.html">Commission</a></li>
           </ul>
         </nav>
         <div class="theme-toggle">
-          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Toggle color theme">
+          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
           <label for="theme-toggle" class="theme-toggle-label">Theme</label>
         </div>
       </div>
@@ -54,325 +49,103 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
+        <p class="eyebrow">Independent security research</p>
         <h1 id="hero-heading">THOR-SEC</h1>
-        <p class="hero-tagline">Independent Defensive Cybersecurity Research, AI Security Engineering, and Cybersecurity Writing</p>
-        <p class="hero-intro">THOR-SEC is an independent open-source cybersecurity research portfolio by Thor Thor, focused on defensive security, AI security, detection engineering, incident response, secure automation, and cybersecurity writing.</p>
-        <p class="hero-output">Research is published with reproducible methods, defensive use guidance, and artifacts you can inspect and run locally.</p>
-        <p class="hero-meta">Thor Thor &middot; He/Him &middot; Minneapolis, Minnesota, United States</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#latest">Latest Research</a>
-          <a class="btn btn-secondary" href="./research.html">Research Archive</a>
-          <a class="btn btn-secondary" rel="me" href="https://orcid.org/0009-0001-6573-385X">ORCID</a>
-          <a class="btn btn-secondary" rel="me" href="https://github.com/codethor0">GitHub</a>
-        </div>
-        <ul class="hero-stats" aria-label="Research portfolio summary">
-          <li><strong>1</strong><span>formal paper</span></li>
-          <li><strong>5</strong><span>selected public security projects</span></li>
-          <li><strong>2</strong><span>published books</span></li>
-          <li><strong>0</strong><span>third-party scripts</span></li>
+        <p class="hero-tagline">Research on how attackers use access, and how systems can make that access worthless.</p>
+        <p class="hero-intro">Papers, reference implementations, and labs by Thor Thor on AI and LLM security, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
+        <ul class="status-line" aria-label="Research status">
+          <li><span class="status-dot" aria-hidden="true"></span><strong>Accepting research requests</strong></li>
+          <li><span>latest</span> <strong>MIAM 1.0.0</strong></li>
+          <li><span>orcid</span> <a href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
         </ul>
+        <div class="actions">
+          <a class="btn btn-primary" href="./work.html">Commission research</a>
+          <a class="btn btn-secondary" href="#latest">Read the latest</a>
+        </div>
       </div>
     </section>
 
-    <section id="latest" class="latest-section" aria-labelledby="latest-heading">
+    <section id="latest" aria-labelledby="latest-heading">
       <div class="container">
-        <div class="section-heading-row">
-          <div>
-            <p class="eyebrow">Research desk</p>
-            <h2 id="latest-heading">Latest Research</h2>
-          </div>
-          <a class="section-action" href="./research.html">View research archive</a>
+        <div class="section-head">
+          <h2 id="latest-heading">Latest research</h2>
+          <a class="section-link" href="./research.html">Full archive</a>
         </div>
-        <ol class="latest-list">
-          <li class="latest-item">
-            <p class="latest-meta"><time datetime="2026-09-27">September 27, 2026</time> &middot; Formal publication</p>
+        <ol class="entry-list">
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-09-27">2026-09-27</time> &middot; <span class="tag">paper</span> &middot; DOI 10.5281/zenodo.23001045</p>
             <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
-            <p>A formal design proposal for application-level service-graph morphing against post-access reconnaissance, with cryptographic epoch isolation and mission-domain state continuity.</p>
+            <p>Most moving target defenses change addresses, ports, or hosts. MIAM reshapes an application's internal service graph across security epochs while its external interface stays fixed, so the dependency map an attacker builds after initial access goes stale. Includes a retention model showing that a finite variant pool leaves a nonzero knowledge floor.</p>
             <ul class="inline-links">
               <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI</a></li>
-              <li><a href="https://github.com/codethor0/miam">Source</a></li>
-              <li><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">Release</a></li>
+              <li><a href="https://github.com/codethor0/miam/blob/main/paper/MIAM.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/miam">Source and reproduction</a></li>
             </ul>
           </li>
-          <li class="latest-item">
-            <p class="latest-meta"><time datetime="2026-08">August 2026</time> &middot; AI security tool</p>
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-07-08">2026-07-08</time> &middot; <span class="tag">tool</span></p>
             <h3><a href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
-            <p>CLI research tooling for detecting LLM identity drift, suspicious route/provider mismatch, and downgrade or substitution signals without overstating self-identification as attestation.</p>
+            <p>Detects LLM identity drift, route or provider mismatch, and downgrade or substitution signals, without treating a model's self-description as proof of what is running.</p>
           </li>
-          <li class="latest-item">
-            <p class="latest-meta"><time datetime="2026-05">May 2026</time> &middot; Defensive lab</p>
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-05-30">2026-05-30</time> &middot; <span class="tag">lab</span></p>
             <h3><a href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
-            <p>A local lab for testing the infrastructure boundaries that determine blast radius after an AI model or agent is tricked.</p>
+            <p>A local lab for the infrastructure boundaries that decide blast radius after a model or agent is tricked: tool routing, sessions, authorization, uploads, caching, and alerting.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <section id="about" aria-labelledby="about-heading">
+    <section id="areas" aria-labelledby="areas-heading">
       <div class="container">
-        <h2 id="about-heading">About</h2>
-        <div class="about-layout">
-          <div class="about-content">
-            <p>Independent means this work is self-directed, published on its own timeline, and separate from any employer role. Research is developed in authorized lab environments, documented with reproducible methods, and released when it is ready for public review.</p>
-            <p>Defensive security sets the priorities: authorized scope, clear evidence, containment before expansion, and output that security teams can use in operations. Professional experience informs the research; THOR-SEC does not represent any employer.</p>
-            <p class="disclaimer">Views and research are personal. THOR-SEC is an independent open-source cybersecurity research portfolio and is not affiliated with, endorsed by, or representative of any current or former employer.</p>
-          </div>
-          <figure class="profile-card">
-            <picture>
-              <source srcset="assets/thor-thor-profile.webp" type="image/webp">
-              <img src="assets/thor-thor-profile.jpg" alt="Portrait of Thor Thor" width="160" height="160" loading="lazy" decoding="async">
-            </picture>
-            <figcaption>Thor Thor</figcaption>
-          </figure>
-        </div>
+        <h2 id="areas-heading">Research areas</h2>
+        <ul class="area-grid">
+          <li><strong>AI and LLM security</strong><span>Agent authorization, tool boundaries, model identity, LLM infrastructure.</span></li>
+          <li><strong>Moving target defense</strong><span>Making post-access reconnaissance expire at the application layer.</span></li>
+          <li><strong>Security architecture</strong><span>Governed, measurable security operations with explicit invariants.</span></li>
+          <li><strong>Detection engineering</strong><span>Baselines, correlation logic, and detection content that holds up in operations.</span></li>
+          <li><strong>Risk quantification</strong><span>Evidence-driven estimates of material impact instead of color-coded heat maps.</span></li>
+          <li><strong>Security writing</strong><span>Reports, research notes, and books written for the people who act on them.</span></li>
+        </ul>
       </div>
     </section>
 
-    <section id="research" aria-labelledby="research-heading">
+    <section id="projects" aria-labelledby="projects-heading">
       <div class="container">
-        <h2 id="research-heading">Research Focus</h2>
+        <div class="section-head">
+          <h2 id="projects-heading">Open-source projects</h2>
+          <a class="section-link" href="https://github.com/codethor0">All repositories</a>
+        </div>
         <ul class="card-grid">
           <li class="card">
-            <h3>AI Security and LLM Infrastructure</h3>
-            <p>Tool-connected agents, prompt boundaries, and LLM deployment controls.</p>
+            <p class="card-kind">Agent security</p>
+            <h3><a href="https://github.com/codethor0/llm-agent-control-plane">LLM Agent Control Plane</a></h3>
+            <p>Reference implementation where agents propose actions and an external policy layer authorizes them, with identity context and audit logging.</p>
           </li>
           <li class="card">
-            <h3>Defensive Security Automation</h3>
-            <p>Automated triage, enrichment, and response workflows for defensive operations.</p>
+            <p class="card-kind">LLM infrastructure</p>
+            <h3><a href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
+            <p>Defensive lab that runs each scenario in vulnerable and hardened mode to show what happens after a model is tricked.</p>
           </li>
           <li class="card">
-            <h3>Detection Engineering and SIEM Workflows</h3>
-            <p>Detection rules, log normalization, alert tuning, and correlation logic.</p>
+            <p class="card-kind">AI assurance</p>
+            <h3><a href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
+            <p>CLI that flags model identity drift, route mismatch, and substitution signals. Self-identification is treated as text, not attestation.</p>
           </li>
           <li class="card">
-            <h3>Incident Response and Root Cause Analysis</h3>
-            <p>Investigation methods, timeline reconstruction, and post-incident documentation.</p>
+            <p class="card-kind">Risk quantification</p>
+            <h3><a href="https://github.com/codethor0/impact-forecast">Impact Forecast Algorithm (IFA)</a></h3>
+            <p>Bayesian-inspired method for updating the probability of material impact from explicit evidence likelihood ratios.</p>
           </li>
           <li class="card">
-            <h3>Secure Code Review and Application Security</h3>
-            <p>Review of authentication, authorization, input handling, and common vulnerability classes.</p>
+            <p class="card-kind">Security architecture</p>
+            <h3><a href="https://github.com/codethor0/security-stack-engineering">Security Stack Engineering (SSE)</a></h3>
+            <p>Nine-layer reference architecture for governed, measurable security operations with explicit inputs, outputs, and invariants.</p>
           </li>
           <li class="card">
-            <h3>Threat Intelligence and Vulnerability Research</h3>
-            <p>Mapping adversary techniques to defensive controls and evaluating exposure risk.</p>
-          </li>
-          <li class="card">
-            <h3>Cybersecurity Writing and Security Documentation</h3>
-            <p>Incident reports, runbooks, and architecture notes for security teams.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="publications" aria-labelledby="publications-heading">
-      <div class="container">
-        <h2 id="publications-heading">Research Publications</h2>
-        <p>Formal research outputs published independently with public source material, citation metadata, and reproducibility artifacts where available.</p>
-        <ul class="card-grid card-grid-stack">
-          <li class="card card-featured">
-            <p class="card-label">Research paper &middot; Version 1.0.0 &middot; September 2026</p>
-            <h3><a class="card-title" href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
-            <p>Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity.</p>
-            <p>Independent design proposal and formal model for application-level architecture morphing against post-access reconnaissance. The paper reports no empirical security advantage; claimed benefits remain hypotheses pending prototype evaluation.</p>
-            <p class="card-link"><a href="https://doi.org/10.5281/zenodo.23001045">DOI: 10.5281/zenodo.23001045</a></p>
-            <p class="card-link"><a href="https://github.com/codethor0/miam">Source, LaTeX, paper, and reproducibility artifacts on GitHub</a></p>
-            <p class="card-link"><a href="https://orcid.org/0009-0001-6573-385X">Author ORCID: 0009-0001-6573-385X</a></p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="open-source" aria-labelledby="opensource-heading">
-      <div class="container">
-        <h2 id="opensource-heading">Open-Source Research</h2>
-        <p>Published repositories with source code, documentation, and defensive use guidance.</p>
-        <ul class="card-grid card-grid-stack">
-          <li class="card card-featured">
-            <p class="card-label">Featured project</p>
-            <h3><a class="card-title" href="https://github.com/codethor0/llm-agent-control-plane">llm-agent-control-plane</a></h3>
-            <p>A defensive reference implementation for tool-connected LLM agents. Agents may propose actions; an external control plane authorizes them.</p>
-            <p>llm-agent-control-plane models a defensive pattern for tool-connected LLM systems: agents can propose actions, but a separate policy layer decides whether those actions are allowed. The project focuses on authorization boundaries, auditability, and safer automation patterns rather than treating model output as trusted execution.</p>
-            <figure class="flowchart-wrap">
-              <figcaption>Authorization flow</figcaption>
-              <svg class="flowchart" viewBox="0 0 760 560" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="flowchart-title flowchart-desc">
-                <title id="flowchart-title">Authorization flow for tool-connected LLM actions</title>
-                <desc id="flowchart-desc">A user request is converted into a proposed agent action. A control plane evaluates policy and identity context. Allowed actions execute through tools and are logged. Denied actions are blocked and logged.</desc>
-                <defs>
-                  <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-                    <polygon points="0 0, 8 4, 0 8" class="svg-arrowhead"></polygon>
-                  </marker>
-                </defs>
-                <rect x="290" y="8" width="180" height="44" rx="22" class="svg-node-start"></rect>
-                <text x="380" y="36" text-anchor="middle" class="svg-text">User request</text>
-                <line x1="380" y1="52" x2="380" y2="68" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <rect x="200" y="72" width="360" height="44" rx="4" class="svg-node"></rect>
-                <text x="380" y="100" text-anchor="middle" class="svg-text">LLM agent proposes action</text>
-                <line x1="380" y1="116" x2="380" y2="132" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <rect x="70" y="136" width="620" height="44" rx="4" class="svg-node-accent"></rect>
-                <text x="380" y="164" text-anchor="middle" class="svg-text">Control plane evaluates policy + identity</text>
-                <line x1="380" y1="180" x2="380" y2="200" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <polygon points="380,204 444,248 380,292 316,248" class="svg-node-decision"></polygon>
-                <text x="380" y="253" text-anchor="middle" class="svg-text">Allowed?</text>
-                <line x1="340" y1="268" x2="170" y2="300" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <line x1="420" y1="268" x2="590" y2="300" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <text x="255" y="288" class="svg-label">Yes</text>
-                <text x="505" y="288" class="svg-label">No</text>
-                <rect x="50" y="300" width="240" height="44" rx="4" class="svg-node"></rect>
-                <text x="170" y="328" text-anchor="middle" class="svg-text">Tool executes</text>
-                <rect x="470" y="300" width="240" height="44" rx="4" class="svg-node-deny"></rect>
-                <text x="590" y="328" text-anchor="middle" class="svg-text">Action blocked</text>
-                <line x1="170" y1="344" x2="170" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <line x1="590" y1="344" x2="590" y2="392" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <line x1="170" y1="392" x2="380" y2="412" class="svg-line"></line>
-                <line x1="590" y1="392" x2="380" y2="412" class="svg-line"></line>
-                <line x1="380" y1="412" x2="380" y2="432" class="svg-line" marker-end="url(#arrowhead)"></line>
-                <rect x="290" y="436" width="180" height="44" rx="4" class="svg-node-audit"></rect>
-                <text x="380" y="464" text-anchor="middle" class="svg-text">Audit log</text>
-              </svg>
-            </figure>
-            <p class="code-label" id="control-plane-snippet-label">Example authorization pattern</p>
-            <pre class="code-snippet" aria-labelledby="control-plane-snippet-label" tabindex="0"><code># Agent proposes; control plane authorizes
-proposal = agent.plan(user_input)
-decision = control_plane.authorize(proposal, policy, identity)
-if decision.allowed:
-    executor.run(proposal.action)</code></pre>
-            <p class="card-source">Source: <a href="https://github.com/codethor0/llm-agent-control-plane/blob/main/src/agent_control_plane/policy_engine.py">policy_engine.py</a> in llm-agent-control-plane</p>
-            <p class="card-link"><a href="https://github.com/codethor0/llm-agent-control-plane">View repository on GitHub</a></p>
-          </li>
-
-          <li class="card">
-            <p class="card-label">AI security &middot; Model identity</p>
-            <h3><a class="card-title" href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
-            <p>Open-source Python CLI for analyzing LLM self-identification consistency, suspicious route/provider mismatch, identity drift, and possible downgrade or substitution signals.</p>
-            <p class="card-source">Research boundary: model self-identification is generated text, not cryptographic attestation. The tool reports suspicious signals and does not prove model authenticity when verifiable provider metadata is unavailable.</p>
-            <p class="card-link"><a href="https://github.com/codethor0/model-identity-verifier">View repository on GitHub</a></p>
-          </li>
-
-          <li class="card">
-            <p class="card-label">LLM infrastructure security &middot; Defensive lab</p>
-            <h3><a class="card-title" href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
-            <p>Local defensive AI infrastructure security lab for studying blast-radius controls after a model is tricked. Labs compare vulnerable and hardened modes across authorization, session integrity, routing, data lifecycle, write pressure, observability, and alert delivery.</p>
-            <p class="card-link"><a href="https://github.com/codethor0/boundary-layer">View repository on GitHub</a></p>
-          </li>
-
-          <li class="card">
-            <p class="card-label">Risk quantification &middot; Impact-first security</p>
-            <h3><a class="card-title" href="https://github.com/codethor0/impact-forecast">Impact Forecast Algorithm (IFA)</a></h3>
-            <p>Bayesian-inspired cybersecurity risk-quantification implementation that updates prior material-impact probability with explicit evidence likelihood ratios and produces an interpretable posterior risk estimate.</p>
-            <p class="card-link"><a href="https://github.com/codethor0/impact-forecast">View repository on GitHub</a></p>
-          </li>
-
-          <li class="card">
-            <p class="card-label">Security architecture &middot; Governed operations</p>
-            <h3><a class="card-title" href="https://github.com/codethor0/security-stack-engineering">Security Stack Engineering (SSE)</a></h3>
-            <p>Reference implementation of a multi-layer architecture for governed security operations. The proof of concept separates governance, attack surface, identity, telemetry, adversary simulation, detection, response, engineering, and assurance into explicit cooperating layers.</p>
-            <p class="card-link"><a href="https://github.com/codethor0/security-stack-engineering">View repository on GitHub</a></p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="inventions" aria-labelledby="inventions-heading">
-      <div class="container">
-        <div class="section-heading-row">
-          <div>
-            <p class="eyebrow">Public invention record</p>
-            <h2 id="inventions-heading">Patents &amp; Inventions</h2>
-          </div>
-          <a class="section-action" href="./inventions.html">View disclosures</a>
-        </div>
-        <p>THOR-SEC separates public invention disclosures from patent status. A research concept, algorithm, or repository is not labeled patented or patent-pending unless a public identifier is available and intentionally disclosed.</p>
-        <ul class="compact-list">
-          <li><strong>MIAM</strong> &mdash; formally published defensive architecture with DOI-backed public record.</li>
-          <li><strong>Security Stack Engineering</strong> &mdash; public reference architecture for governed security operations.</li>
-          <li><strong>Impact Forecast Algorithm</strong> &mdash; public risk-quantification algorithm and implementation.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="field-notes" aria-labelledby="field-notes-heading">
-      <div class="container">
-        <h2 id="field-notes-heading">Field Notes</h2>
-        <p>Short research notes from authorized lab work, detection engineering, and defensive security analysis.</p>
-        <ul class="card-grid card-grid-stack field-notes-list">
-          <li class="card card-research field-note" id="oauth-anomaly-baseline">
-            <p class="field-note-meta"><span class="field-note-date">June 2026</span> &middot; <span class="field-note-status">Research note</span></p>
-            <h3>OAuth Anomaly Baseline</h3>
-            <p>A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline. The goal is to surface unusual client and scope combinations for defensive review.</p>
-            <p class="code-label" id="oauth-spl-label">Splunk SPL baseline example</p>
-            <pre class="code-snippet" aria-labelledby="oauth-spl-label" tabindex="0"><code>index=authentication sourcetype=oauth:token
-| stats dc(client_id) AS clients dc(scope) AS scopes count BY user
-| eventstats avg(count) AS avg_grant stdev(count) AS stdev_grant BY user
-| eval threshold=avg_grant+(3*stdev_grant)
-| where count &gt; threshold AND clients &gt; 1</code></pre>
-          </li>
-          <li class="card card-research field-note" id="llm-agent-authorization-boundary">
-            <p class="field-note-meta"><span class="field-note-date">June 2026</span> &middot; <span class="field-note-status">Research note</span></p>
-            <h3>LLM Agent Authorization Boundary</h3>
-            <p>A defensive design note for tool-connected LLM systems. The agent may propose an action, but authorization should happen in a separate policy layer with identity context, allow/deny decisions, and audit logging.</p>
-            <p class="code-label" id="llm-auth-snippet-label">Authorization pattern</p>
-            <pre class="code-snippet" aria-labelledby="llm-auth-snippet-label" tabindex="0"><code>decision = control_plane.authorize(action, identity, policy)
-
-if decision.allowed:
-    audit.log(action, identity, "allowed")
-    tool.execute(action)
-else:
-    audit.log(action, identity, "blocked")</code></pre>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="responsible-use" aria-labelledby="responsible-heading">
-      <div class="container">
-        <h2 id="responsible-heading">Responsible Use</h2>
-        <p>THOR-SEC supports authorized defensive security work only. Research and tools are intended for systems, applications, accounts, networks, and data that are owned, operated, or explicitly authorized for testing or analysis. THOR-SEC does not support unauthorized access, credential theft, phishing, data exfiltration, malware deployment, denial-of-service activity, sabotage, or any activity intended to cause harm.</p>
-      </div>
-    </section>
-
-    <section id="experience" aria-labelledby="experience-heading">
-      <div class="container">
-        <h2 id="experience-heading">Experience Snapshot</h2>
-        <p>Background in security operations and engineering. Listed for context; THOR-SEC research is independent of these roles.</p>
-        <h3 class="subsection-heading">Core Competencies</h3>
-        <ul class="skills-grid" aria-label="Core competencies">
-          <li>Endpoint Detection and Response</li>
-          <li>Endpoint Security Support and Escalation Management</li>
-          <li>SIEM and Log Ingestion</li>
-          <li>Detection Engineering and Playbook Automation</li>
-          <li>Incident Response and Root Cause Analysis</li>
-          <li>REST APIs, OAuth, SDK Debugging</li>
-          <li>Splunk Administration and Observability</li>
-          <li>Kubernetes, Linux, Windows, macOS</li>
-          <li>Python and Bash Automation</li>
-          <li>Quality Assurance and Release Validation</li>
-          <li>Enterprise Backup and Recovery</li>
-        </ul>
-        <h3 class="subsection-heading">Employment History</h3>
-        <ul class="experience-list">
-          <li>
-            <span class="role">Technical Support Engineer, Cortex XDR</span>
-            <span class="employer">Palo Alto Networks</span>
-          </li>
-          <li>
-            <span class="role">Software Engineer II / Technical Support</span>
-            <span class="employer">Warner Bros. Discovery</span>
-          </li>
-          <li>
-            <span class="role">Technical Operations Engineer II / Splunk Admin</span>
-            <span class="employer">DoubleVerify</span>
-          </li>
-          <li>
-            <span class="role">Software Quality Assurance Analyst</span>
-            <span class="employer">Getac Video Solutions</span>
-          </li>
-          <li>
-            <span class="role">Senior Technical Support Engineer</span>
-            <span class="employer">Veritas Technologies</span>
-          </li>
-          <li>
-            <span class="role">Deskside IT Support Representative</span>
-            <span class="employer">IBM</span>
+            <p class="card-kind">Moving target defense</p>
+            <h3><a href="https://github.com/codethor0/miam">MIAM reference materials</a></h3>
+            <p>LaTeX source, figures, and a script that reproduces every number in the MIAM paper.</p>
           </li>
         </ul>
       </div>
@@ -380,104 +153,68 @@ else:
 
     <section id="writing" aria-labelledby="writing-heading">
       <div class="container">
-        <h2 id="writing-heading">Cybersecurity Writing and Publications</h2>
-        <p>Published work on cybersecurity reporting, AI security workflows, prompt-oriented programming, and security documentation.</p>
-        <ul class="publication-list">
-          <li class="publication-card">
-            <h3 class="publication-title">Exploit the Reader: Cybersecurity Writing for Reports That Survive Reality</h3>
-            <ul class="publication-links">
-              <li><a href="https://www.amazon.com/dp/B0H2R5WPRQ">View Kindle edition</a></li>
-              <li><a href="https://www.amazon.com/dp/B0H2S3VPDJ">View paperback edition</a></li>
-            </ul>
+        <div class="section-head">
+          <h2 id="writing-heading">Writing</h2>
+          <a class="section-link" href="https://substack.com/@uniqueviolation">Unique Violation on Substack</a>
+        </div>
+        <ul class="card-grid">
+          <li class="card">
+            <p class="card-kind">Book</p>
+            <h3>Exploit the Reader: Cybersecurity Writing for Reports That Survive Reality</h3>
+            <p class="card-foot"><a href="https://www.amazon.com/dp/B0H2R5WPRQ">Kindle</a> &middot; <a href="https://www.amazon.com/dp/B0H2S3VPDJ">Paperback</a></p>
           </li>
-          <li class="publication-card">
-            <h3 class="publication-title">Prompting as a Programming Language: A Practical Guide to Prompt-Oriented Programming, AI Workflows, and Automation</h3>
-            <ul class="publication-links">
-              <li><a href="https://www.amazon.com/dp/B0H21VSPJQ">View Kindle edition</a></li>
-              <li><a href="https://www.amazon.com/dp/B0H231MBBX">View paperback edition</a></li>
-            </ul>
+          <li class="card">
+            <p class="card-kind">Book</p>
+            <h3>Prompting as a Programming Language: A Practical Guide to Prompt-Oriented Programming, AI Workflows, and Automation</h3>
+            <p class="card-foot"><a href="https://www.amazon.com/dp/B0H21VSPJQ">Kindle</a> &middot; <a href="https://www.amazon.com/dp/B0H231MBBX">Paperback</a></p>
           </li>
-          <li class="publication-card publication-channel">
-            <h3 class="publication-title">Selected Essays</h3>
-            <ul class="publication-links">
-              <li><a href="https://substack.com/@uniqueviolation">Unique Violation on Substack</a></li>
-            </ul>
-          </li>
-          <li class="publication-card publication-articles">
-            <h3 class="publication-title">Selected Cybersecurity Articles</h3>
-            <p class="article-list-intro">A focused selection of cybersecurity and AI security essays from Unique Violation.</p>
-            <ul class="article-list">
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/the-15-failure-points-hiding-inside">The 15 Failure Points Hiding Inside Every LLM API</a>
-                <span class="article-label">LLM API security architecture</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/a-model-that-says-no-is-not-a-firewall">A Model That Says &ldquo;No&rdquo; Is Not a Firewall</a>
-                <span class="article-label">AI agent security</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/the-mcp-attack-surface-why-your-ai">The MCP Attack Surface: Why Your AI Agent&rsquo;s New &ldquo;USB-C Port&rdquo; Is a Remote Execution Tier</a>
-                <span class="article-label">MCP attack surface</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/skillmd-is-an-unsigned-binary-with">skill.md Is an Unsigned Binary With Your Keys</a>
-                <span class="article-label">Agent skill security</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/your-purple-team-is-a-report-factory">Your Purple Team Is a Report Factory</a>
-                <span class="article-label">Purple team engineering</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/stop-chasing-malware-names-start">Stop Chasing Malware Names. Start Defending the Cybercrime Supply Chain.</a>
-                <span class="article-label">Cybercrime supply chain defense</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/security-stack-engineering">Security Stack Engineering</a>
-                <span class="article-label">Governed security operations</span>
-              </li>
-              <li class="article-list-item">
-                <a href="https://uniqueviolation.substack.com/p/high-speed-ioc-correlation-a-python">High-Speed IOC Correlation: A Python Pipeline for Analysts &amp; Researchers</a>
-                <span class="article-label">IOC correlation pipeline</span>
-              </li>
-            </ul>
-          </li>
+        </ul>
+        <h3 class="code-label">Selected essays</h3>
+        <ul class="plain-list">
+            <li><a href="https://uniqueviolation.substack.com/p/the-15-failure-points-hiding-inside">The 15 Failure Points Hiding Inside Every LLM API</a><span class="sub">LLM API security</span></li>
+            <li><a href="https://uniqueviolation.substack.com/p/a-model-that-says-no-is-not-a-firewall">A Model That Says &ldquo;No&rdquo; Is Not a Firewall</a><span class="sub">Agent security</span></li>
+            <li><a href="https://uniqueviolation.substack.com/p/the-mcp-attack-surface-why-your-ai">The MCP Attack Surface: Why Your AI Agent&rsquo;s New &ldquo;USB-C Port&rdquo; Is a Remote Execution Tier</a><span class="sub">MCP attack surface</span></li>
+            <li><a href="https://uniqueviolation.substack.com/p/skillmd-is-an-unsigned-binary-with">skill.md Is an Unsigned Binary With Your Keys</a><span class="sub">Supply chain</span></li>
         </ul>
       </div>
     </section>
 
-    <section id="credentials" aria-labelledby="credentials-heading">
+    <section id="commission" aria-labelledby="commission-heading">
       <div class="container">
-        <h2 id="credentials-heading">Learning Records</h2>
-        <p>Public learning and badge records are available for verification.</p>
-        <ul class="credentials-list">
-          <li>Coursera Learning Profile: <a href="https://www.coursera.org/learner/th0rth0r">coursera.org/learner/th0rth0r</a></li>
-          <li>Credly Badge Portfolio: <a href="https://www.credly.com/users/isaac-thor/">credly.com/users/isaac-thor</a></li>
-        </ul>
+        <div class="panel panel-accent">
+          <p class="eyebrow">Work with THOR-SEC</p>
+          <h2 id="commission-heading">Have a security question worth researching?</h2>
+          <p class="prose">THOR-SEC takes on a small number of commissioned research engagements: sponsored research on a question you care about, architecture and AI security reviews, and technical writing. Results come with the evidence and artifacts behind them.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="./work.html">See engagement options</a>
+            <a class="btn btn-secondary" href="mailto:codethor@gmail.com?subject=THOR-SEC%20research%20request&body=Organization%3A%0A%0AResearch%20area%20or%20question%3A%0A%0AObjective%20and%20intended%20use%20of%20results%3A%0A%0AScope%20and%20systems%20involved%3A%0A%0AAuthorization%20status%20%28who%20owns%20or%20authorizes%20the%20systems%29%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A%0APublication%20preference%20%28public%2C%20delayed%2C%20private%29%3A%0A%0ANotes%3A%0A">Email a research request</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="research-requests" aria-labelledby="research-requests-heading">
+    <section id="support" aria-labelledby="support-heading">
       <div class="container">
-        <h2 id="research-requests-heading">Research Collaboration</h2>
-        <p>For defensive security questions, research ideas, or collaboration proposals, send a concise email with the topic, authorization context, and intended scope.</p>
-        <p class="research-request-action"><a class="btn btn-secondary" href="mailto:codethor@gmail.com?subject=Research%20Proposal%20for%20THOR-SEC&amp;body=Research%20topic%3A%0A%0AScope%20and%20objective%3A%0A%0AAuthorization%20status%3A%0A%0AEnvironment%20or%20technology%20area%3A%0A%0ATimeline%3A%0A%0AFunding%20or%20budget%20range%3A%0A%0ANotes%3A%0A">Email a research proposal</a></p>
-        <p class="research-request-note">Do not send secrets, credentials, customer data, exploit code, or confidential logs in the first message.</p>
+        <h2 id="support-heading">Support independent research</h2>
+        <p class="prose">THOR-SEC is self-funded. Support pays for lab infrastructure, compute, and the time to publish research and tools openly.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://buy.stripe.com/7sY3cobB2bYEdMYa7R3Nm00">Support monthly</a>
+          <a class="btn btn-secondary" href="https://buy.stripe.com/00w6oA7kM4wc4co5RB3Nm01">One-time support</a>
+        </div>
       </div>
     </section>
 
-    <section id="connect" class="connect-section" aria-labelledby="connect-heading">
+    <section id="connect" aria-labelledby="connect-heading">
       <div class="container">
         <h2 id="connect-heading">Connect</h2>
-        <p>Research questions, collaboration, and responsible disclosure.</p>
-        <ul class="contact-list">
-          <li>Email: <a href="mailto:codethor@gmail.com">codethor@gmail.com</a></li>
-          <li>GitHub: <a rel="me" href="https://github.com/codethor0">github.com/codethor0</a></li>
-          <li>ORCID: <a rel="me" href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
-          <li>LinkedIn: <a rel="me" href="https://www.linkedin.com/in/thor-thor0/">linkedin.com/in/thor-thor0</a></li>
-          <li>Substack: <a rel="me" href="https://substack.com/@uniqueviolation">substack.com/@uniqueviolation</a></li>
-          <li>Research archive: <a href="./research.html">research.html</a></li>
-          <li>Site security: <a href="./security.html">security.html</a></li>
-          <li>RSS/Atom: <a href="./feed.xml">feed.xml</a></li>
+        <p class="prose">Research questions, collaboration, and responsible disclosure. Do not send secrets, credentials, customer data, or exploit code in a first message.</p>
+        <ul class="contact-grid">
+          <li><span>Email</span><a href="mailto:codethor@gmail.com">codethor@gmail.com</a></li>
+          <li><span>ORCID</span><a rel="me" href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
+          <li><span>GitHub</span><a rel="me" href="https://github.com/codethor0">codethor0</a></li>
+          <li><span>LinkedIn</span><a rel="me" href="https://www.linkedin.com/in/ruot-koang-thor-monyjang-luak-pech-both-doah-yoal-joak/">Thor Thor</a></li>
+          <li><span>Substack</span><a rel="me" href="https://substack.com/@uniqueviolation">Unique Violation</a></li>
+          <li><span>Disclosure</span><a href="./security.html">Site security</a> &middot; <a href="./inventions.html">Inventions</a></li>
         </ul>
       </div>
     </section>
@@ -485,8 +222,18 @@ else:
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; 2026 THOR-SEC &middot; <a href="./research.html">Research Archive</a> &middot; <a href="./inventions.html">Inventions</a> &middot; <a href="./security.html">Site Security</a> &middot; <a href="./.well-known/security.txt">Security.txt</a> &middot; <a href="./feed.xml">RSS/Atom</a> &middot; <a href="./now.html">Now</a> &middot; <a href="https://github.com/codethor0/thor-sec">Source</a></p>
-      <p class="footer-meta">Last updated: September 2026</p>
+      <ul>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./inventions.html">Inventions</a></li>
+        <li><a href="./work.html">Commission research</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./now.html">Now</a></li>
+        <li><a href="./security.html">Site security</a></li>
+        <li><a href="./.well-known/security.txt">security.txt</a></li>
+        <li><a href="./feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
     </div>
   </footer>
 </body>

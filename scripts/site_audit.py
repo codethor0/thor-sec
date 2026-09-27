@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML_FILES = [
     Path("index.html"),
     Path("research.html"),
+    Path("work.html"),
+    Path("about.html"),
     Path("inventions.html"),
     Path("security.html"),
     Path("now.html"),

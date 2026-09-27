@@ -11,6 +11,15 @@
   </author>
 
   <entry>
+    <title>Commission research from THOR-SEC</title>
+    <link href="https://codethor0.github.io/thor-sec/work.html" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/work.html</id>
+    <updated>2026-09-27T00:00:00Z</updated>
+    <published>2026-09-27T00:00:00Z</published>
+    <summary>THOR-SEC now accepts commissioned research: sponsored research, security architecture review, AI and LLM security assessment, and technical writing.</summary>
+  </entry>
+
+  <entry>
     <title>Mission-Invariant Architecture Morphing (MIAM)</title>
     <link href="https://doi.org/10.5281/zenodo.23001045" rel="alternate"/>
     <id>https://doi.org/10.5281/zenodo.23001045</id>
@@ -39,8 +48,8 @@
 
   <entry>
     <title>LLM Agent Authorization Boundary</title>
-    <link href="https://codethor0.github.io/thor-sec/#llm-agent-authorization-boundary" rel="alternate"/>
-    <id>https://codethor0.github.io/thor-sec/#llm-agent-authorization-boundary</id>
+    <link href="https://codethor0.github.io/thor-sec/research.html#llm-agent-authorization-boundary" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/research.html#llm-agent-authorization-boundary</id>
     <updated>2026-06-01T00:00:00Z</updated>
     <published>2026-06-01T00:00:00Z</published>
     <summary>A defensive design note for tool-connected LLM systems with separate policy-layer authorization, identity context, and audit logging.</summary>
@@ -48,8 +57,8 @@
 
   <entry>
     <title>OAuth Anomaly Baseline</title>
-    <link href="https://codethor0.github.io/thor-sec/#oauth-anomaly-baseline" rel="alternate"/>
-    <id>https://codethor0.github.io/thor-sec/#oauth-anomaly-baseline</id>
+    <link href="https://codethor0.github.io/thor-sec/research.html#oauth-anomaly-baseline" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/research.html#oauth-anomaly-baseline</id>
     <updated>2026-06-01T00:00:00Z</updated>
     <published>2026-06-01T00:00:00Z</published>
     <summary>A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline.</summary>
