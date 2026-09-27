@@ -1,0 +1,15 @@
+// THOR-SEC Cloudflare staging configuration (static assets only, no Worker code).
+// GitHub Pages remains the production host. Deploy only through
+// scripts/cloudflare-staging-deploy.sh, which uploads a clean git export.
+{
+  "name": "thor-sec",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

@@ -1,0 +1,14 @@
+# Never upload repository internals, tooling, or configuration as public assets.
+.git
+.github
+.wrangler
+.DS_Store
+node_modules
+scripts
+README.md
+SECURITY.md
+LICENSE
+wrangler.jsonc
+.assetsignore
+.gitignore
+.nojekyll

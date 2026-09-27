@@ -35,7 +35,10 @@ REQUIRED_FILES = [
     Path(".well-known/security.txt"),
     Path(".github/CODEOWNERS"),
     Path("_headers"),
+    Path("wrangler.jsonc"),
+    Path(".assetsignore"),
 ]
+REQUIRED_ASSET_IGNORES = (".git", ".github", ".wrangler", "scripts", "wrangler.jsonc", ".assetsignore")
 
 REQUIRED_CSP_TOKENS = [
     "default-src 'self'",
@@ -243,7 +246,28 @@ def main() -> None:
         if "Strict-Transport-Security:" in headers_text:
             errors.append("_headers: HSTS must not be enabled before the Cloudflare custom domain is verified")
 
-    public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml"}
+    ignore_path = ROOT / ".assetsignore"
+    if ignore_path.exists():
+        ignore_entries = {
+            line.strip().strip("/")
+            for line in ignore_path.read_text(encoding="utf-8").splitlines()
+            if line.strip() and not line.lstrip().startswith("#")
+        }
+        for entry in REQUIRED_ASSET_IGNORES:
+            if entry not in ignore_entries:
+                errors.append(f".assetsignore: required exclusion missing: {entry}")
+
+    wrangler_path = ROOT / "wrangler.jsonc"
+    if wrangler_path.exists():
+        wrangler_text = wrangler_path.read_text(encoding="utf-8")
+        if re.search(r'"main"\s*:', wrangler_text):
+            errors.append("wrangler.jsonc: Worker code entry point is not allowed (static assets only)")
+        if re.search(r'"account_id"\s*:', wrangler_text):
+            errors.append("wrangler.jsonc: account_id must not be committed")
+        if '"assets"' not in wrangler_text or '"404-page"' not in wrangler_text:
+            errors.append("wrangler.jsonc: assets block with 404-page handling is required")
+
+    public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc"}
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in public_suffixes:
             continue
@@ -290,6 +314,7 @@ def main() -> None:
     print("CSP/referrer policy: OK")
     print("XML: OK")
     print("security.txt: OK")
+    print("Cloudflare asset exclusions: OK")
     print("Public identity/research records: OK")
 
 

@@ -1,0 +1,197 @@
+#!/usr/bin/env bash
+# THOR-SEC Cloudflare staging deploy (workers.dev only).
+#
+# What this does, in order:
+#   1. Verifies the local repository (path, origin, branch, clean tracked tree).
+#   2. Writes a checkpoint bundle under ~/Projects/thor-sec-checkpoints/.
+#   3. Fast-forwards to origin/main (never resets, never force-pushes).
+#   4. Runs the static security audit.
+#   5. Exports tracked files with git archive into a temp directory, strips
+#      everything that is not a public asset, and fails if anything else remains.
+#   6. Deploys that export with Wrangler (static assets only, no Worker code).
+#   7. Verifies the live workers.dev URL: pages, 404 handling, blocked paths,
+#      security headers, and absence of script tags.
+#
+# What this never does: change DNS, custom domains, canonical URLs, HSTS,
+# GitHub Pages, or any other Cloudflare zone. No tokens are read or printed;
+# authentication uses the existing Wrangler OAuth login.
+
+set -euo pipefail
+
+REPO="${THOR_SEC_REPO:-$HOME/Projects/thor-sec-public-site}"
+CHECKPOINT_ROOT="$HOME/Projects/thor-sec-checkpoints"
+EXPECTED_URL="https://thor-sec.codethor0.workers.dev"
+WRANGLER="wrangler@4"
+
+PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp"
+BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /LICENSE /_headers"
+
+say()  { printf '\n==> %s\n' "$*"; }
+ok()   { printf '    [ok] %s\n' "$*"; }
+die()  { printf '\n[FAIL] %s\n' "$*" >&2; exit 1; }
+
+WORK_DIR=""
+cleanup() { if [ -n "$WORK_DIR" ] && [ -d "$WORK_DIR" ]; then rm -rf "$WORK_DIR"; fi; }
+trap cleanup EXIT
+
+# ---------------------------------------------------------------- 1. preflight
+say "Preflight"
+for tool in git python3 curl npx tar; do
+  command -v "$tool" >/dev/null 2>&1 || die "required tool not found: $tool"
+done
+ok "tools present"
+
+[ -d "$REPO/.git" ] || die "repository not found at $REPO (set THOR_SEC_REPO to override)"
+cd "$REPO"
+
+origin_url="$(git remote get-url origin)"
+case "$origin_url" in
+  https://github.com/codethor0/thor-sec|https://github.com/codethor0/thor-sec.git|git@github.com:codethor0/thor-sec.git) ;;
+  *) die "unexpected origin remote: $origin_url" ;;
+esac
+ok "origin is codethor0/thor-sec"
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+[ "$branch" = "main" ] || die "current branch is '$branch'; switch to main first"
+ok "on main"
+
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+  git status --short --untracked-files=no
+  die "tracked files have uncommitted changes; commit or stash them first"
+fi
+ok "tracked tree clean"
+
+# -------------------------------------------------------------- 2. checkpoint
+say "Checkpoint"
+stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+checkpoint_dir="$CHECKPOINT_ROOT/cf-staging-$stamp"
+mkdir -p "$checkpoint_dir"
+git bundle create "$checkpoint_dir/thor-sec.bundle" --all >/dev/null 2>&1
+git rev-parse HEAD > "$checkpoint_dir/HEAD.txt"
+git bundle verify "$checkpoint_dir/thor-sec.bundle" >/dev/null 2>&1 || die "checkpoint bundle failed verification"
+ok "bundle written to $checkpoint_dir"
+
+# ------------------------------------------------------------ 3. fast-forward
+say "Sync with origin/main (fast-forward only)"
+git fetch --quiet origin main
+if ! git merge --ff-only --quiet origin/main; then
+  die "local main has diverged from origin/main; resolve manually (nothing was changed)"
+fi
+head_sha="$(git rev-parse --short HEAD)"
+ok "at $head_sha"
+
+for f in wrangler.jsonc .assetsignore _headers 404.html index.html; do
+  [ -f "$f" ] || die "required file missing after sync: $f"
+done
+ok "wrangler.jsonc, .assetsignore, _headers present"
+
+# ------------------------------------------------------------------- 4. audit
+say "Static security audit"
+python3 scripts/site_audit.py
+
+# ------------------------------------------------------------------ 5. export
+say "Build clean export from git (tracked files only, no .git)"
+WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/thor-sec-deploy.XXXXXX")"
+SITE="$WORK_DIR/site"
+mkdir -p "$SITE"
+git archive --format=tar HEAD | tar -x -C "$SITE"
+
+rm -rf "$SITE/.github" "$SITE/scripts"
+rm -f "$SITE/README.md" "$SITE/SECURITY.md" "$SITE/LICENSE" "$SITE/.gitignore" "$SITE/.nojekyll"
+
+unexpected=""
+while IFS= read -r rel; do
+  case "$rel" in
+    ./*.html|./styles.css|./robots.txt|./sitemap.xml|./feed.xml|./_headers) ;;
+    ./.well-known/security.txt) ;;
+    ./assets/*.jpg|./assets/*.webp|./assets/*.png|./assets/*.svg) ;;
+    ./wrangler.jsonc|./.assetsignore) ;;
+    *) unexpected="$unexpected $rel" ;;
+  esac
+done < <(cd "$SITE" && find . -type f)
+[ -z "$unexpected" ] || die "export contains non-public files:$unexpected"
+[ ! -e "$SITE/.git" ] || die "export contains .git"
+if grep -Eq '"main"[[:space:]]*:' "$SITE/wrangler.jsonc"; then die "wrangler.jsonc declares Worker code"; fi
+ok "export contains public assets only ($(cd "$SITE" && find . -type f | wc -l | tr -d ' ') files)"
+
+# ------------------------------------------------------------------ 6. deploy
+say "Cloudflare authentication"
+cd "$SITE"
+whoami_out="$(npx --yes "$WRANGLER" whoami 2>&1 || true)"
+if ! printf '%s\n' "$whoami_out" | grep -Eqi "you are logged in"; then
+  echo "    Not logged in. A browser window will open for Cloudflare OAuth."
+  npx --yes "$WRANGLER" login
+fi
+ok "wrangler authenticated"
+
+say "Deploy to workers.dev (static assets only)"
+deploy_log="$WORK_DIR/deploy.log"
+if ! npx --yes "$WRANGLER" deploy 2>&1 | tee "$deploy_log"; then
+  die "wrangler deploy failed (see output above)"
+fi
+
+url="$(grep -Eo 'https://thor-sec\.[a-z0-9-]+\.workers\.dev' "$deploy_log" | head -n 1 || true)"
+[ -n "$url" ] || url="$EXPECTED_URL"
+ok "deployed: $url"
+cd "$REPO"
+
+# ------------------------------------------------------------------ 7. verify
+say "Verify live site"
+code_for() { curl -s -L -o /dev/null -w '%{http_code}' --max-time 20 "$1" || true; }
+
+tries=0
+until [ "$(code_for "$url/")" = "200" ]; do
+  tries=$((tries + 1))
+  [ "$tries" -le 24 ] || die "$url/ did not return 200 within 2 minutes"
+  sleep 5
+done
+ok "site is live"
+
+failures=0
+fail() { printf '    [FAIL] %s\n' "$*"; failures=$((failures + 1)); }
+
+for p in $PAGES; do
+  c="$(code_for "$url$p")"
+  if [ "$c" = "200" ]; then ok "200 $p"; else fail "$c $p (expected 200)"; fi
+done
+
+c="$(code_for "$url/this-page-does-not-exist-$stamp")"
+if [ "$c" = "404" ]; then ok "404 for missing page"; else fail "$c for missing page (expected 404)"; fi
+
+for p in $BLOCKED; do
+  c="$(code_for "$url$p")"
+  if [ "$c" = "404" ]; then ok "404 $p (not public)"; else fail "$c $p (expected 404, must not be public)"; fi
+done
+
+headers="$(curl -sS -L -D - -o /dev/null --max-time 20 "$url/" || true)"
+check_header() {
+  if printf '%s\n' "$headers" | grep -Eiq "$1"; then ok "header: $2"; else fail "header missing or wrong: $2"; fi
+}
+check_header "^content-security-policy:.*script-src 'none'.*frame-ancestors 'none'" "Content-Security-Policy"
+check_header "^referrer-policy: *no-referrer" "Referrer-Policy"
+check_header "^x-content-type-options: *nosniff" "X-Content-Type-Options"
+check_header "^x-frame-options: *deny" "X-Frame-Options"
+check_header "^permissions-policy:" "Permissions-Policy"
+check_header "^cross-origin-opener-policy: *same-origin" "Cross-Origin-Opener-Policy"
+check_header "^x-permitted-cross-domain-policies: *none" "X-Permitted-Cross-Domain-Policies"
+
+for p in / /research.html /work.html /about.html /inventions.html /security.html /now.html; do
+  body="$(curl -sS -L --max-time 20 "$url$p" || true)"
+  if [ -z "$body" ]; then fail "empty body for $p"; continue; fi
+  if printf '%s\n' "$body" | grep -qi "<script"; then fail "script tag found on $p"; fi
+done
+[ "$failures" -ne 0 ] || ok "no script tags on any page"
+
+# ------------------------------------------------------------------ report
+say "Report"
+echo "    Commit deployed : $head_sha"
+echo "    Staging URL     : $url"
+echo "    Checkpoint      : $checkpoint_dir"
+echo "    Production      : https://codethor0.github.io/thor-sec/ (unchanged)"
+echo "    DNS / canonical / HSTS : unchanged"
+if [ "$failures" -ne 0 ]; then
+  die "$failures verification check(s) failed. To take staging down: npx --yes $WRANGLER delete thor-sec"
+fi
+echo
+echo "STAGING DEPLOY VERIFIED"
+echo "Optional hardening when finished: npx --yes $WRANGLER logout"
