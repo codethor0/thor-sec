@@ -33,6 +33,9 @@ THOR-SEC uses a static-first publication model:
 - `no-referrer` browser policy
 - Public `security.txt` and vulnerability disclosure policy
 - CI security audit on every push and pull request
+- Cloudflare Pages response-header policy in `_headers`, inactive until deployed through Cloudflare Pages
+
+Cloudflare deployment is staged separately from the current GitHub Pages production site. The canonical site URL, sitemap, `security.txt`, and public links remain on GitHub Pages until a Cloudflare custom domain has been verified end to end.
 
 Public indexes:
 

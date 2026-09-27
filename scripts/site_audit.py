@@ -34,6 +34,7 @@ REQUIRED_FILES = [
     Path(".gitignore"),
     Path(".well-known/security.txt"),
     Path(".github/CODEOWNERS"),
+    Path("_headers"),
 ]
 
 REQUIRED_CSP_TOKENS = [
@@ -222,6 +223,25 @@ def main() -> None:
                 errors.append("security.txt: Expires value is not in the future")
         except ValueError:
             errors.append("security.txt: invalid Expires timestamp")
+
+    headers_path = ROOT / "_headers"
+    if headers_path.exists():
+        headers_text = headers_path.read_text(encoding="utf-8")
+        required_headers = (
+            "Content-Security-Policy:",
+            "frame-ancestors 'none'",
+            "Referrer-Policy: no-referrer",
+            "X-Content-Type-Options: nosniff",
+            "X-Frame-Options: DENY",
+            "Permissions-Policy:",
+            "Cross-Origin-Opener-Policy: same-origin",
+            "X-Permitted-Cross-Domain-Policies: none",
+        )
+        for required_header in required_headers:
+            if required_header not in headers_text:
+                errors.append(f"_headers: required policy missing: {required_header}")
+        if "Strict-Transport-Security:" in headers_text:
+            errors.append("_headers: HSTS must not be enabled before the Cloudflare custom domain is verified")
 
     public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml"}
     for path in ROOT.rglob("*"):
