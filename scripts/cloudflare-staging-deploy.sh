@@ -12,6 +12,10 @@
 #   7. Verifies the live workers.dev URL: pages, 404 handling, blocked paths,
 #      security headers, and absence of script tags.
 #
+# Usage:
+#   cloudflare-staging-deploy.sh                full run (steps 1-7)
+#   cloudflare-staging-deploy.sh --verify-only  step 7 only, no changes made
+#
 # What this never does: change DNS, custom domains, canonical URLs, HSTS,
 # GitHub Pages, or any other Cloudflare zone. No tokens are read or printed;
 # authentication uses the existing Wrangler OAuth login.
@@ -21,7 +25,13 @@ set -euo pipefail
 REPO="${THOR_SEC_REPO:-$HOME/Projects/thor-sec-public-site}"
 CHECKPOINT_ROOT="$HOME/Projects/thor-sec-checkpoints"
 EXPECTED_URL="https://thor-sec.codethor0.workers.dev"
-WRANGLER="wrangler@4"
+WRANGLER="wrangler@4.142.0"
+VERIFY_ONLY=0
+case "${1:-}" in
+  "") ;;
+  --verify-only) VERIFY_ONLY=1 ;;
+  *) printf 'unknown argument: %s\n' "$1" >&2; exit 2 ;;
+esac
 
 PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp"
 BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /LICENSE /_headers"
@@ -34,6 +44,16 @@ WORK_DIR=""
 cleanup() { if [ -n "$WORK_DIR" ] && [ -d "$WORK_DIR" ]; then rm -rf "$WORK_DIR"; fi; }
 trap cleanup EXIT
 
+# curl -q (first argument) ignores ~/.curlrc so local defaults such as --fail
+# cannot change status handling.
+curlq() { curl -q -sS --max-time 20 "$@"; }
+
+stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+url="$EXPECTED_URL"
+head_sha="n/a"
+checkpoint_dir="n/a"
+
+if [ "$VERIFY_ONLY" -eq 0 ]; then
 # ---------------------------------------------------------------- 1. preflight
 say "Preflight"
 for tool in git python3 curl npx tar; do
@@ -63,7 +83,6 @@ ok "tracked tree clean"
 
 # -------------------------------------------------------------- 2. checkpoint
 say "Checkpoint"
-stamp="$(date -u +%Y%m%dT%H%M%SZ)"
 checkpoint_dir="$CHECKPOINT_ROOT/cf-staging-$stamp"
 mkdir -p "$checkpoint_dir"
 git bundle create "$checkpoint_dir/thor-sec.bundle" --all >/dev/null 2>&1
@@ -134,25 +153,31 @@ url="$(grep -Eo 'https://thor-sec\.[a-z0-9-]+\.workers\.dev' "$deploy_log" | hea
 [ -n "$url" ] || url="$EXPECTED_URL"
 ok "deployed: $url"
 cd "$REPO"
+fi
 
 # ------------------------------------------------------------------ 7. verify
 say "Verify live site"
-code_for() { curl -s -L -o /dev/null -w '%{http_code}' --max-time 20 "$1" || true; }
+code_for() { curlq -L -o /dev/null -w '%{http_code}' "$1" 2>/dev/null || true; }
 
-tries=0
-until [ "$(code_for "$url/")" = "200" ]; do
-  tries=$((tries + 1))
-  [ "$tries" -le 24 ] || die "$url/ did not return 200 within 2 minutes"
-  sleep 5
-done
-ok "site is live"
+# A fresh workers.dev deployment can answer inconsistently for a short time
+# while it propagates. Each public URL is retried for up to 3 minutes.
+wait_for_200() {
+  local target="$1" n=0 c
+  while :; do
+    c="$(code_for "$target")"
+    [ "$c" = "200" ] && { echo "200"; return 0; }
+    n=$((n + 1))
+    [ "$n" -lt 36 ] || { echo "$c"; return 1; }
+    sleep 5
+  done
+}
 
 failures=0
 fail() { printf '    [FAIL] %s\n' "$*"; failures=$((failures + 1)); }
 
+echo "    waiting for the deployment to settle (up to 3 minutes per URL)"
 for p in $PAGES; do
-  c="$(code_for "$url$p")"
-  if [ "$c" = "200" ]; then ok "200 $p"; else fail "$c $p (expected 200)"; fi
+  if c="$(wait_for_200 "$url$p")"; then ok "200 $p"; else fail "$c $p (expected 200)"; fi
 done
 
 c="$(code_for "$url/this-page-does-not-exist-$stamp")"
@@ -163,7 +188,7 @@ for p in $BLOCKED; do
   if [ "$c" = "404" ]; then ok "404 $p (not public)"; else fail "$c $p (expected 404, must not be public)"; fi
 done
 
-headers="$(curl -sS -L -D - -o /dev/null --max-time 20 "$url/" || true)"
+headers="$(curlq -L -D - -o /dev/null "$url/" || true)"
 check_header() {
   if printf '%s\n' "$headers" | grep -Eiq "$1"; then ok "header: $2"; else fail "header missing or wrong: $2"; fi
 }
@@ -175,12 +200,13 @@ check_header "^permissions-policy:" "Permissions-Policy"
 check_header "^cross-origin-opener-policy: *same-origin" "Cross-Origin-Opener-Policy"
 check_header "^x-permitted-cross-domain-policies: *none" "X-Permitted-Cross-Domain-Policies"
 
+script_failures=0
 for p in / /research.html /work.html /about.html /inventions.html /security.html /now.html; do
-  body="$(curl -sS -L --max-time 20 "$url$p" || true)"
-  if [ -z "$body" ]; then fail "empty body for $p"; continue; fi
-  if printf '%s\n' "$body" | grep -qi "<script"; then fail "script tag found on $p"; fi
+  body="$(curlq -L "$url$p" || true)"
+  if [ -z "$body" ]; then fail "empty body for $p"; script_failures=1; continue; fi
+  if printf '%s\n' "$body" | grep -qi "<script"; then fail "script tag found on $p"; script_failures=1; fi
 done
-[ "$failures" -ne 0 ] || ok "no script tags on any page"
+[ "$script_failures" -ne 0 ] || ok "no script tags on any page"
 
 # ------------------------------------------------------------------ report
 say "Report"
@@ -190,6 +216,9 @@ echo "    Checkpoint      : $checkpoint_dir"
 echo "    Production      : https://codethor0.github.io/thor-sec/ (unchanged)"
 echo "    DNS / canonical / HSTS : unchanged"
 if [ "$failures" -ne 0 ]; then
+  echo
+  echo "    Re-check without redeploying:"
+  echo "      bash scripts/cloudflare-staging-deploy.sh --verify-only"
   die "$failures verification check(s) failed. To take staging down: npx --yes $WRANGLER delete thor-sec"
 fi
 echo
