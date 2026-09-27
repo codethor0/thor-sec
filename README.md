@@ -4,6 +4,14 @@ Independent defensive cybersecurity research portfolio and public website for Th
 
 **Live site:** https://codethor0.github.io/thor-sec/
 
+## Research Identity
+
+- **Researcher:** Thor Thor
+- **ORCID:** https://orcid.org/0009-0001-6573-385X
+- **Featured publication:** Mission-Invariant Architecture Morphing (MIAM), version 1.0.0
+- **DOI:** https://doi.org/10.5281/zenodo.23001045
+- **Source and reproducibility artifacts:** https://github.com/codethor0/miam
+
 ## Purpose
 
 THOR-SEC is a static public website for open-source defensive cybersecurity research, AI security work, cybersecurity writing, and security engineering projects. Views and research are personal. THOR-SEC is not affiliated with, endorsed by, or representative of any employer.
