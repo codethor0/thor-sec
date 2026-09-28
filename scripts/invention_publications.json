@@ -1,0 +1,38 @@
+{
+  "site": {
+    "base": "https://codethor0.github.io/thor-sec/",
+    "policy": "INVENTION-GATE.md"
+  },
+  "entries": [
+    {
+      "id": "miam",
+      "title": "Mission-Invariant Architecture Morphing (MIAM)",
+      "year": "2026",
+      "tag": "defensive architecture",
+      "record_type": "DOI-backed publication",
+      "url": "https://doi.org/10.5281/zenodo.23001045",
+      "summary": "Application-level service-graph morphing with cryptographic epoch isolation and mission-domain state continuity. Appendix A of the paper is a reference claim set released as a defensive publication.",
+      "decision": "publish-intentionally"
+    },
+    {
+      "id": "security-stack-engineering",
+      "title": "Security Stack Engineering (SSE)",
+      "year": "2026",
+      "tag": "security architecture",
+      "record_type": "public reference implementation",
+      "url": "https://github.com/codethor0/security-stack-engineering",
+      "summary": "Layered architecture for governed security operations with explicit inputs, outputs, invariants, and assurance feedback.",
+      "decision": "publish-intentionally"
+    },
+    {
+      "id": "impact-forecast",
+      "title": "Impact Forecast Algorithm (IFA)",
+      "year": "2026",
+      "tag": "risk algorithm",
+      "record_type": "public implementation",
+      "url": "https://github.com/codethor0/impact-forecast",
+      "summary": "Bayesian-inspired method for updating material-impact probability using explicit evidence likelihood ratios.",
+      "decision": "publish-intentionally"
+    }
+  ]
+}

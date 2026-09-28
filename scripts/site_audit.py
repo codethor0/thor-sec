@@ -59,6 +59,9 @@ REQUIRED_FILES = [
     Path("scripts/research.json"),
     Path("scripts/build_case_studies.py"),
     Path("scripts/case_studies.json"),
+    Path("scripts/build_inventions.py"),
+    Path("scripts/invention_publications.json"),
+    Path("INVENTION-GATE.md"),
 ]
 CANONICAL_BASE = "https://codethor0.github.io/thor-sec/"
 REQUIRED_META = (
@@ -81,7 +84,7 @@ FORM_OPTIONS = {
     "authorization": {"", "owner", "written", "planning", "other"},
     "publication": {"public", "delayed", "private", "unsure"},
 }
-REQUIRED_ASSET_IGNORES = (".git", ".github", ".wrangler", "scripts", "worker", "wrangler.jsonc", ".assetsignore", "ARCHITECTURE.md", "README.md", "SECURITY.md")
+REQUIRED_ASSET_IGNORES = (".git", ".github", ".wrangler", "scripts", "worker", "wrangler.jsonc", ".assetsignore", "ARCHITECTURE.md", "INVENTION-GATE.md", "README.md", "SECURITY.md")
 
 REQUIRED_CSP_TOKENS = [
     "default-src 'self'",
@@ -435,6 +438,28 @@ def main() -> None:
     if "case-studies.html" not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
         errors.append("sitemap.xml: case-studies.html must be listed")
 
+    invention_data = ROOT / "scripts/invention_publications.json"
+    if invention_data.exists():
+        import json
+        try:
+            public_disclosures = json.loads(invention_data.read_text(encoding="utf-8")).get("entries", [])
+        except Exception as exc:
+            errors.append(f"scripts/invention_publications.json: invalid JSON: {exc}")
+            public_disclosures = []
+        if not public_disclosures:
+            errors.append("scripts/invention_publications.json: at least one intentional public disclosure is required")
+        for item in public_disclosures:
+            item_id = item.get("id", "<unknown>")
+            if item.get("decision") != "publish-intentionally":
+                errors.append(f"scripts/invention_publications.json: {item_id} is not publish-intentionally")
+        inventions_page = (ROOT / "inventions.html").read_text(encoding="utf-8")
+        if "<!-- build:public-disclosures:start -->" not in inventions_page or "<!-- build:public-disclosures:end -->" not in inventions_page:
+            errors.append("inventions.html: public disclosure build markers are required")
+        for item in public_disclosures:
+            item_id = item.get("id", "")
+            if item_id and f'data-disclosure-id="{item_id}"' not in inventions_page:
+                errors.append(f"inventions.html: disclosure {item_id} is missing from generated page")
+
     public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc", ".js", ".mjs"}
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in public_suffixes:
@@ -496,6 +521,7 @@ def main() -> None:
     print("Public identity/research records: OK")
     print(f"Paper pages with citation metadata: {len([r for r in HTML_FILES if r.parts[0] == 'research'])}")
     print(f"Case-study pages with evidence labels: {len([r for r in HTML_FILES if r.parts[0] == 'case-studies'])}")
+    print("Invention publication gate: OK")
 
 
 if __name__ == "__main__":

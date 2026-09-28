@@ -67,23 +67,25 @@
     <section aria-labelledby="disclosures-heading">
       <div class="container">
         <h2 id="disclosures-heading">Public disclosures</h2>
+        <!-- build:public-disclosures:start -->
         <ol class="entry-list">
-          <li class="entry">
+          <li class="entry" data-disclosure-id="miam">
             <p class="entry-meta">2026 &middot; <span class="tag">defensive architecture</span> &middot; DOI-backed publication</p>
             <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
             <p>Application-level service-graph morphing with cryptographic epoch isolation and mission-domain state continuity. Appendix A of the paper is a reference claim set released as a defensive publication.</p>
           </li>
-          <li class="entry">
+          <li class="entry" data-disclosure-id="security-stack-engineering">
             <p class="entry-meta">2026 &middot; <span class="tag">security architecture</span> &middot; public reference implementation</p>
             <h3><a href="https://github.com/codethor0/security-stack-engineering">Security Stack Engineering (SSE)</a></h3>
             <p>Layered architecture for governed security operations with explicit inputs, outputs, invariants, and assurance feedback.</p>
           </li>
-          <li class="entry">
+          <li class="entry" data-disclosure-id="impact-forecast">
             <p class="entry-meta">2026 &middot; <span class="tag">risk algorithm</span> &middot; public implementation</p>
             <h3><a href="https://github.com/codethor0/impact-forecast">Impact Forecast Algorithm (IFA)</a></h3>
             <p>Bayesian-inspired method for updating material-impact probability using explicit evidence likelihood ratios.</p>
           </li>
         </ol>
+        <!-- build:public-disclosures:end -->
       </div>
     </section>
 
@@ -91,6 +93,20 @@
       <div class="container">
         <h2 id="policy-heading">Patent status policy</h2>
         <p class="prose">No work on this page is described as patented, patent-pending, or filed unless a public identifier exists and its disclosure is intentional. Publication places a mechanism in the public record as prior art; it does not grant a patent license and is not legal advice.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="gate-heading">
+      <div class="container">
+        <h2 id="gate-heading">Publication gate</h2>
+        <p class="prose">Before an invention appears on this page, it is classified as file first, keep private, publish intentionally, or ownership unresolved. Only an intentional public disclosure is allowed into the public registry that builds this page.</p>
+        <ul class="plain-list prose">
+          <li><strong>File first</strong><span class="sub">Do not publish enabling details until filing strategy and disclosure timing are resolved.</span></li>
+          <li><strong>Keep private</strong><span class="sub">Do not publish the invention or enough detail to reconstruct it.</span></li>
+          <li><strong>Publish intentionally</strong><span class="sub">The only state allowed in this site's public disclosure registry.</span></li>
+          <li><strong>Ownership unresolved</strong><span class="sub">Hard stop until ownership and disclosure rights are resolved.</span></li>
+        </ul>
+        <p class="note">Non-public invention decisions are deliberately not stored in this repository. See the repository's Invention Publication Gate policy for the release-control workflow.</p>
       </div>
     </section>
   </main>

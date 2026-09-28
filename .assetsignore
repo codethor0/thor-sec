@@ -9,6 +9,7 @@ worker
 README.md
 SECURITY.md
 ARCHITECTURE.md
+INVENTION-GATE.md
 LICENSE
 wrangler.jsonc
 .assetsignore

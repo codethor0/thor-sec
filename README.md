@@ -69,6 +69,17 @@ python3 scripts/build_research.py --check  # CI: fail if any built file is out o
 
 Edit only the JSON and rerun the script; do not hand-edit text between `<!-- build:... -->` markers.
 
+## Publishing inventions
+
+The public Inventions page is a release-controlled output, not a private invention inventory. Intentional public disclosures are recorded in `scripts/invention_publications.json` and rendered by `scripts/build_inventions.py`.
+
+```bash
+python3 scripts/build_inventions.py          # rewrite the public disclosure list
+python3 scripts/build_inventions.py --check  # CI: fail if the page drifts or the gate is invalid
+```
+
+Only `publish-intentionally` entries are permitted in that public registry. File-first, keep-private, and ownership-unresolved decisions stay outside this repository. See [INVENTION-GATE.md](INVENTION-GATE.md).
+
 ## Local Preview
 
 ```bash
