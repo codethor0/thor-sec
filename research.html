@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#0a0c0f">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -49,10 +50,6 @@
             <li><a class="nav-cta" href="./work.html">Commission</a></li>
           </ul>
         </nav>
-        <div class="theme-toggle">
-          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
-          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
-        </div>
       </div>
     </div>
   </header>
@@ -70,14 +67,16 @@
       <div class="container">
         <h2 id="papers-heading">Papers</h2>
         <ol class="entry-list">
+          <!-- build:papers:start -->
           <li class="entry" id="miam">
             <p class="entry-meta"><time datetime="2026-09-27">2026-09-27</time> &middot; <span class="tag">preprint</span> &middot; version 1.0.0 &middot; CC BY 4.0</p>
-            <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
+            <h3><a href="./research/miam.html">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
             <p>Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity.</p>
             <p>A design proposal and formal model. It develops a reconnaissance-transfer model, architecture-distance measures, a recurrence-aware retention model, per-epoch cryptographic isolation, a graph-delta-driven State Continuity Firewall, and an ablation-based evaluation protocol. It reports no empirical results.</p>
             <ul class="inline-links">
+              <li><a href="./research/miam.html">Paper page</a></li>
               <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI 10.5281/zenodo.23001045</a></li>
-              <li><a href="https://github.com/codethor0/miam/blob/main/paper/MIAM.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf">PDF</a></li>
               <li><a href="https://github.com/codethor0/miam">Source</a></li>
               <li><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">Release</a></li>
             </ul>
@@ -89,6 +88,7 @@ Isolation and Mission-Domain State Continuity (1.0.0). Zenodo.
 https://doi.org/10.5281/zenodo.23001045</code></pre>
             </details>
           </li>
+          <!-- build:papers:end -->
         </ol>
       </div>
     </section>

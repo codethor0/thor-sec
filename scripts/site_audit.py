@@ -21,7 +21,13 @@ HTML_FILES = [
     Path("now.html"),
     Path("404.html"),
     Path("request-received.html"),
+    # Paper pages built from scripts/research.json.
+    *sorted(p.relative_to(ROOT) for p in (ROOT / "research").glob("*.html")),
 ]
+PAPER_META = (
+    'name="citation_title"', 'name="citation_author"', 'name="citation_publication_date"',
+    'name="citation_doi"', 'name="citation_pdf_url"',
+)
 REQUIRED_FILES = [
     *HTML_FILES,
     Path("styles.css"),
@@ -46,6 +52,8 @@ REQUIRED_FILES = [
     Path("assets/thor-sec-social-card.png"),
     Path("assets/favicon.png"),
     Path("assets/apple-touch-icon.png"),
+    Path("scripts/build_research.py"),
+    Path("scripts/research.json"),
 ]
 CANONICAL_BASE = "https://codethor0.github.io/thor-sec/"
 REQUIRED_META = (
@@ -185,7 +193,7 @@ def check_forms(pages: dict[Path, PageParser]) -> list[str]:
     errors: list[str] = []
     for rel, parser in pages.items():
         if rel != FORM_PAGE:
-            if parser.forms or any(tag != "input" or attrs.get("id") != "theme-toggle" for tag, attrs in parser.controls):
+            if parser.forms or parser.controls:
                 errors.append(f"{rel}: forms and form controls are only permitted on {FORM_PAGE}")
             continue
         if len(parser.forms) != 1:
@@ -384,6 +392,23 @@ def main() -> None:
         errors.append("styles.css: remote CSS or font URLs are forbidden")
     if 'url("assets/fonts/InterVariable.woff2")' not in css:
         errors.append("styles.css: self-hosted Inter @font-face missing")
+    if "@media (prefers-color-scheme: light)" not in css:
+        errors.append("styles.css: the light theme must follow the device setting")
+    if "theme-toggle" in css:
+        errors.append("styles.css: stateful theme toggle styles must not return")
+
+    research_pages = [rel for rel in HTML_FILES if rel.parts[0] == "research"]
+    if not research_pages:
+        errors.append("research/: at least one paper page is required")
+    for rel in research_pages:
+        page = (ROOT / rel).read_text(encoding="utf-8")
+        for needle in PAPER_META:
+            if needle not in page:
+                errors.append(f"{rel}: missing citation metadata {needle}")
+        if f'<link rel="canonical" href="{CANONICAL_BASE}{rel.as_posix()}">' not in page:
+            errors.append(f"{rel}: canonical URL must be {CANONICAL_BASE}{rel.as_posix()}")
+        if rel.as_posix() not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
+            errors.append(f"sitemap.xml: {rel} must be listed")
 
     public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc", ".js", ".mjs"}
     for path in ROOT.rglob("*"):
@@ -444,6 +469,7 @@ def main() -> None:
     print("security.txt: OK")
     print("Cloudflare asset exclusions: OK")
     print("Public identity/research records: OK")
+    print(f"Paper pages with citation metadata: {len([r for r in HTML_FILES if r.parts[0] == 'research'])}")
 
 
 if __name__ == "__main__":

@@ -30,10 +30,14 @@
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/feed.xml</loc>
-    <lastmod>2026-09-27</lastmod>
+    <lastmod>2026-09-28</lastmod>
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/.well-known/security.txt</loc>
     <lastmod>2026-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://codethor0.github.io/thor-sec/research/miam.html</loc>
+    <lastmod>2026-09-28</lastmod>
   </url>
 </urlset>

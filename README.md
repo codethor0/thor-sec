@@ -1,6 +1,8 @@
 # THOR-SEC
 
-Independent defensive cybersecurity research portfolio and public website for Thor Thor.
+Independent security research lab and public website for Thor Thor.
+
+**Mission:** THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work.
 
 **Live site:** https://codethor0.github.io/thor-sec/
 
@@ -33,6 +35,7 @@ THOR-SEC uses a static-first publication model:
 - `no-referrer` browser policy
 - Public `security.txt` and vulnerability disclosure policy
 - CI security audit on every push to main and every pull request targeting main
+- Light and dark themes follow the visitor's device setting; no stored preference
 
 Hosting:
 
@@ -53,6 +56,17 @@ Public indexes:
 ## Purpose
 
 THOR-SEC is a static public website for open-source defensive cybersecurity research, AI security work, cybersecurity writing, and security engineering projects. Views and research are personal. THOR-SEC is not affiliated with, endorsed by, or representative of any employer.
+
+## Publishing research
+
+Papers are recorded once, in `scripts/research.json`. `scripts/build_research.py` turns that record into static files: a page per paper under `research/` (with Google Scholar citation tags, DOI, status, limitations, and a citation block), the latest-research list on the home page, the papers list on the research archive, `feed.xml`, and `sitemap.xml`.
+
+```bash
+python3 scripts/build_research.py          # rewrite the built files
+python3 scripts/build_research.py --check  # CI: fail if any built file is out of date
+```
+
+Edit only the JSON and rerun the script; do not hand-edit text between `<!-- build:... -->` markers.
 
 ## Local Preview
 

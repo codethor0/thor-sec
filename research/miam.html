@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>Mission-Invariant Architecture Morphing (MIAM) | THOR-SEC</title>
+  <meta name="description" content="MIAM reshapes an application's internal service graph across security epochs so an attacker's post-access map goes stale. Paper, DOI, limitations, and citation.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research/miam.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta name="citation_title" content="Mission-Invariant Architecture Morphing: Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity">
+  <meta name="citation_author" content="Thor, Thor">
+  <meta name="citation_publication_date" content="2026/09/27">
+  <meta name="citation_publisher" content="Zenodo">
+  <meta name="citation_doi" content="10.5281/zenodo.23001045">
+  <meta name="citation_pdf_url" content="https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf">
+  <meta name="citation_abstract_html_url" content="https://codethor0.github.io/thor-sec/research/miam.html">
+  <meta name="citation_language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Mission-Invariant Architecture Morphing (MIAM) | THOR-SEC">
+  <meta property="og:description" content="MIAM reshapes an application's internal service graph across security epochs so an attacker's post-access map goes stale. Paper, DOI, limitations, and citation.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research/miam.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mission-Invariant Architecture Morphing (MIAM) | THOR-SEC">
+  <meta name="twitter:description" content="MIAM reshapes an application's internal service graph across security epochs so an attacker's post-access map goes stale. Paper, DOI, limitations, and citation.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
+        <h1>Mission-Invariant Architecture Morphing (MIAM)</h1>
+        <p class="lead">Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity.</p>
+        <p class="entry-meta"><time datetime="2026-09-27">2026-09-27</time> &middot; <span class="tag">preprint</span> &middot; version 1.0.0 &middot; CC BY 4.0 &middot; DOI 10.5281/zenodo.23001045</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf">Read the paper (PDF)</a>
+          <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.23001045">DOI record</a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel">
+          <h2 id="status-heading">Research status</h2>
+          <p class="prose">Design proposal and formal model. It reports no empirical security advantage, and the contribution of service-graph morphing is unmeasured until the ablation protocol in the paper is run.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="abstract-heading">
+      <div class="container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="prose">
+          <p>Modern moving-target defenses alter addresses, ports, hosts, software variants, workflows, or computing environments to reduce the useful lifetime of attacker observations. This paper proposes Mission-Invariant Architecture Morphing (MIAM), a research architecture that moves the defensive transformation boundary into the application itself, targeting post-initial-access reconnaissance such as dependency mapping, lateral movement, and credential reuse.</p>
+          <p>MIAM represents a workload as capability units assigned to runtime service graphs drawn from a certified grammar. For each candidate graph, machine-evaluable attack-prerequisite predicates estimate which previously learned conditions remain actionable, while a separate exposure term bounds new attack surface introduced by the candidate. A graph delta is combined with a capability-state map to derive a transition policy that permits only validated mission-domain state to cross the epoch boundary while blocking designated runtime and security state. A verified target graph is then instantiated under distinct epoch authority and cut over behind a stable logical interface.</p>
+          <p>The paper develops an operational reconnaissance-transfer model, architecture-distance measures, a recurrence-aware retention model showing that a finite variant pool imposes a nonzero knowledge floor, a cryptographic epoch-isolation construction, a graph-delta-driven State Continuity Firewall, an enterprise implementation path, an ablation-based experimental protocol, and a reference claim set released as a defensive publication. The work is a design proposal produced through independent open-source cybersecurity research; it reports no empirical security advantage and makes no patentability determination.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-heading">
+      <div class="container">
+        <h2 id="limits-heading">Known limitations</h2>
+        <ul class="bullet-list prose">
+          <li>The work is a design and mathematical model without experimental data. Security efficacy and overhead remain open questions.</li>
+          <li>Common-mode vulnerabilities survive morphs when every variant shares the same vulnerable library, API logic, secret, or trust decision.</li>
+          <li>A finite certified pool leaves a nonzero recurrence floor: an attacker who maps every graph in a small pool keeps knowledge that no morph rate can remove.</li>
+          <li>Much of the benefit of an epoch transition may come from rejuvenation and credential rotation rather than graph change.</li>
+          <li>Control-plane compromise is catastrophic, and telemetry poisoning can turn adaptation into an attack primitive.</li>
+        </ul>
+        <p class="note">Summarized from the paper. The full list is in its section on limitations, failure modes, and open research problems.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.23001045">10.5281/zenodo.23001045</a></li>
+          <li><span>Paper</span><a href="https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf">PDF, version 1.0.0</a></li>
+          <li><span>Source</span><a href="https://github.com/codethor0/miam">Paper source and reproduction script</a></li>
+          <li><span>Release</span><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">Version 1.0.0</a></li>
+          <li><span>Archive</span><a href="https://zenodo.org/records/23001045">Zenodo record</a></li>
+          <li><span>Author</span><a href="https://orcid.org/0009-0001-6573-385X">ORCID 0009-0001-6573-385X</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="cite-heading">
+      <div class="container">
+        <h2 id="cite-heading">Cite this work</h2>
+        <p class="code-label">Plain text</p>
+        <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Mission-Invariant Architecture Morphing: Service-Graph
+Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch
+Isolation and Mission-Domain State Continuity (1.0.0). Zenodo.
+https://doi.org/10.5281/zenodo.23001045</code></pre>
+        <p class="code-label">BibTeX</p>
+        <pre class="code-snippet" tabindex="0"><code>@misc{thor2026miam,
+  author    = {Thor, Thor},
+  title     = {Mission-Invariant Architecture Morphing: Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23001045},
+  url       = {https://doi.org/10.5281/zenodo.23001045}
+}</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="versions-heading">
+      <div class="container">
+        <h2 id="versions-heading">Version history</h2>
+        <ul class="plain-list">
+          <li>Version 1.0.0<span class="sub"><time datetime="2026-09-27">2026-09-27</time> &middot; Initial public release, archived on Zenodo.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="disclosure-heading">
+      <div class="container">
+        <h2 id="disclosure-heading">Disclosure status</h2>
+        <p class="prose">Appendix A of the paper is a reference claim set released as a defensive publication. It places the mechanism in the public record as prior art. No patent or filing status is claimed. See <a href="../inventions.html">Inventions</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

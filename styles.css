@@ -47,31 +47,34 @@
   --measure: 68ch;
 }
 
-html:has(#theme-toggle:checked) {
-  color-scheme: light;
-  --bg: #f6f6f3;
-  --bg-raised: #ffffff;
-  --bg-inset: #eeeeea;
-  --border: #deded8;
-  --border-strong: #c7c7c0;
-  --text: #111418;
-  --text-body: #2a3037;
-  --text-muted: #525c67;
-  --text-faint: #636c76;
-  --accent: #0b7a45;
-  --accent-soft: rgba(11, 122, 69, 0.10);
-  --link: #0a55c2;
-  --link-hover: #073f91;
-  --warn: #9a6200;
-  --btn-bg: #111418;
-  --btn-text: #f6f6f3;
-  --btn-hover: #2a3037;
-  --header-bg: rgba(246, 246, 243, 0.92);
-  --grid-line: rgba(0, 0, 0, 0.04);
-  --svg-fill: #ffffff;
-  --svg-fill-accent: rgba(11, 122, 69, 0.08);
-  --svg-stroke: #525c67;
-  --svg-text: #111418;
+/* Light theme follows the visitor's device setting. No JavaScript and no stored preference. */
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f6f6f3;
+    --bg-raised: #ffffff;
+    --bg-inset: #eeeeea;
+    --border: #deded8;
+    --border-strong: #c7c7c0;
+    --text: #111418;
+    --text-body: #2a3037;
+    --text-muted: #525c67;
+    --text-faint: #636c76;
+    --accent: #0b7a45;
+    --accent-soft: rgba(11, 122, 69, 0.10);
+    --link: #0a55c2;
+    --link-hover: #073f91;
+    --warn: #9a6200;
+    --btn-bg: #111418;
+    --btn-text: #f6f6f3;
+    --btn-hover: #2a3037;
+    --header-bg: rgba(246, 246, 243, 0.92);
+    --grid-line: rgba(0, 0, 0, 0.04);
+    --svg-fill: #ffffff;
+    --svg-fill-accent: rgba(11, 122, 69, 0.08);
+    --svg-stroke: #525c67;
+    --svg-text: #111418;
+}
 }
 
 html {
@@ -115,7 +118,6 @@ a:hover {
 }
 
 a:focus-visible,
-.theme-toggle-input:focus-visible + .theme-toggle-label,
 summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
@@ -247,25 +249,6 @@ pre {
 .site-nav a.nav-cta {
   color: var(--accent);
   font-weight: 500;
-}
-
-.theme-toggle-input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-}
-
-.theme-toggle-label {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius);
-  cursor: pointer;
-  user-select: none;
 }
 
 /* Sections */
@@ -845,6 +828,10 @@ main a[href^="https://"]:not(.btn)::after {
 }
 
 @media (max-width: 720px) {
+  .site-header {
+    position: static;
+  }
+
   .two-col {
     grid-template-columns: 1fr;
   }
@@ -869,7 +856,6 @@ main a[href^="https://"]:not(.btn)::after {
   }
 
   .site-header,
-  .theme-toggle,
   .actions {
     display: none;
   }

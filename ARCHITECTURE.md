@@ -18,6 +18,8 @@ No custom domain is in use. GitHub Pages is never redirected to the mirror.
 ## Security invariants
 
 - Static-first. Pages are plain HTML and CSS.
+- Build tools may write static files; nothing they write runs in the visitor's browser. `scripts/build_research.py` runs on the author's machine, its output is committed, and CI (`--check`) fails if the committed output drifts from `scripts/research.json`.
+- Light and dark themes follow the device setting through `prefers-color-scheme`. No control, script, or storage is involved.
 - No client-side JavaScript: `script-src 'none'`, `connect-src 'none'`, and no `<script>` tags.
 - No cookies, browser analytics, advertising trackers, or visitor counters.
 - No third-party runtime assets. The Inter typeface is self-hosted in `assets/fonts/` under the SIL Open Font License 1.1.

@@ -9,14 +9,14 @@
   <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
   <title>Site Security and Privacy | THOR-SEC</title>
-  <meta name="description" content="Security and privacy posture of the THOR-SEC static research site.">
+  <meta name="description" content="How THOR-SEC protects visitors: no JavaScript, cookies, or analytics, a strict Content Security Policy, and a security audit on every change to main.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/security.html">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
   <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="THOR-SEC">
   <meta property="og:title" content="Site Security and Privacy | THOR-SEC">
-  <meta property="og:description" content="Security and privacy posture of the THOR-SEC static research site.">
+  <meta property="og:description" content="How THOR-SEC protects visitors: no JavaScript, cookies, or analytics, a strict Content Security Policy, and a security audit on every change to main.">
   <meta property="og:url" content="https://codethor0.github.io/thor-sec/security.html">
   <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta property="og:image:type" content="image/png">
@@ -26,13 +26,14 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Site Security and Privacy | THOR-SEC">
-  <meta name="twitter:description" content="Security and privacy posture of the THOR-SEC static research site.">
+  <meta name="twitter:description" content="How THOR-SEC protects visitors: no JavaScript, cookies, or analytics, a strict Content Security Policy, and a security audit on every change to main.">
   <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#0a0c0f">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -49,10 +50,6 @@
             <li><a class="nav-cta" href="./work.html">Commission</a></li>
           </ul>
         </nav>
-        <div class="theme-toggle">
-          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
-          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
-        </div>
       </div>
     </div>
   </header>
@@ -66,17 +63,19 @@
       </div>
     </div>
 
-    <section aria-labelledby="surface-heading">
+    <section aria-labelledby="controls-heading">
       <div class="container">
+        <h2 id="controls-heading">What the site enforces</h2>
         <ul class="card-grid">
           <li class="card">
             <p class="card-kind">Runtime surface</p>
-            <h3 id="surface-heading">Nothing runs in your browser</h3>
+            <h3>Nothing runs in your browser</h3>
             <ul class="bullet-list">
               <li>No JavaScript, cookies, or analytics.</li>
               <li>One plain research-request form, on the commission page only. It accepts no uploads and records no IP address, browser details, or cookies.</li>
               <li>No third-party fonts, scripts, or runtime assets.</li>
               <li>Same-origin CSS and images only.</li>
+              <li>Light and dark themes follow your device setting. No preference is stored.</li>
             </ul>
           </li>
           <li class="card">

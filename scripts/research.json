@@ -1,0 +1,109 @@
+{
+  "site": {
+    "base": "https://codethor0.github.io/thor-sec/",
+    "author": "Thor Thor",
+    "author_citation": "Thor, Thor",
+    "orcid": "0009-0001-6573-385X",
+    "feed_title": "THOR-SEC Research Notes"
+  },
+  "sitemap": [
+    {"path": "", "lastmod": "2026-09-28"},
+    {"path": "research.html", "lastmod": "2026-09-28"},
+    {"path": "work.html", "lastmod": "2026-09-28"},
+    {"path": "about.html", "lastmod": "2026-09-28"},
+    {"path": "inventions.html", "lastmod": "2026-09-28"},
+    {"path": "security.html", "lastmod": "2026-09-28"},
+    {"path": "now.html", "lastmod": "2026-09-28"},
+    {"path": "feed.xml", "lastmod": "2026-09-28"},
+    {"path": ".well-known/security.txt", "lastmod": "2026-09-27"}
+  ],
+  "entries": [
+    {
+      "id": "commission",
+      "kind": "announcement",
+      "title": "Commission research from THOR-SEC",
+      "url": "https://codethor0.github.io/thor-sec/work.html",
+      "date": "2026-09-27",
+      "updated": "2026-09-27",
+      "feed_summary": "THOR-SEC now accepts commissioned research: sponsored research, security architecture review, AI and LLM security assessment, and technical writing."
+    },
+    {
+      "id": "miam",
+      "kind": "paper",
+      "title": "Mission-Invariant Architecture Morphing (MIAM)",
+      "full_title": "Mission-Invariant Architecture Morphing: Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity",
+      "subtitle": "Service-Graph Reconfiguration Against Post-Access Reconnaissance, with Cryptographic Epoch Isolation and Mission-Domain State Continuity.",
+      "date": "2026-09-27",
+      "updated": "2026-09-28",
+      "status": "preprint",
+      "status_note": "Design proposal and formal model. It reports no empirical security advantage, and the contribution of service-graph morphing is unmeasured until the ablation protocol in the paper is run.",
+      "version": "1.0.0",
+      "license": "CC BY 4.0",
+      "doi": "10.5281/zenodo.23001045",
+      "publisher": "Zenodo",
+      "pdf": "https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf",
+      "source": "https://github.com/codethor0/miam",
+      "release": "https://github.com/codethor0/miam/releases/tag/v1.0.0",
+      "record": "https://zenodo.org/records/23001045",
+      "defensive_publication": true,
+      "feed_id": "https://doi.org/10.5281/zenodo.23001045",
+      "description": "MIAM reshapes an application's internal service graph across security epochs so an attacker's post-access map goes stale. Paper, DOI, limitations, and citation.",
+      "home_summary": "Most moving target defenses change addresses, ports, or hosts. MIAM reshapes an application's internal service graph across security epochs while its external interface stays fixed, so the dependency map an attacker builds after initial access goes stale. Includes a retention model showing that a finite variant pool leaves a nonzero knowledge floor.",
+      "archive_summary": "A design proposal and formal model. It develops a reconnaissance-transfer model, architecture-distance measures, a recurrence-aware retention model, per-epoch cryptographic isolation, a graph-delta-driven State Continuity Firewall, and an ablation-based evaluation protocol. It reports no empirical results.",
+      "feed_summary": "Formal design proposal for application-level service-graph morphing against post-access reconnaissance, with cryptographic epoch isolation and mission-domain state continuity.",
+      "abstract": [
+        "Modern moving-target defenses alter addresses, ports, hosts, software variants, workflows, or computing environments to reduce the useful lifetime of attacker observations. This paper proposes Mission-Invariant Architecture Morphing (MIAM), a research architecture that moves the defensive transformation boundary into the application itself, targeting post-initial-access reconnaissance such as dependency mapping, lateral movement, and credential reuse.",
+        "MIAM represents a workload as capability units assigned to runtime service graphs drawn from a certified grammar. For each candidate graph, machine-evaluable attack-prerequisite predicates estimate which previously learned conditions remain actionable, while a separate exposure term bounds new attack surface introduced by the candidate. A graph delta is combined with a capability-state map to derive a transition policy that permits only validated mission-domain state to cross the epoch boundary while blocking designated runtime and security state. A verified target graph is then instantiated under distinct epoch authority and cut over behind a stable logical interface.",
+        "The paper develops an operational reconnaissance-transfer model, architecture-distance measures, a recurrence-aware retention model showing that a finite variant pool imposes a nonzero knowledge floor, a cryptographic epoch-isolation construction, a graph-delta-driven State Continuity Firewall, an enterprise implementation path, an ablation-based experimental protocol, and a reference claim set released as a defensive publication. The work is a design proposal produced through independent open-source cybersecurity research; it reports no empirical security advantage and makes no patentability determination."
+      ],
+      "limitations": [
+        "The work is a design and mathematical model without experimental data. Security efficacy and overhead remain open questions.",
+        "Common-mode vulnerabilities survive morphs when every variant shares the same vulnerable library, API logic, secret, or trust decision.",
+        "A finite certified pool leaves a nonzero recurrence floor: an attacker who maps every graph in a small pool keeps knowledge that no morph rate can remove.",
+        "Much of the benefit of an epoch transition may come from rejuvenation and credential rotation rather than graph change.",
+        "Control-plane compromise is catastrophic, and telemetry poisoning can turn adaptation into an attack primitive."
+      ],
+      "versions": [
+        {"version": "1.0.0", "date": "2026-09-27", "note": "Initial public release, archived on Zenodo."}
+      ]
+    },
+    {
+      "id": "model-identity-verifier",
+      "kind": "tool",
+      "title": "Model Identity Verifier",
+      "url": "https://github.com/codethor0/model-identity-verifier",
+      "date": "2026-07-08",
+      "updated": "2026-08-26",
+      "home_summary": "Detects LLM identity drift, route or provider mismatch, and downgrade or substitution signals, without treating a model's self-description as proof of what is running.",
+      "feed_summary": "Open-source CLI research tooling for LLM identity drift, suspicious provider or route mismatch, and downgrade or substitution signals."
+    },
+    {
+      "id": "boundary-layer",
+      "kind": "lab",
+      "title": "BoundaryLayer",
+      "url": "https://github.com/codethor0/boundary-layer",
+      "date": "2026-05-30",
+      "updated": "2026-09-24",
+      "home_summary": "A local lab for the infrastructure boundaries that decide blast radius after a model or agent is tricked: tool routing, sessions, authorization, uploads, caching, and alerting.",
+      "feed_summary": "Defensive LLM infrastructure security lab for comparing vulnerable and hardened blast-radius controls."
+    },
+    {
+      "id": "llm-agent-authorization-boundary",
+      "kind": "note",
+      "title": "LLM Agent Authorization Boundary",
+      "url": "https://codethor0.github.io/thor-sec/research.html#llm-agent-authorization-boundary",
+      "date": "2026-06-01",
+      "updated": "2026-06-01",
+      "feed_summary": "A defensive design note for tool-connected LLM systems with separate policy-layer authorization, identity context, and audit logging."
+    },
+    {
+      "id": "oauth-anomaly-baseline",
+      "kind": "note",
+      "title": "OAuth Anomaly Baseline",
+      "url": "https://codethor0.github.io/thor-sec/research.html#oauth-anomaly-baseline",
+      "date": "2026-06-01",
+      "updated": "2026-06-01",
+      "feed_summary": "A compact detection pattern for identifying unusual OAuth grant behavior by comparing per-user token activity against a rolling baseline."
+    }
+  ]
+}

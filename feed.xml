@@ -4,7 +4,7 @@
   <link href="https://codethor0.github.io/thor-sec/" rel="alternate"/>
   <link href="https://codethor0.github.io/thor-sec/feed.xml" rel="self"/>
   <id>https://codethor0.github.io/thor-sec/feed.xml</id>
-  <updated>2026-09-27T00:00:00Z</updated>
+  <updated>2026-09-28T00:00:00Z</updated>
   <author>
     <name>Thor Thor</name>
     <uri>https://orcid.org/0009-0001-6573-385X</uri>
@@ -21,9 +21,9 @@
 
   <entry>
     <title>Mission-Invariant Architecture Morphing (MIAM)</title>
-    <link href="https://doi.org/10.5281/zenodo.23001045" rel="alternate"/>
+    <link href="https://codethor0.github.io/thor-sec/research/miam.html" rel="alternate"/>
     <id>https://doi.org/10.5281/zenodo.23001045</id>
-    <updated>2026-09-27T00:00:00Z</updated>
+    <updated>2026-09-28T00:00:00Z</updated>
     <published>2026-09-27T00:00:00Z</published>
     <summary>Formal design proposal for application-level service-graph morphing against post-access reconnaissance, with cryptographic epoch isolation and mission-domain state continuity.</summary>
   </entry>

@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#0a0c0f">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -49,10 +50,6 @@
             <li><a class="nav-cta" href="./work.html">Commission</a></li>
           </ul>
         </nav>
-        <div class="theme-toggle">
-          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
-          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
-        </div>
       </div>
     </div>
   </header>
@@ -84,6 +81,16 @@
       </div>
     </section>
 
+    <section aria-labelledby="mission-heading">
+      <div class="container">
+        <div class="prose">
+          <h2 id="mission-heading">Mission</h2>
+          <p>THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work.</p>
+          <p>THOR-SEC exists to build independent, verifiable, credited work: research that belongs to the people who did it, with the evidence attached. The long-term goal is a lab of people who look at a hard problem, see the solution others overlook, and prove that it works.</p>
+        </div>
+      </div>
+    </section>
+
     <section aria-labelledby="skills-heading">
       <div class="container">
         <h2 id="skills-heading">Core competencies</h2>
@@ -99,13 +106,14 @@
     <section aria-labelledby="exp-heading">
       <div class="container">
         <h2 id="exp-heading">Selected experience</h2>
-        <p class="prose">Listed for context. THOR-SEC research is independent of these roles.</p>
+        <p class="prose">More than ten years across IT, security operations, and engineering. THOR-SEC research is independent, self-directed, and not affiliated with or representative of any employer.</p>
         <ul class="plain-list">
-          <li>Software Engineer II, Technical Support<span class="sub">Warner Bros. Discovery</span></li>
-          <li>Technical Operations Engineer II, Splunk Administration<span class="sub">DoubleVerify</span></li>
-          <li>Software Quality Assurance Analyst<span class="sub">Getac Video Solutions</span></li>
-          <li>Senior Technical Support Engineer<span class="sub">Veritas Technologies</span></li>
-          <li>Deskside IT Support Representative<span class="sub">IBM</span></li>
+          <li>Technical support engineering</li>
+          <li>Security operations and engineering</li>
+          <li>Software engineering</li>
+          <li>Technical operations and SIEM administration</li>
+          <li>Software quality assurance</li>
+          <li>Enterprise IT support</li>
         </ul>
       </div>
     </section>

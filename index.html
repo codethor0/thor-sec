@@ -32,7 +32,8 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <meta name="theme-color" content="#0a0c0f">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -49,10 +50,6 @@
             <li><a class="nav-cta" href="./work.html">Commission</a></li>
           </ul>
         </nav>
-        <div class="theme-toggle">
-          <input type="checkbox" id="theme-toggle" class="theme-toggle-input" aria-label="Switch between dark and light theme">
-          <label for="theme-toggle" class="theme-toggle-label">Theme</label>
-        </div>
       </div>
     </div>
   </header>
@@ -63,7 +60,7 @@
         <p class="eyebrow">Independent security research</p>
         <h1 id="hero-heading">THOR-SEC</h1>
         <p class="hero-tagline">Research on how attackers use access, and how systems can make that access worthless.</p>
-        <p class="hero-intro">Papers, reference implementations, and labs by Thor Thor on AI and LLM security, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
+        <p class="hero-intro">THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work. Papers, reference implementations, and labs by Thor Thor on AI and LLM security, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
         <ul class="status-line" aria-label="Research status">
           <li><span class="status-dot" aria-hidden="true"></span><strong>Accepting research requests</strong></li>
           <li><span>latest</span> <strong>MIAM 1.0.0</strong></li>
@@ -83,13 +80,14 @@
           <a class="section-link" href="./research.html">Full archive</a>
         </div>
         <ol class="entry-list">
+          <!-- build:latest:start -->
           <li class="entry">
             <p class="entry-meta"><time datetime="2026-09-27">2026-09-27</time> &middot; <span class="tag">paper</span> &middot; DOI 10.5281/zenodo.23001045</p>
-            <h3><a href="https://doi.org/10.5281/zenodo.23001045">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
+            <h3><a href="./research/miam.html">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
             <p>Most moving target defenses change addresses, ports, or hosts. MIAM reshapes an application's internal service graph across security epochs while its external interface stays fixed, so the dependency map an attacker builds after initial access goes stale. Includes a retention model showing that a finite variant pool leaves a nonzero knowledge floor.</p>
             <ul class="inline-links">
               <li><a href="https://doi.org/10.5281/zenodo.23001045">DOI</a></li>
-              <li><a href="https://github.com/codethor0/miam/blob/main/paper/MIAM.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf">PDF</a></li>
               <li><a href="https://github.com/codethor0/miam">Source and reproduction</a></li>
             </ul>
           </li>
@@ -103,6 +101,7 @@
             <h3><a href="https://github.com/codethor0/boundary-layer">BoundaryLayer</a></h3>
             <p>A local lab for the infrastructure boundaries that decide blast radius after a model or agent is tricked: tool routing, sessions, authorization, uploads, caching, and alerting.</p>
           </li>
+          <!-- build:latest:end -->
         </ol>
       </div>
     </section>
