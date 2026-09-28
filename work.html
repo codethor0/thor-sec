@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action https://thor-sec.codethor0.workers.dev https://codethor0.github.io; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
   <meta name="referrer" content="no-referrer">
   <meta name="color-scheme" content="dark light">
   <meta name="author" content="Thor Thor">
@@ -64,7 +64,7 @@
         <h1>Work with THOR-SEC</h1>
         <p class="lead">Bring a security question that matters to your organization. THOR-SEC scopes it, researches it in an authorized environment, and delivers findings with the evidence and artifacts behind them.</p>
         <div class="actions">
-          <a class="btn btn-primary" href="mailto:codethor@gmail.com?subject=THOR-SEC%20research%20request&body=Organization%3A%0A%0AResearch%20area%20or%20question%3A%0A%0AObjective%20and%20intended%20use%20of%20results%3A%0A%0AScope%20and%20systems%20involved%3A%0A%0AAuthorization%20status%20%28who%20owns%20or%20authorizes%20the%20systems%29%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A%0APublication%20preference%20%28public%2C%20delayed%2C%20private%29%3A%0A%0ANotes%3A%0A">Email a research request</a>
+          <a class="btn btn-primary" href="#request">Submit a research request</a>
           <a class="btn btn-secondary" href="#how">How it works</a>
         </div>
       </div>
@@ -102,9 +102,10 @@
       <div class="container">
         <h2 id="how-heading">How it works</h2>
         <ol class="steps">
-          <li><strong>Send a request</strong><span>Use the email template: the question, scope, timeline, and budget range.</span></li>
-          <li><strong>Scoping call</strong><span>A short call to confirm the question, authorization, and what a useful answer looks like.</span></li>
+          <li><strong>Send a request</strong><span>Use the form below or email: the question, scope, timeline, and budget range.</span></li>
+          <li><strong>Scope review</strong><span>THOR-SEC reviews the question and authorization, then arranges a short scoping discussion if it is a fit.</span></li>
           <li><strong>Written proposal</strong><span>Scope, deliverables, schedule, fee, and publication terms, agreed in writing before work starts.</span></li>
+          <li><strong>Payment</strong><span>Once the proposal is agreed, payment is made through a Stripe invoice or payment link. THOR-SEC never handles card details.</span></li>
           <li><strong>Research and delivery</strong><span>Findings, evidence, and artifacts, followed by a walkthrough with your team.</span></li>
         </ol>
       </div>
@@ -123,18 +124,89 @@
       </div>
     </section>
 
-    <section aria-labelledby="request-heading">
+    <section id="request" aria-labelledby="request-heading">
       <div class="container">
         <div class="panel panel-accent">
           <h2 id="request-heading">Start a request</h2>
-          <p class="prose">The button opens an email with the fields that make scoping fast. Short answers are fine.</p>
-          <ul class="tag-list">
-            <li>organization</li><li>research question</li><li>objective</li><li>scope</li><li>authorization</li><li>timeline</li><li>budget range</li><li>publication preference</li>
-          </ul>
-          <div class="actions">
-            <a class="btn btn-primary" href="mailto:codethor@gmail.com?subject=THOR-SEC%20research%20request&body=Organization%3A%0A%0AResearch%20area%20or%20question%3A%0A%0AObjective%20and%20intended%20use%20of%20results%3A%0A%0AScope%20and%20systems%20involved%3A%0A%0AAuthorization%20status%20%28who%20owns%20or%20authorizes%20the%20systems%29%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A%0APublication%20preference%20%28public%2C%20delayed%2C%20private%29%3A%0A%0ANotes%3A%0A">Email a research request</a>
-            <a class="btn btn-secondary" href="./research.html">Review past research</a>
-          </div>
+          <p class="prose">Short answers are fine. Fields marked required are needed to review the request. Submitting a request is for scoping only and does not create an engagement.</p>
+          <form class="request-form" method="post" action="https://thor-sec.codethor0.workers.dev/api/request" accept-charset="UTF-8">
+            <fieldset>
+              <legend>Contact</legend>
+              <div class="field">
+                <label for="f-name">Name (required)</label>
+                <input id="f-name" name="name" type="text" required maxlength="120" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="f-email">Email (required)</label>
+                <input id="f-email" name="email" type="email" required maxlength="254" autocomplete="email">
+              </div>
+              <div class="field">
+                <label for="f-organization">Organization</label>
+                <input id="f-organization" name="organization" type="text" maxlength="200" autocomplete="organization">
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Research</legend>
+              <div class="field">
+                <label for="f-question">Research question (required)</label>
+                <textarea id="f-question" name="question" required maxlength="2500" rows="4"></textarea>
+              </div>
+              <div class="field">
+                <label for="f-objective">Objective and intended use of results</label>
+                <textarea id="f-objective" name="objective" maxlength="1500" rows="3"></textarea>
+              </div>
+              <div class="field">
+                <label for="f-scope">Scope and systems involved</label>
+                <textarea id="f-scope" name="scope" maxlength="2000" rows="3"></textarea>
+              </div>
+              <div class="field">
+                <label for="f-authorization">Authorization status (required)</label>
+                <select id="f-authorization" name="authorization" required>
+                  <option value="">Select one</option>
+                  <option value="owner">Owner or authorized representative of the systems</option>
+                  <option value="written">Written authorization exists</option>
+                  <option value="planning">Planning or scoping only</option>
+                  <option value="other">Other / needs discussion</option>
+                </select>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Terms</legend>
+              <div class="field">
+                <label for="f-timeline">Timeline</label>
+                <input id="f-timeline" name="timeline" type="text" maxlength="200">
+              </div>
+              <div class="field">
+                <label for="f-budget">Budget range</label>
+                <input id="f-budget" name="budget" type="text" maxlength="200">
+              </div>
+              <div class="field">
+                <label for="f-publication">Publication preference</label>
+                <select id="f-publication" name="publication">
+                  <option value="unsure">Not sure</option>
+                  <option value="public">Public</option>
+                  <option value="delayed">Delayed publication</option>
+                  <option value="private">Private</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-notes">Notes</label>
+                <textarea id="f-notes" name="notes" maxlength="2500" rows="3"></textarea>
+              </div>
+            </fieldset>
+            <div class="hp" aria-hidden="true">
+              <label for="f-website">Website</label>
+              <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <div class="field field-check">
+              <input id="f-confirm" name="confirm" type="checkbox" value="yes" required>
+              <label for="f-confirm">I understand this submission is for scoping only, does not create an engagement, and must not contain secrets, credentials, customer data, exploit code, or confidential logs. (required)</label>
+            </div>
+            <div class="actions">
+              <button class="btn btn-primary" type="submit">Submit request</button>
+            </div>
+          </form>
+          <p class="note">Prefer email? <a href="mailto:codethor@gmail.com?subject=THOR-SEC%20research%20request&body=Organization%3A%0A%0AResearch%20area%20or%20question%3A%0A%0AObjective%20and%20intended%20use%20of%20results%3A%0A%0AScope%20and%20systems%20involved%3A%0A%0AAuthorization%20status%20%28who%20owns%20or%20authorizes%20the%20systems%29%3A%0A%0ATimeline%3A%0A%0ABudget%20range%3A%0A%0APublication%20preference%20%28public%2C%20delayed%2C%20private%29%3A%0A%0ANotes%3A%0A">Email a research request</a> with the same fields.</p>
         </div>
       </div>
     </section>

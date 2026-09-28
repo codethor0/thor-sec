@@ -25,7 +25,7 @@ Independent defensive cybersecurity research portfolio and public website for Th
 THOR-SEC uses a static-first publication model:
 
 - No client-side JavaScript
-- No forms
+- One plain HTML research-request form on the commission page (no JavaScript, no uploads), posted to a single validating endpoint
 - No cookies or analytics
 - Self-hosted Inter typeface (SIL OFL 1.1); no third-party fonts or runtime assets
 - Same-origin CSS and images

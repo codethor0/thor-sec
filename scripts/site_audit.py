@@ -20,6 +20,7 @@ HTML_FILES = [
     Path("security.html"),
     Path("now.html"),
     Path("404.html"),
+    Path("request-received.html"),
 ]
 REQUIRED_FILES = [
     *HTML_FILES,
@@ -54,13 +55,25 @@ REQUIRED_META = (
     'name="twitter:title"', 'name="twitter:description"', 'name="twitter:image"',
     'name="twitter:image:alt"', 'rel="icon"', 'rel="apple-touch-icon"', 'name="theme-color"',
 )
+FORM_PAGE = Path("work.html")
+FORM_ACTION = "https://thor-sec.codethor0.workers.dev/api/request"
+FORM_ACTION_CSP = "form-action https://thor-sec.codethor0.workers.dev https://codethor0.github.io"
+# name: maxlength (None for selects/checkboxes); must mirror worker/intake.mjs FIELDS.
+FORM_FIELDS = {
+    "name": "120", "email": "254", "organization": "200", "question": "2500",
+    "objective": "1500", "scope": "2000", "timeline": "200", "budget": "200",
+    "notes": "2500", "authorization": None, "publication": None, "website": None, "confirm": None,
+}
+FORM_OPTIONS = {
+    "authorization": {"", "owner", "written", "planning", "other"},
+    "publication": {"public", "delayed", "private", "unsure"},
+}
 REQUIRED_ASSET_IGNORES = (".git", ".github", ".wrangler", "scripts", "worker", "wrangler.jsonc", ".assetsignore", "ARCHITECTURE.md", "README.md", "SECURITY.md")
 
 REQUIRED_CSP_TOKENS = [
     "default-src 'self'",
     "base-uri 'self'",
     "object-src 'none'",
-    "form-action 'none'",
     "img-src 'self'",
     "style-src 'self'",
     "script-src 'none'",
@@ -69,7 +82,7 @@ REQUIRED_CSP_TOKENS = [
     "worker-src 'none'",
 ]
 FORBIDDEN_CSP_TOKENS = ["'unsafe-inline'", "'unsafe-eval'", "data:", "http:"]
-FORBIDDEN_TAGS = {"script", "form", "iframe", "object", "embed"}
+FORBIDDEN_TAGS = {"script", "iframe", "object", "embed"}
 BAD_SCHEMES = {"javascript", "data", "vbscript", "file"}
 SECRET_PATTERNS = {
     "GitHub token": re.compile(r"\bgh[pousr]_[A-Za-z0-9]{20,}\b"),
@@ -96,6 +109,14 @@ class PageParser(HTMLParser):
         self.csp: str | None = None
         self.referrer: str | None = None
         self.errors: list[str] = []
+        self.forms: list[dict[str, str | None]] = []
+        self.controls: list[tuple[str, dict[str, str | None]]] = []
+        self.options: dict[str, set[str]] = {}
+        self._select: str | None = None
+
+    def handle_endtag(self, tag: str):
+        if tag.lower() == "select":
+            self._select = None
 
     def handle_starttag(self, tag: str, attrs_list):
         tag = tag.lower()
@@ -109,6 +130,15 @@ class PageParser(HTMLParser):
                 self.errors.append(f"{self.path}: inline style attribute is forbidden")
             if key.startswith("on"):
                 self.errors.append(f"{self.path}: inline event handler {key}= is forbidden")
+
+        if tag == "form":
+            self.forms.append(attrs)
+        if tag in ("input", "textarea", "select", "button"):
+            self.controls.append((tag, attrs))
+        if tag == "select":
+            self._select = attrs.get("name") or ""
+        if tag == "option" and self._select is not None:
+            self.options.setdefault(self._select, set()).add(attrs.get("value") or "")
 
         if "id" in attrs and attrs["id"]:
             self.ids.append(attrs["id"])
@@ -151,6 +181,46 @@ def resolve_local(base: Path, value: str) -> tuple[Path | None, str | None]:
     return target, fragment
 
 
+def check_forms(pages: dict[Path, PageParser]) -> list[str]:
+    errors: list[str] = []
+    for rel, parser in pages.items():
+        if rel != FORM_PAGE:
+            if parser.forms or any(tag != "input" or attrs.get("id") != "theme-toggle" for tag, attrs in parser.controls):
+                errors.append(f"{rel}: forms and form controls are only permitted on {FORM_PAGE}")
+            continue
+        if len(parser.forms) != 1:
+            errors.append(f"{rel}: exactly one form is required, found {len(parser.forms)}")
+            continue
+        form = parser.forms[0]
+        if (form.get("method") or "").lower() != "post" or form.get("action") != FORM_ACTION:
+            errors.append(f"{rel}: form must POST to {FORM_ACTION}")
+        if form.get("enctype") not in (None, "application/x-www-form-urlencoded"):
+            errors.append(f"{rel}: form must use the default urlencoded encoding")
+        named: dict[str, dict[str, str | None]] = {}
+        for tag, attrs in parser.controls:
+            kind = (attrs.get("type") or "").lower()
+            if kind in ("file", "password", "hidden"):
+                errors.append(f"{rel}: <input type={kind}> is forbidden")
+            if attrs.get("name"):
+                named[attrs["name"]] = attrs
+        if set(named) != set(FORM_FIELDS):
+            errors.append(f"{rel}: form fields must be exactly {sorted(FORM_FIELDS)}, found {sorted(named)}")
+        for name, maxlength in FORM_FIELDS.items():
+            if name in named and maxlength and named[name].get("maxlength") != maxlength:
+                errors.append(f"{rel}: field {name} must have maxlength={maxlength}")
+        for name in ("name", "email", "question", "authorization", "confirm"):
+            if name in named and "required" not in named[name]:
+                errors.append(f"{rel}: field {name} must be required")
+        if named.get("confirm", {}).get("value") != "yes":
+            errors.append(f"{rel}: confirm checkbox must submit value yes")
+        if named.get("website", {}).get("tabindex") != "-1":
+            errors.append(f"{rel}: honeypot field must not be focusable")
+        for name, values in FORM_OPTIONS.items():
+            if parser.options.get(name) != values:
+                errors.append(f"{rel}: {name} options must be exactly {sorted(values)}")
+    return errors
+
+
 def main() -> None:
     errors: list[str] = []
 
@@ -182,12 +252,17 @@ def main() -> None:
                 for token in REQUIRED_CSP_TOKENS:
                     if token not in parser.csp:
                         errors.append(f"{rel}: CSP missing {token}")
+                expected_fa = FORM_ACTION_CSP if rel == FORM_PAGE else "form-action 'none'"
+                if expected_fa + ";" not in parser.csp:
+                    errors.append(f"{rel}: CSP must contain exactly {expected_fa}")
                 for token in FORBIDDEN_CSP_TOKENS:
                     if token in parser.csp:
                         errors.append(f"{rel}: CSP contains forbidden token {token}")
 
             if parser.referrer != "no-referrer":
                 errors.append(f"{rel}: referrer policy must be no-referrer")
+
+    errors.extend(check_forms(pages))
 
     id_maps = {rel: set(parser.ids) for rel, parser in pages.items()}
 
@@ -261,6 +336,8 @@ def main() -> None:
                 errors.append(f"_headers: required policy missing: {required_header}")
         if "X-Robots-Tag: noindex" not in headers_text:
             errors.append("_headers: Cloudflare mirror must send X-Robots-Tag: noindex")
+        if FORM_ACTION_CSP + ";" not in headers_text:
+            errors.append(f"_headers: CSP must contain exactly {FORM_ACTION_CSP}")
         if "Strict-Transport-Security:" in headers_text:
             errors.append("_headers: HSTS must not be enabled before the Cloudflare custom domain is verified")
 
@@ -327,6 +404,14 @@ def main() -> None:
                 if pattern.search(text):
                     errors.append(f"{rel}: private-build attribution marker detected")
 
+    received = (ROOT / "request-received.html").read_text(encoding="utf-8")
+    if '<meta name="robots" content="noindex' not in received:
+        errors.append("request-received.html: must be noindex")
+    if "request-received" in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
+        errors.append("sitemap.xml: request-received.html must not be listed")
+    if 'mailto:codethor@gmail.com' not in (ROOT / FORM_PAGE).read_text(encoding="utf-8"):
+        errors.append(f"{FORM_PAGE}: mailto fallback for research requests is required")
+
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     for required in (
         "0009-0001-6573-385X",
@@ -351,7 +436,7 @@ def main() -> None:
 
     print("STATIC SITE AUDIT PASSED")
     print(f"HTML pages checked: {len(pages)}")
-    print("Active content: none")
+    print("Active content: none (one POST form on work.html)")
     print("Inline event handlers/styles: none")
     print("Local references: OK")
     print("CSP/referrer policy: OK")

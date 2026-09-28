@@ -34,7 +34,7 @@ case "${1:-}" in
   *) printf 'unknown argument: %s\n' "$1" >&2; exit 2 ;;
 esac
 
-PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp /assets/fonts/InterVariable.woff2 /assets/thor-sec-social-card.png /assets/favicon.png /assets/apple-touch-icon.png"
+PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /request-received.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp /assets/fonts/InterVariable.woff2 /assets/thor-sec-social-card.png /assets/favicon.png /assets/apple-touch-icon.png"
 BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /worker/intake.mjs /worker/intake.test.mjs /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /ARCHITECTURE.md /LICENSE /_headers"
 
 say()  { printf '\n==> %s\n' "$*"; }
@@ -217,7 +217,7 @@ c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://codethor0.
 if [ "$c" = "400" ]; then ok "400 missing required fields"; else fail "$c missing required fields (expected 400)"; fi
 
 script_failures=0
-for p in / /research.html /work.html /about.html /inventions.html /security.html /now.html; do
+for p in / /research.html /work.html /about.html /inventions.html /security.html /now.html /request-received.html; do
   body="$(curlq -L "$url$p" || true)"
   if [ -z "$body" ]; then fail "empty body for $p"; script_failures=1; continue; fi
   if printf '%s\n' "$body" | grep -qi "<script"; then fail "script tag found on $p"; script_failures=1; fi

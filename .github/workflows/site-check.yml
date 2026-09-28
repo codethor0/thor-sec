@@ -50,6 +50,7 @@ jobs:
             /sitemap.xml \
             /feed.xml \
             /404.html \
+            /request-received.html \
             /LICENSE \
             /SECURITY.md \
             /README.md \

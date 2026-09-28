@@ -35,6 +35,6 @@ Research and tools associated with THOR-SEC are intended for systems, applicatio
 
 ## Website Security Boundary
 
-The public THOR-SEC site is intentionally static. It does not require client-side JavaScript, forms, cookies, analytics, third-party fonts, or third-party runtime assets.
+The public THOR-SEC site is intentionally static. It does not use client-side JavaScript, cookies, analytics, third-party fonts, or third-party runtime assets. The only form is the research-request form on the commission page. It posts to one endpoint, `POST /api/request` on the Cloudflare mirror, which validates every field, accepts no uploads, records no visitor IP address, User-Agent, location, or cookies, and files accepted requests in a private intake queue. Do not submit secrets, credentials, customer data, exploit code, or confidential logs through the form.
 
 The repository applies a restrictive meta Content Security Policy and a no-referrer policy. The canonical site is hosted on GitHub Pages, where repository content cannot configure every HTTP response header. A mirror on Cloudflare Workers Static Assets additionally serves the response headers defined in `_headers`. The public source and CI checks are the auditable repository security boundary. See ARCHITECTURE.md for details.
