@@ -83,7 +83,7 @@
             <p class="card-kind">Browser policy</p>
             <h3>Deny by default</h3>
             <ul class="bullet-list">
-              <li>Content Security Policy blocks scripts, frames, workers, objects, and network connections, and allows form submission only from the commission page to the request endpoint.</li>
+              <li>Content Security Policy blocks scripts, frames, workers, objects, and network connections, and allows form submission only from the commission page, to the request endpoint and back to this site for the confirmation page.</li>
               <li>Remote images and styles are blocked.</li>
               <li>Referrer policy is <code>no-referrer</code>.</li>
             </ul>
@@ -92,7 +92,7 @@
             <p class="card-kind">Deployment gates</p>
             <h3>Checked before publish</h3>
             <ul class="bullet-list">
-              <li>A static security audit runs on every push and pull request.</li>
+              <li>A static security audit runs on every push to main and every pull request targeting main.</li>
               <li>It checks links, duplicate IDs, active content, inline handlers and styles, insecure URLs, XML validity, and security metadata.</li>
               <li>The workflow runs with read-only permissions and a commit-pinned checkout action.</li>
             </ul>

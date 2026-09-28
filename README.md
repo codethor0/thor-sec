@@ -32,7 +32,7 @@ THOR-SEC uses a static-first publication model:
 - Restrictive meta Content Security Policy
 - `no-referrer` browser policy
 - Public `security.txt` and vulnerability disclosure policy
-- CI security audit on every push and pull request
+- CI security audit on every push to main and every pull request targeting main
 
 Hosting:
 

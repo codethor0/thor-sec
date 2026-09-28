@@ -24,11 +24,12 @@ No custom domain is in use. GitHub Pages is never redirected to the mirror.
 - `form-action 'none'` on every page except `work.html`, whose policy allows only the intake endpoint host and the canonical host (for the post-submit redirect); `object-src 'none'`, `frame-src 'none'`, `worker-src 'none'`, `frame-ancestors 'none'` (mirror header).
 - `Referrer-Policy: no-referrer` everywhere.
 - HSTS is not set by this repository.
-- CI (`.github/workflows/site-check.yml`) runs the fail-closed static audit on every push and pull request.
+- CI (`.github/workflows/site-check.yml`) runs the fail-closed static audit on every push to main and every pull request targeting main.
+- `main` is protected by a repository ruleset: no deletion or force pushes, linear history only, and every commit must carry a GitHub-verified signature.
 
 ## Public and private boundary
 
-Only public site files are served. Repository internals and tooling (`.git`, `.github`, `scripts`, `worker`, `README.md`, `SECURITY.md`, `ARCHITECTURE.md`, `LICENSE`, `wrangler.jsonc`, `.assetsignore`, `.gitignore`, `.nojekyll`) are excluded from the Cloudflare upload by `.assetsignore` and by the deploy script's allowlist, and the deploy script verifies they return 404.
+The repository is public, and GitHub Pages publishes it as-is, so nothing in it is secret. The Cloudflare mirror serves only public site files: repository internals and tooling (`.git`, `.github`, `scripts`, `worker`, `README.md`, `SECURITY.md`, `ARCHITECTURE.md`, `LICENSE`, `wrangler.jsonc`, `.assetsignore`, `.gitignore`, `.nojekyll`) are excluded from the Cloudflare upload by `.assetsignore` and by the deploy script's allowlist, and the deploy script verifies they return 404.
 
 ## Research-request intake
 
