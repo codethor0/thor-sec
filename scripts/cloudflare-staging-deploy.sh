@@ -94,8 +94,15 @@ ok "bundle written to $checkpoint_dir"
 # ------------------------------------------------------------ 3. fast-forward
 say "Sync with origin/main (fast-forward only)"
 git fetch --quiet origin main
+pre_sync="$(git rev-parse HEAD)"
 if ! git merge --ff-only --quiet origin/main; then
   die "local main has diverged from origin/main; resolve manually (nothing was changed)"
+fi
+# Bash keeps executing the copy it started with, so restart once if the sync
+# just replaced this script; otherwise stale checks would run on new content.
+if [ -z "${THOR_SEC_RESTARTED:-}" ] && ! git diff --quiet "$pre_sync" HEAD -- scripts/cloudflare-staging-deploy.sh; then
+  ok "deploy script updated by sync; restarting with the new version"
+  exec env THOR_SEC_RESTARTED=1 bash "$REPO/scripts/cloudflare-staging-deploy.sh"
 fi
 head_sha="$(git rev-parse --short HEAD)"
 ok "at $head_sha"
