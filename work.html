@@ -8,15 +8,15 @@
   <meta name="color-scheme" content="dark light">
   <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
-  <title>Commission Research | THOR-SEC</title>
-  <meta name="description" content="Commission independent security research from THOR-SEC: sponsored research, security architecture review, AI and LLM security assessment, and technical writing.">
+  <title>Bring a Hard Problem | THOR-SEC</title>
+  <meta name="description" content="Bring THOR-SEC a hard security or infrastructure problem: scoped research, evidence-labeled results, and publication and IP terms agreed in writing first.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/work.html">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
   <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="THOR-SEC">
-  <meta property="og:title" content="Commission Research | THOR-SEC">
-  <meta property="og:description" content="Commission independent security research from THOR-SEC: sponsored research, security architecture review, AI and LLM security assessment, and technical writing.">
+  <meta property="og:title" content="Bring a Hard Problem | THOR-SEC">
+  <meta property="og:description" content="Bring THOR-SEC a hard security or infrastructure problem: scoped research, evidence-labeled results, and publication and IP terms agreed in writing first.">
   <meta property="og:url" content="https://codethor0.github.io/thor-sec/work.html">
   <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta property="og:image:type" content="image/png">
@@ -25,8 +25,8 @@
   <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Commission Research | THOR-SEC">
-  <meta name="twitter:description" content="Commission independent security research from THOR-SEC: sponsored research, security architecture review, AI and LLM security assessment, and technical writing.">
+  <meta name="twitter:title" content="Bring a Hard Problem | THOR-SEC">
+  <meta name="twitter:description" content="Bring THOR-SEC a hard security or infrastructure problem: scoped research, evidence-labeled results, and publication and IP terms agreed in writing first.">
   <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <link rel="stylesheet" href="styles.css">
@@ -59,14 +59,43 @@
     <div class="page-head">
       <div class="container">
         <p class="eyebrow">Commission research</p>
-        <h1>Work with THOR-SEC</h1>
-        <p class="lead">Bring a security question that matters to your organization. THOR-SEC scopes it, researches it in an authorized environment, and delivers findings with the evidence and artifacts behind them.</p>
+        <h1>Bring THOR-SEC a hard problem</h1>
+        <p class="lead">Bring the security or infrastructure problem that routine tools, audits, and vendors have not answered. THOR-SEC scopes it, researches it in an authorized environment, and returns results labeled by how strongly the evidence supports them.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#request">Submit a research request</a>
           <a class="btn btn-secondary" href="#how">How it works</a>
         </div>
       </div>
     </div>
+
+    <section aria-labelledby="problems-heading">
+      <div class="container">
+        <h2 id="problems-heading">Problems worth bringing</h2>
+        <ul class="card-grid card-grid-2">
+          <li class="card">
+            <p class="card-kind">Agent security</p>
+            <h3>What stops an injected instruction from becoming an action</h3>
+            <p>An LLM agent or automation can send, export, or change things, and you need to know where authorization actually lives. See the <a href="./case-studies/llm-agent-control-plane.html">control plane case study</a>.</p>
+          </li>
+          <li class="card">
+            <p class="card-kind">System trust</p>
+            <h3>Whether a system is what it claims to be</h3>
+            <p>Model routing, provider substitution, and identity questions where the system's own answer is not proof. See the <a href="./case-studies/model-identity-verifier.html">identity verification case study</a>.</p>
+          </li>
+          <li class="card">
+            <p class="card-kind">Post-access exposure</p>
+            <h3>What an attacker keeps after getting in</h3>
+            <p>Lateral paths, credential reuse, and architecture that stays mappable long after initial access. See the <a href="./case-studies/miam.html">MIAM case study</a>.</p>
+          </li>
+          <li class="card">
+            <p class="card-kind">Unowned risk</p>
+            <h3>The failure mode nobody owns</h3>
+            <p>A security or infrastructure problem that falls between teams, vendors, or standards and needs a researched answer rather than a checklist.</p>
+          </li>
+        </ul>
+        <p class="note">If the answer is already a standard checklist or an off-the-shelf scan, a THOR-SEC engagement is probably not the right tool.</p>
+      </div>
+    </section>
 
     <section aria-labelledby="offer-heading">
       <div class="container">
@@ -109,13 +138,37 @@
       </div>
     </section>
 
+    <section aria-labelledby="deliverables-heading">
+      <div class="container">
+        <h2 id="deliverables-heading">What comes back</h2>
+        <ul class="bullet-list">
+          <li>A written answer to the scoped question: what was examined, how, and what was out of scope.</li>
+          <li>Every conclusion labeled with its evidence level: formal design, prototype, implemented and tested, or empirical. These are the same labels used in THOR-SEC <a href="./case-studies.html">case studies</a>.</li>
+          <li>Reproducible artifacts where the scope allows, such as test harnesses, reference defenses, configurations, or data.</li>
+          <li>Limitations and open questions, stated explicitly.</li>
+          <li>A walkthrough with your team.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="ip-heading">
+      <div class="container">
+        <h2 id="ip-heading">Publication, confidentiality, and IP</h2>
+        <ul class="bullet-list">
+          <li>Publication is decided before work starts: public, published after a disclosure window, or private.</li>
+          <li>Your confidential information is not published or reused in THOR-SEC research without your written permission. Confidentiality agreements are available on request.</li>
+          <li>Ownership of deliverables, and of anything new invented during the engagement, is set in the written proposal before work starts. THOR-SEC's existing research, tools, and methods remain THOR-SEC's.</li>
+          <li>A finished engagement becomes a public case study only with your agreement, and never includes your confidential details.</li>
+        </ul>
+        <p class="note">These are the defaults THOR-SEC proposes. The written proposal governs, and each party should review it with its own advisers.</p>
+      </div>
+    </section>
+
     <section aria-labelledby="terms-heading">
       <div class="container">
         <h2 id="terms-heading">Ground rules</h2>
         <ul class="bullet-list">
           <li>Work covers systems you own or are explicitly authorized to test. Written authorization is required for any hands-on testing.</li>
-          <li>Publication terms are agreed up front: public, published after a disclosure window, or private.</li>
-          <li>Confidentiality agreements are available on request.</li>
           <li>THOR-SEC does not accept work involving unauthorized access, credential theft, surveillance of individuals, or offensive operations against third parties.</li>
         </ul>
         <p class="note">Do not include secrets, credentials, customer data, exploit code, or confidential logs in a first message. Sensitive details can be shared after scoping, through a channel agreed with you.</p>
