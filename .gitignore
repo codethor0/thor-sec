@@ -24,7 +24,6 @@ coverage/
 *.pdf
 *.pptx
 *.xlsx
-cursor_*.md
 *prompt*.md
 *conversation*.md
 *export*.md
