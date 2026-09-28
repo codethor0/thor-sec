@@ -25,6 +25,11 @@ jobs:
           set -euo pipefail
           python3 scripts/site_audit.py
 
+      - name: Run intake Worker unit tests
+        run: |
+          set -euo pipefail
+          node --test worker/intake.test.mjs
+
       - name: Serve site and verify responses
         run: |
           set -euo pipefail

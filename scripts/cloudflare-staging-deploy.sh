@@ -8,7 +8,8 @@
 #   4. Runs the static security audit.
 #   5. Exports tracked files with git archive into a temp directory, strips
 #      everything that is not a public asset, and fails if anything else remains.
-#   6. Deploys that export with Wrangler (static assets only, no Worker code).
+#   6. Deploys that export with Wrangler (static assets plus the single
+#      /api/request intake Worker; no other server-side code).
 #   7. Verifies the live workers.dev URL: pages, 404 handling, blocked paths,
 #      security headers, and absence of script tags.
 #
@@ -34,7 +35,7 @@ case "${1:-}" in
 esac
 
 PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp /assets/fonts/InterVariable.woff2 /assets/thor-sec-social-card.png /assets/favicon.png /assets/apple-touch-icon.png"
-BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /ARCHITECTURE.md /LICENSE /_headers"
+BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /worker/intake.mjs /worker/intake.test.mjs /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /ARCHITECTURE.md /LICENSE /_headers"
 
 say()  { printf '\n==> %s\n' "$*"; }
 ok()   { printf '    [ok] %s\n' "$*"; }
@@ -116,6 +117,7 @@ mkdir -p "$SITE"
 git archive --format=tar HEAD | tar -x -C "$SITE"
 
 rm -rf "$SITE/.github" "$SITE/scripts"
+rm -f "$SITE"/worker/*.test.mjs
 rm -f "$SITE/README.md" "$SITE/SECURITY.md" "$SITE/ARCHITECTURE.md" "$SITE/LICENSE" "$SITE/.gitignore" "$SITE/.nojekyll"
 
 unexpected=""
@@ -125,13 +127,14 @@ while IFS= read -r rel; do
     ./.well-known/security.txt) ;;
     ./assets/*.jpg|./assets/*.webp|./assets/*.png|./assets/*.svg) ;;
     ./assets/fonts/*.woff2|./assets/fonts/LICENSE-Inter.txt) ;;
-    ./wrangler.jsonc|./.assetsignore) ;;
+    ./wrangler.jsonc|./.assetsignore|./worker/intake.mjs) ;;
     *) unexpected="$unexpected $rel" ;;
   esac
 done < <(cd "$SITE" && find . -type f)
 [ -z "$unexpected" ] || die "export contains non-public files:$unexpected"
 [ ! -e "$SITE/.git" ] || die "export contains .git"
-if grep -Eq '"main"[[:space:]]*:' "$SITE/wrangler.jsonc"; then die "wrangler.jsonc declares Worker code"; fi
+main_entry="$(sed -n 's/^[[:space:]]*"main"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$SITE/wrangler.jsonc")"
+[ "$main_entry" = "worker/intake.mjs" ] || die "wrangler.jsonc must declare exactly worker/intake.mjs as Worker code"
 ok "export contains public assets only ($(cd "$SITE" && find . -type f | wc -l | tr -d ' ') files)"
 
 # ------------------------------------------------------------------ 6. deploy
@@ -144,7 +147,7 @@ if ! printf '%s\n' "$whoami_out" | grep -Eqi "you are logged in"; then
 fi
 ok "wrangler authenticated"
 
-say "Deploy to workers.dev (static assets only)"
+say "Deploy to workers.dev (static assets + /api/request intake)"
 deploy_log="$WORK_DIR/deploy.log"
 if ! npx --yes "$WRANGLER" deploy 2>&1 | tee "$deploy_log"; then
   die "wrangler deploy failed (see output above)"
@@ -201,6 +204,17 @@ check_header "^permissions-policy:" "Permissions-Policy"
 check_header "^cross-origin-opener-policy: *same-origin" "Cross-Origin-Opener-Policy"
 check_header "^x-permitted-cross-domain-policies: *none" "X-Permitted-Cross-Domain-Policies"
 check_header "^x-robots-tag: *noindex" "X-Robots-Tag (mirror not indexed)"
+
+# Intake endpoint: only rejection paths are exercised; no request is filed.
+api="$url/api/request"
+c="$(curlq -o /dev/null -w '%{http_code}' "$api" 2>/dev/null || true)"
+if [ "$c" = "405" ]; then ok "405 GET /api/request"; else fail "$c GET /api/request (expected 405)"; fi
+c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://attacker.invalid' -H 'Content-Type: application/x-www-form-urlencoded' --data 'name=x' "$api" 2>/dev/null || true)"
+if [ "$c" = "403" ]; then ok "403 untrusted Origin"; else fail "$c untrusted Origin (expected 403)"; fi
+c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://codethor0.github.io' -H 'Content-Type: application/json' --data '{}' "$api" 2>/dev/null || true)"
+if [ "$c" = "415" ]; then ok "415 wrong content type"; else fail "$c wrong content type (expected 415)"; fi
+c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://codethor0.github.io' -H 'Content-Type: application/x-www-form-urlencoded' --data 'name=' "$api" 2>/dev/null || true)"
+if [ "$c" = "400" ]; then ok "400 missing required fields"; else fail "$c missing required fields (expected 400)"; fi
 
 script_failures=0
 for p in / /research.html /work.html /about.html /inventions.html /security.html /now.html; do

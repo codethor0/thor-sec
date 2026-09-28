@@ -38,6 +38,8 @@ REQUIRED_FILES = [
     Path("wrangler.jsonc"),
     Path(".assetsignore"),
     Path("ARCHITECTURE.md"),
+    Path("worker/intake.mjs"),
+    Path("worker/intake.test.mjs"),
     Path("assets/fonts/InterVariable.woff2"),
     Path("assets/fonts/LICENSE-Inter.txt"),
     Path("assets/thor-sec-social-card.png"),
@@ -276,8 +278,15 @@ def main() -> None:
     wrangler_path = ROOT / "wrangler.jsonc"
     if wrangler_path.exists():
         wrangler_text = wrangler_path.read_text(encoding="utf-8")
-        if re.search(r'"main"\s*:', wrangler_text):
-            errors.append("wrangler.jsonc: Worker code entry point is not allowed (static assets only)")
+        mains = re.findall(r'"main"\s*:\s*"([^"]*)"', wrangler_text)
+        if mains != ["worker/intake.mjs"]:
+            errors.append("wrangler.jsonc: the only permitted Worker entry point is worker/intake.mjs")
+        if not re.search(r'"run_worker_first"\s*:\s*\[\s*"/api/request"\s*\]', wrangler_text):
+            errors.append("wrangler.jsonc: Worker code must run first only for /api/request")
+        if re.search(r'"observability"\s*:\s*\{\s*"enabled"\s*:\s*true', wrangler_text):
+            errors.append("wrangler.jsonc: observability must stay disabled")
+        if re.search(r'"(vars|secrets)"\s*:', wrangler_text):
+            errors.append("wrangler.jsonc: secrets and vars must not be committed")
         if re.search(r'"account_id"\s*:', wrangler_text):
             errors.append("wrangler.jsonc: account_id must not be committed")
         if '"assets"' not in wrangler_text or '"404-page"' not in wrangler_text:
@@ -299,7 +308,7 @@ def main() -> None:
     if 'url("assets/fonts/InterVariable.woff2")' not in css:
         errors.append("styles.css: self-hosted Inter @font-face missing")
 
-    public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc"}
+    public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc", ".js", ".mjs"}
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in public_suffixes:
             continue
@@ -311,6 +320,8 @@ def main() -> None:
         for label, pattern in SECRET_PATTERNS.items():
             if pattern.search(text):
                 errors.append(f"{rel}: possible {label} detected")
+        if rel.parts and rel.parts[0] in ("node_modules", ".wrangler"):
+            continue
         if rel != Path("scripts/site_audit.py"):
             for pattern in ATTRIBUTION_PATTERNS:
                 if pattern.search(text):

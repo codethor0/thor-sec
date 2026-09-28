@@ -1,15 +1,22 @@
-// THOR-SEC Cloudflare staging configuration (static assets only, no Worker code).
-// GitHub Pages remains the production host. Deploy only through
+// THOR-SEC Cloudflare mirror (Workers Static Assets).
+// GitHub Pages remains the canonical host. Deploy only through
 // scripts/cloudflare-staging-deploy.sh, which uploads a clean git export.
+// Worker code runs only for POST /api/request; every other path is static.
 {
   "name": "thor-sec",
+  "main": "worker/intake.mjs",
   "compatibility_date": "2026-09-01",
   "workers_dev": true,
   "preview_urls": false,
   "observability": { "enabled": false },
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/request"],
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash"
-  }
+  },
+  "ratelimits": [
+    { "name": "INTAKE_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
+  ]
 }
