@@ -216,7 +216,14 @@ check_header "^x-robots-tag: *noindex" "X-Robots-Tag (mirror not indexed)"
 api="$url/api/request"
 c="$(curlq -o /dev/null -w '%{http_code}' "$api" 2>/dev/null || true)"
 if [ "$c" = "405" ]; then ok "405 GET /api/request"; else fail "$c GET /api/request (expected 405)"; fi
-c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://attacker.invalid' -H 'Content-Type: application/x-www-form-urlencoded' --data 'name=x' "$api" 2>/dev/null || true)"
+# POST routing can lag the asset rollout by a minute or so. The untrusted-Origin
+# probe is rejected before the rate limiter, so it is safe to repeat until the
+# new Worker answers; the remaining probes then run once each.
+for _ in $(seq 1 18); do
+  c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://attacker.invalid' -H 'Content-Type: application/x-www-form-urlencoded' --data 'name=x' "$api" 2>/dev/null || true)"
+  [ "$c" = "405" ] || break
+  sleep 10
+done
 if [ "$c" = "403" ]; then ok "403 untrusted Origin"; else fail "$c untrusted Origin (expected 403)"; fi
 c="$(curlq -o /dev/null -w '%{http_code}' -X POST -H 'Origin: https://codethor0.github.io' -H 'Content-Type: application/json' --data '{}' "$api" 2>/dev/null || true)"
 if [ "$c" = "415" ]; then ok "415 wrong content type"; else fail "$c wrong content type (expected 415)"; fi
