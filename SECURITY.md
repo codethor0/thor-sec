@@ -37,4 +37,4 @@ Research and tools associated with THOR-SEC are intended for systems, applicatio
 
 The public THOR-SEC site is intentionally static. It does not require client-side JavaScript, forms, cookies, analytics, third-party fonts, or third-party runtime assets.
 
-The repository applies a restrictive meta Content Security Policy and a no-referrer policy. Because the site is hosted on GitHub Pages, repository content cannot independently configure every HTTP response header served by the hosting platform. The public source and CI checks should therefore be treated as the auditable repository security boundary, with platform response headers controlled by GitHub Pages.
+The repository applies a restrictive meta Content Security Policy and a no-referrer policy. The canonical site is hosted on GitHub Pages, where repository content cannot configure every HTTP response header. A mirror on Cloudflare Workers Static Assets additionally serves the response headers defined in `_headers`. The public source and CI checks are the auditable repository security boundary. See ARCHITECTURE.md for details.

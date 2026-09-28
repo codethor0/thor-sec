@@ -37,8 +37,22 @@ REQUIRED_FILES = [
     Path("_headers"),
     Path("wrangler.jsonc"),
     Path(".assetsignore"),
+    Path("ARCHITECTURE.md"),
+    Path("assets/fonts/InterVariable.woff2"),
+    Path("assets/fonts/LICENSE-Inter.txt"),
+    Path("assets/thor-sec-social-card.png"),
+    Path("assets/favicon.png"),
+    Path("assets/apple-touch-icon.png"),
 ]
-REQUIRED_ASSET_IGNORES = (".git", ".github", ".wrangler", "scripts", "wrangler.jsonc", ".assetsignore")
+CANONICAL_BASE = "https://codethor0.github.io/thor-sec/"
+REQUIRED_META = (
+    'property="og:title"', 'property="og:description"', 'property="og:url"',
+    'property="og:image"', 'property="og:image:alt"', 'property="og:image:width"',
+    'property="og:image:height"', 'property="og:locale"', 'name="twitter:card"',
+    'name="twitter:title"', 'name="twitter:description"', 'name="twitter:image"',
+    'name="twitter:image:alt"', 'rel="icon"', 'rel="apple-touch-icon"', 'name="theme-color"',
+)
+REQUIRED_ASSET_IGNORES = (".git", ".github", ".wrangler", "scripts", "worker", "wrangler.jsonc", ".assetsignore", "ARCHITECTURE.md", "README.md", "SECURITY.md")
 
 REQUIRED_CSP_TOKENS = [
     "default-src 'self'",
@@ -243,6 +257,8 @@ def main() -> None:
         for required_header in required_headers:
             if required_header not in headers_text:
                 errors.append(f"_headers: required policy missing: {required_header}")
+        if "X-Robots-Tag: noindex" not in headers_text:
+            errors.append("_headers: Cloudflare mirror must send X-Robots-Tag: noindex")
         if "Strict-Transport-Security:" in headers_text:
             errors.append("_headers: HSTS must not be enabled before the Cloudflare custom domain is verified")
 
@@ -266,6 +282,22 @@ def main() -> None:
             errors.append("wrangler.jsonc: account_id must not be committed")
         if '"assets"' not in wrangler_text or '"404-page"' not in wrangler_text:
             errors.append("wrangler.jsonc: assets block with 404-page handling is required")
+
+    for rel in HTML_FILES:
+        page = (ROOT / rel).read_text(encoding="utf-8")
+        for needle in REQUIRED_META:
+            if needle not in page:
+                errors.append(f"{rel}: missing metadata {needle}")
+        for m in re.finditer(r'<link rel="canonical" href="([^"]+)"', page):
+            if not m.group(1).startswith(CANONICAL_BASE):
+                errors.append(f"{rel}: canonical must stay on GitHub Pages: {m.group(1)}")
+        if re.search(r"fonts\.(googleapis|gstatic)\.com|@import\s", page):
+            errors.append(f"{rel}: remote font or CSS import is forbidden")
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    if re.search(r"@import|url\(\s*[\"']?(https?:)?//", css):
+        errors.append("styles.css: remote CSS or font URLs are forbidden")
+    if 'url("assets/fonts/InterVariable.woff2")' not in css:
+        errors.append("styles.css: self-hosted Inter @font-face missing")
 
     public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc"}
     for path in ROOT.rglob("*"):

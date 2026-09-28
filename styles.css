@@ -1,3 +1,13 @@
+/* Inter 4.1 (SIL OFL 1.1), self-hosted. Source: https://github.com/rsms/inter/releases/tag/v4.1
+   assets/fonts/InterVariable.woff2 sha256 693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3 */
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* THOR-SEC research site styles. Same-origin only; no external fonts or assets. */
 
 *,
@@ -31,7 +41,7 @@
   --svg-fill-accent: rgba(61, 220, 132, 0.10);
   --svg-stroke: #8a95a1;
   --svg-text: #e6e9ed;
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --radius: 6px;
   --measure: 68ch;
@@ -118,6 +128,15 @@ h3 {
   color: var(--text);
   line-height: 1.25;
   letter-spacing: -0.01em;
+}
+
+h1,
+h2 {
+  font-weight: 300;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 h2 {
@@ -227,7 +246,7 @@ pre {
 
 .site-nav a.nav-cta {
   color: var(--accent);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .theme-toggle-input {
@@ -295,6 +314,7 @@ section:last-of-type {
 .lead {
   max-width: var(--measure);
   font-size: 1.05rem;
+  font-weight: 350;
   color: var(--text-muted);
 }
 
@@ -319,6 +339,7 @@ section:last-of-type {
   margin: 0 0 1.25rem;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   line-height: 1.4;
+  font-weight: 350;
   color: var(--text);
 }
 
@@ -373,7 +394,7 @@ section:last-of-type {
   display: inline-block;
   padding: 0.65rem 1.1rem;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
   text-decoration: none;
   border: 1px solid transparent;

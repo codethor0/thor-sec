@@ -27,15 +27,19 @@ THOR-SEC uses a static-first publication model:
 - No client-side JavaScript
 - No forms
 - No cookies or analytics
-- No third-party fonts or runtime assets
+- Self-hosted Inter typeface (SIL OFL 1.1); no third-party fonts or runtime assets
 - Same-origin CSS and images
 - Restrictive meta Content Security Policy
 - `no-referrer` browser policy
 - Public `security.txt` and vulnerability disclosure policy
 - CI security audit on every push and pull request
-- Cloudflare Pages response-header policy in `_headers`, inactive until deployed through Cloudflare Pages
 
-Cloudflare deployment is staged separately from the current GitHub Pages production site. The canonical site URL, sitemap, `security.txt`, and public links remain on GitHub Pages until a Cloudflare custom domain has been verified end to end.
+Hosting:
+
+- **Canonical:** GitHub Pages at https://codethor0.github.io/thor-sec/. Canonical URLs, the sitemap, the feed, and `security.txt` all point here.
+- **Mirror:** Cloudflare Workers Static Assets at https://thor-sec.codethor0.workers.dev/, deployed only through `scripts/cloudflare-staging-deploy.sh`. The mirror applies the response headers in `_headers`, serves only public assets (see `.assetsignore`), and sends `X-Robots-Tag: noindex` so it does not compete with the canonical site.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the full design and security invariants.
 
 Public indexes:
 

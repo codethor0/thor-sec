@@ -1,5 +1,6 @@
-# THOR-SEC static response headers for Cloudflare Pages.
-# GitHub Pages remains the current production host until Cloudflare staging is verified.
+# THOR-SEC static response headers for Cloudflare Workers Static Assets.
+# Applied only on the Cloudflare mirror (thor-sec.codethor0.workers.dev); GitHub Pages ignores this file.
+# GitHub Pages remains the canonical host, so the mirror is excluded from search indexes.
 
 /*
   Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
@@ -9,3 +10,4 @@
   Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
+  X-Robots-Tag: noindex

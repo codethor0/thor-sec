@@ -33,8 +33,8 @@ case "${1:-}" in
   *) printf 'unknown argument: %s\n' "$1" >&2; exit 2 ;;
 esac
 
-PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp"
-BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /LICENSE /_headers"
+PAGES="/ /research.html /work.html /about.html /inventions.html /security.html /now.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/thor-thor-profile.webp /assets/fonts/InterVariable.woff2 /assets/thor-sec-social-card.png /assets/favicon.png /assets/apple-touch-icon.png"
+BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /ARCHITECTURE.md /LICENSE /_headers"
 
 say()  { printf '\n==> %s\n' "$*"; }
 ok()   { printf '    [ok] %s\n' "$*"; }
@@ -116,7 +116,7 @@ mkdir -p "$SITE"
 git archive --format=tar HEAD | tar -x -C "$SITE"
 
 rm -rf "$SITE/.github" "$SITE/scripts"
-rm -f "$SITE/README.md" "$SITE/SECURITY.md" "$SITE/LICENSE" "$SITE/.gitignore" "$SITE/.nojekyll"
+rm -f "$SITE/README.md" "$SITE/SECURITY.md" "$SITE/ARCHITECTURE.md" "$SITE/LICENSE" "$SITE/.gitignore" "$SITE/.nojekyll"
 
 unexpected=""
 while IFS= read -r rel; do
@@ -124,6 +124,7 @@ while IFS= read -r rel; do
     ./*.html|./styles.css|./robots.txt|./sitemap.xml|./feed.xml|./_headers) ;;
     ./.well-known/security.txt) ;;
     ./assets/*.jpg|./assets/*.webp|./assets/*.png|./assets/*.svg) ;;
+    ./assets/fonts/*.woff2|./assets/fonts/LICENSE-Inter.txt) ;;
     ./wrangler.jsonc|./.assetsignore) ;;
     *) unexpected="$unexpected $rel" ;;
   esac
@@ -199,6 +200,7 @@ check_header "^x-frame-options: *deny" "X-Frame-Options"
 check_header "^permissions-policy:" "Permissions-Policy"
 check_header "^cross-origin-opener-policy: *same-origin" "Cross-Origin-Opener-Policy"
 check_header "^x-permitted-cross-domain-policies: *none" "X-Permitted-Cross-Domain-Policies"
+check_header "^x-robots-tag: *noindex" "X-Robots-Tag (mirror not indexed)"
 
 script_failures=0
 for p in / /research.html /work.html /about.html /inventions.html /security.html /now.html; do
