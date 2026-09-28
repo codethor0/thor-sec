@@ -40,4 +40,20 @@
     <loc>https://codethor0.github.io/thor-sec/research/miam.html</loc>
     <lastmod>2026-09-28</lastmod>
   </url>
+  <url>
+    <loc>https://codethor0.github.io/thor-sec/case-studies.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://codethor0.github.io/thor-sec/case-studies/llm-agent-control-plane.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://codethor0.github.io/thor-sec/case-studies/miam.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
+  <url>
+    <loc>https://codethor0.github.io/thor-sec/case-studies/model-identity-verifier.html</loc>
+    <lastmod>2026-09-28</lastmod>
+  </url>
 </urlset>

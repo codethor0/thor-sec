@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <meta name="thor-sec:evidence-status" content="formal-design">
+  <title>Mission-Invariant Architecture Morphing (MIAM) Case Study | THOR-SEC</title>
+  <meta name="description" content="A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/case-studies/miam.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Mission-Invariant Architecture Morphing (MIAM) Case Study | THOR-SEC">
+  <meta property="og:description" content="A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/case-studies/miam.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mission-Invariant Architecture Morphing (MIAM) Case Study | THOR-SEC">
+  <meta name="twitter:description" content="A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Moving target defense case study &middot; <a href="../case-studies.html">Case Studies</a></p>
+        <h1>Mission-Invariant Architecture Morphing (MIAM)</h1>
+        <p class="lead">A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.</p>
+        <p class="entry-meta"><span class="tag">formal-design</span> &middot; Formal design; empirical validation pending</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="problem-heading">
+      <div class="container">
+        <h2 id="problem-heading">Problem</h2>
+        <div class="prose">
+          <p>After initial access, an attacker can map dependencies, trust relationships, credentials, and lateral paths. Many moving-target defenses change addresses, ports, hosts, or variants without necessarily invalidating the application's deeper dependency map.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="common-heading">
+      <div class="container">
+        <h2 id="common-heading">Why common approaches fall short</h2>
+        <ul class="bullet-list prose">
+          <li>Changing location or surface identifiers does not guarantee that learned internal relationships become unusable.</li>
+          <li>A small repeating variant pool lets an attacker relearn or eventually retain knowledge of every recurring state.</li>
+          <li>Reconfiguration can create its own risk if mission state, secrets, or compromised runtime state cross the transition boundary without explicit rules.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="approach-heading">
+      <div class="container">
+        <h2 id="approach-heading">THOR-SEC approach</h2>
+        <div class="prose">
+          <p>MIAM moves the transformation boundary into the application by reassigning capability units across certified runtime service graphs while keeping the external mission interface stable.</p>
+          <p>A graph delta and capability-state map drive a State Continuity Firewall, while fresh epoch authority is intended to isolate credentials and runtime state between transitions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="evidence-heading">
+      <div class="container">
+        <h2 id="evidence-heading">Evidence</h2>
+        <ul class="bullet-list prose">
+          <li>The v1.0.0 paper defines an operational reconnaissance-transfer model, architecture-distance measures, cryptographic epoch isolation, a State Continuity Firewall, and an ablation-based evaluation protocol.</li>
+          <li>The recurrence model shows mathematically that a finite certified variant pool leaves a nonzero retained-knowledge floor; faster rotation alone cannot remove that floor.</li>
+          <li>A reproduction script checks the paper's arithmetic, and the paper and source are archived with DOI 10.5281/zenodo.23001045.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="limitations-heading">
+      <div class="container">
+        <h2 id="limitations-heading">Limitations</h2>
+        <ul class="bullet-list prose">
+          <li>The work is a design proposal and formal model. It reports no empirical security advantage.</li>
+          <li>Common-mode vulnerabilities survive if every graph shares the same vulnerable library, secret, API logic, or trust decision.</li>
+          <li>The measured benefit of graph morphing must be separated experimentally from rejuvenation and credential rotation.</li>
+          <li>A compromised control plane or poisoned telemetry could undermine the design and may become an attack primitive.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel panel-accent">
+          <p class="eyebrow">Current status</p>
+          <h2 id="status-heading">Formal design; empirical validation pending</h2>
+          <p class="prose">Formal design proposal and defensive publication. The paper defines how to test the idea; empirical efficacy and operational overhead remain unmeasured.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>Paper page</span><a href="https://codethor0.github.io/thor-sec/research/miam.html">THOR-SEC research record</a></li>
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.23001045">10.5281/zenodo.23001045</a></li>
+          <li><span>Repository</span><a href="https://github.com/codethor0/miam">Paper source and reproduction script</a></li>
+          <li><span>Release</span><a href="https://github.com/codethor0/miam/releases/tag/v1.0.0">v1.0.0</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

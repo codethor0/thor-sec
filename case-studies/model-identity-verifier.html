@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <meta name="thor-sec:evidence-status" content="prototype">
+  <title>Model Identity Verifier Case Study | THOR-SEC</title>
+  <meta name="description" content="A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/case-studies/model-identity-verifier.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Model Identity Verifier Case Study | THOR-SEC">
+  <meta property="og:description" content="A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/case-studies/model-identity-verifier.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Model Identity Verifier Case Study | THOR-SEC">
+  <meta name="twitter:description" content="A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">AI assurance case study &middot; <a href="../case-studies.html">Case Studies</a></p>
+        <h1>Model Identity Verifier</h1>
+        <p class="lead">A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.</p>
+        <p class="entry-meta"><span class="tag">prototype</span> &middot; Implemented prototype; live-provider release gate pending</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="problem-heading">
+      <div class="container">
+        <h2 id="problem-heading">Problem</h2>
+        <div class="prose">
+          <p>A language model can state an identity in generated text, but that statement does not prove which provider route or model actually produced the response. Users still need a way to flag inconsistent identity behavior and metadata conflicts when stronger attestation is unavailable.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="common-heading">
+      <div class="container">
+        <h2 id="common-heading">Why common approaches fall short</h2>
+        <ul class="bullet-list prose">
+          <li>Trusting a model's self-description confuses generated text with evidence.</li>
+          <li>Behavioral consistency alone cannot prove cryptographic model authenticity.</li>
+          <li>Manual browser testing cannot verify provider route metadata when the provider does not expose it.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="approach-heading">
+      <div class="container">
+        <h2 id="approach-heading">THOR-SEC approach</h2>
+        <div class="prose">
+          <p>Model Identity Verifier runs repeatable identity probes, analyzes response consistency and available provider metadata, scores findings, and emits terminal, JSON, Markdown, or SARIF reports.</p>
+          <p>It supports API verification, manual prompt assessment, baselines, report comparison, and explicit statuses such as ROUTE_MISMATCH, DOWNGRADE_SUSPECTED, and INCONCLUSIVE.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="evidence-heading">
+      <div class="container">
+        <h2 id="evidence-heading">Evidence</h2>
+        <ul class="bullet-list prose">
+          <li>The repository contains the implemented Python CLI, mock/provider workflows, prompt-pack assessment, baseline comparison, structured reports, self-tests, local end-to-end scripts, and a documented release gate.</li>
+          <li>The documentation explicitly constrains interpretation: PASS means configured warning thresholds were not triggered; it does not prove the provider served the claimed model.</li>
+          <li>The release checklist requires live provider smoke tests before v0.1.3 may be tagged.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="limitations-heading">
+      <div class="container">
+        <h2 id="limitations-heading">Limitations</h2>
+        <ul class="bullet-list prose">
+          <li>The tool cannot prove model identity unless a provider exposes independently verifiable metadata.</li>
+          <li>Provider route metadata may be missing or opaque, and heuristic downgrade signals are not guaranteed detection.</li>
+          <li>Manual prompt mode is integrity testing only and cannot verify route metadata.</li>
+          <li>Version 0.1.3 remains held until the required live-provider smoke gates pass; it must not be presented as fully release-validated yet.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel panel-accent">
+          <p class="eyebrow">Current status</p>
+          <h2 id="status-heading">Implemented prototype; live-provider release gate pending</h2>
+          <p class="prose">Implemented prototype with explicit interpretation limits. The v0.1.3 release gate remains pending required live-provider smoke validation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>Repository</span><a href="https://github.com/codethor0/model-identity-verifier">Source and documentation</a></li>
+          <li><span>Release gate</span><a href="https://github.com/codethor0/model-identity-verifier/blob/main/docs/release-checklist.md">v0.1.3 validation requirements</a></li>
+          <li><span>Package metadata</span><a href="https://github.com/codethor0/model-identity-verifier/blob/main/pyproject.toml">Python package and version metadata</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

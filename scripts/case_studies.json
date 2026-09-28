@@ -1,0 +1,172 @@
+{
+  "site": {
+    "base": "https://codethor0.github.io/thor-sec/",
+    "author": "Thor Thor",
+    "tagline": "THOR-SEC separates what is proposed, what is implemented, what is tested, and what is still unproven."
+  },
+  "entries": [
+    {
+      "id": "llm-agent-control-plane",
+      "title": "LLM Agent Control Plane",
+      "eyebrow": "Agent security case study",
+      "evidence_status": "implemented-and-tested",
+      "evidence_label": "Implemented and tested reference implementation",
+      "featured_order": 1,
+      "description": "A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.",
+      "problem": [
+        "Tool-connected language-model agents can turn generated text into actions with real effects. If the model itself is treated as the authority, prompt injection, retrieved content, or a bad model decision can become an authorization decision."
+      ],
+      "common_failures": [
+        "Prompt instructions are not an authorization boundary. A model can ignore, reinterpret, or be induced to override them.",
+        "Schema validation proves structure, not permission. A well-formed tool call can still be unauthorized.",
+        "Sensitive actions need provenance, role, tenant, and approval checks that do not depend on model judgment."
+      ],
+      "approach": [
+        "The reference implementation puts a deterministic control plane between model output and simulated tools. The model proposes an action; the broker, policy engine, provenance checks, approval gate, tenant checks, and output filter decide whether the action can proceed.",
+        "Audit logging records allow and deny decisions with redaction, and the protected path is compared with a deliberately vulnerable simulation path."
+      ],
+      "evidence": [
+        "The repository maps security invariants to 293 automated tests, including deny-by-default behavior, broker authority, provenance enforcement, approval gates, tenant isolation, output filtering, audit logging, and refusal to execute a real shell.",
+        "Release v0.3.0 documents a validation gate covering the test suite, Docker/Compose validation, repository and policy checks, Bandit, pip-audit, CodeQL, Gitleaks, Trivy, and SBOM generation.",
+        "The project includes a FastAPI interface, CLI demonstrations, deployment reference profiles, defensive-control documentation, a threat model, and operator guidance."
+      ],
+      "limitations": [
+        "This is a local, simulated defensive reference implementation, not a drop-in production service.",
+        "It does not execute real shell commands, send real email, scan networks, or call production LLM APIs by default.",
+        "Production deployment still requires enterprise identity, persistence, key management, DLP, observability, deployment hardening, and operational review.",
+        "Release checksums are documented as unsigned and do not provide signed artifact provenance."
+      ],
+      "status": "Implemented reference architecture with tested security invariants. Production integration and operational validation remain outside the demonstrated scope.",
+      "artifacts": [
+        [
+          "Repository",
+          "https://github.com/codethor0/llm-agent-control-plane",
+          "Source and documentation"
+        ],
+        [
+          "Release",
+          "https://github.com/codethor0/llm-agent-control-plane/releases/tag/v0.3.0",
+          "v0.3.0"
+        ],
+        [
+          "Controls",
+          "https://github.com/codethor0/llm-agent-control-plane/blob/main/docs/defensive-controls.md",
+          "Tested defensive controls"
+        ],
+        [
+          "Threat model",
+          "https://github.com/codethor0/llm-agent-control-plane/blob/main/docs/threat-model.md",
+          "Threats, assumptions, mitigations, and non-goals"
+        ]
+      ],
+      "updated": "2026-09-28"
+    },
+    {
+      "id": "miam",
+      "title": "Mission-Invariant Architecture Morphing (MIAM)",
+      "eyebrow": "Moving target defense case study",
+      "evidence_status": "formal-design",
+      "evidence_label": "Formal design; empirical validation pending",
+      "featured_order": 2,
+      "description": "A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.",
+      "problem": [
+        "After initial access, an attacker can map dependencies, trust relationships, credentials, and lateral paths. Many moving-target defenses change addresses, ports, hosts, or variants without necessarily invalidating the application's deeper dependency map."
+      ],
+      "common_failures": [
+        "Changing location or surface identifiers does not guarantee that learned internal relationships become unusable.",
+        "A small repeating variant pool lets an attacker relearn or eventually retain knowledge of every recurring state.",
+        "Reconfiguration can create its own risk if mission state, secrets, or compromised runtime state cross the transition boundary without explicit rules."
+      ],
+      "approach": [
+        "MIAM moves the transformation boundary into the application by reassigning capability units across certified runtime service graphs while keeping the external mission interface stable.",
+        "A graph delta and capability-state map drive a State Continuity Firewall, while fresh epoch authority is intended to isolate credentials and runtime state between transitions."
+      ],
+      "evidence": [
+        "The v1.0.0 paper defines an operational reconnaissance-transfer model, architecture-distance measures, cryptographic epoch isolation, a State Continuity Firewall, and an ablation-based evaluation protocol.",
+        "The recurrence model shows mathematically that a finite certified variant pool leaves a nonzero retained-knowledge floor; faster rotation alone cannot remove that floor.",
+        "A reproduction script checks the paper's arithmetic, and the paper and source are archived with DOI 10.5281/zenodo.23001045."
+      ],
+      "limitations": [
+        "The work is a design proposal and formal model. It reports no empirical security advantage.",
+        "Common-mode vulnerabilities survive if every graph shares the same vulnerable library, secret, API logic, or trust decision.",
+        "The measured benefit of graph morphing must be separated experimentally from rejuvenation and credential rotation.",
+        "A compromised control plane or poisoned telemetry could undermine the design and may become an attack primitive."
+      ],
+      "status": "Formal design proposal and defensive publication. The paper defines how to test the idea; empirical efficacy and operational overhead remain unmeasured.",
+      "artifacts": [
+        [
+          "Paper page",
+          "https://codethor0.github.io/thor-sec/research/miam.html",
+          "THOR-SEC research record"
+        ],
+        [
+          "DOI",
+          "https://doi.org/10.5281/zenodo.23001045",
+          "10.5281/zenodo.23001045"
+        ],
+        [
+          "Repository",
+          "https://github.com/codethor0/miam",
+          "Paper source and reproduction script"
+        ],
+        [
+          "Release",
+          "https://github.com/codethor0/miam/releases/tag/v1.0.0",
+          "v1.0.0"
+        ]
+      ],
+      "updated": "2026-09-28"
+    },
+    {
+      "id": "model-identity-verifier",
+      "title": "Model Identity Verifier",
+      "eyebrow": "AI assurance case study",
+      "evidence_status": "prototype",
+      "evidence_label": "Implemented prototype; live-provider release gate pending",
+      "featured_order": 3,
+      "description": "A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.",
+      "problem": [
+        "A language model can state an identity in generated text, but that statement does not prove which provider route or model actually produced the response. Users still need a way to flag inconsistent identity behavior and metadata conflicts when stronger attestation is unavailable."
+      ],
+      "common_failures": [
+        "Trusting a model's self-description confuses generated text with evidence.",
+        "Behavioral consistency alone cannot prove cryptographic model authenticity.",
+        "Manual browser testing cannot verify provider route metadata when the provider does not expose it."
+      ],
+      "approach": [
+        "Model Identity Verifier runs repeatable identity probes, analyzes response consistency and available provider metadata, scores findings, and emits terminal, JSON, Markdown, or SARIF reports.",
+        "It supports API verification, manual prompt assessment, baselines, report comparison, and explicit statuses such as ROUTE_MISMATCH, DOWNGRADE_SUSPECTED, and INCONCLUSIVE."
+      ],
+      "evidence": [
+        "The repository contains the implemented Python CLI, mock/provider workflows, prompt-pack assessment, baseline comparison, structured reports, self-tests, local end-to-end scripts, and a documented release gate.",
+        "The documentation explicitly constrains interpretation: PASS means configured warning thresholds were not triggered; it does not prove the provider served the claimed model.",
+        "The release checklist requires live provider smoke tests before v0.1.3 may be tagged."
+      ],
+      "limitations": [
+        "The tool cannot prove model identity unless a provider exposes independently verifiable metadata.",
+        "Provider route metadata may be missing or opaque, and heuristic downgrade signals are not guaranteed detection.",
+        "Manual prompt mode is integrity testing only and cannot verify route metadata.",
+        "Version 0.1.3 remains held until the required live-provider smoke gates pass; it must not be presented as fully release-validated yet."
+      ],
+      "status": "Implemented prototype with explicit interpretation limits. The v0.1.3 release gate remains pending required live-provider smoke validation.",
+      "artifacts": [
+        [
+          "Repository",
+          "https://github.com/codethor0/model-identity-verifier",
+          "Source and documentation"
+        ],
+        [
+          "Release gate",
+          "https://github.com/codethor0/model-identity-verifier/blob/main/docs/release-checklist.md",
+          "v0.1.3 validation requirements"
+        ],
+        [
+          "Package metadata",
+          "https://github.com/codethor0/model-identity-verifier/blob/main/pyproject.toml",
+          "Python package and version metadata"
+        ]
+      ],
+      "updated": "2026-09-28"
+    }
+  ]
+}

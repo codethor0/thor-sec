@@ -26,6 +26,9 @@ SITE = DATA["site"]
 BASE = SITE["base"]
 ENTRIES = DATA["entries"]
 PAPERS = [e for e in ENTRIES if e["kind"] == "paper"]
+CASE_DATA_PATH = ROOT / "scripts/case_studies.json"
+CASE_DATA = json.loads(CASE_DATA_PATH.read_text(encoding="utf-8")) if CASE_DATA_PATH.exists() else {"entries": []}
+CASE_STUDIES = CASE_DATA["entries"]
 LATEST_KINDS = ("paper", "tool", "lab")
 LATEST_COUNT = 3
 SOCIAL_IMAGE = BASE + "assets/thor-sec-social-card.png"
@@ -339,6 +342,9 @@ def feed() -> str:
 def sitemap() -> str:
     rows = [(BASE + p["path"], p["lastmod"]) for p in DATA["sitemap"]]
     rows += [(BASE + paper_path(e), e["updated"]) for e in PAPERS]
+    if CASE_STUDIES:
+        rows += [(BASE + "case-studies.html", max(e.get("updated", "2026-09-28") for e in CASE_STUDIES))]
+        rows += [(BASE + f"case-studies/{e['id']}.html", e.get("updated", "2026-09-28")) for e in CASE_STUDIES]
     out = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for loc, lastmod in rows:
         out += ["  <url>", f"    <loc>{h(loc)}</loc>", f"    <lastmod>{lastmod}</lastmod>", "  </url>"]

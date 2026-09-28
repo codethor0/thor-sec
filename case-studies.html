@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>Case Studies | THOR-SEC</title>
+  <meta name="description" content="Evidence-labeled THOR-SEC case studies separating formal designs, implemented and tested systems, prototypes, and empirical results.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/case-studies.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Case Studies | THOR-SEC">
+  <meta property="og:description" content="Evidence-labeled THOR-SEC case studies separating formal designs, implemented and tested systems, prototypes, and empirical results.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/case-studies.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Case Studies | THOR-SEC">
+  <meta name="twitter:description" content="Evidence-labeled THOR-SEC case studies separating formal designs, implemented and tested systems, prototypes, and empirical results.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="./">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="./research.html">Research</a></li>
+            <li><a aria-current="page" href="./case-studies.html">Case Studies</a></li>
+            <li><a href="./#projects">Projects</a></li>
+            <li><a href="./#writing">Writing</a></li>
+            <li><a href="./about.html">About</a></li>
+            <li><a class="nav-cta" href="./work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Evidence before claims</p>
+        <h1>Case Studies</h1>
+        <p class="lead">THOR-SEC separates what is proposed, what is implemented, what is tested, and what is still unproven. Each case study states the problem, the approach, the evidence, the limitations, and the current status.</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="cases-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="cases-heading">Current case studies</h2>
+          <a class="section-link" href="./research.html">Research archive</a>
+        </div>
+        <ul class="card-grid">
+          <li class="card">
+            <p class="card-kind">Implemented and tested reference implementation</p>
+            <h3><a href="./case-studies/llm-agent-control-plane.html">LLM Agent Control Plane</a></h3>
+            <p>A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.</p>
+            <p class="card-foot"><a href="./case-studies/llm-agent-control-plane.html">Read case study</a></p>
+          </li>
+          <li class="card">
+            <p class="card-kind">Formal design; empirical validation pending</p>
+            <h3><a href="./case-studies/miam.html">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
+            <p>A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.</p>
+            <p class="card-foot"><a href="./case-studies/miam.html">Read case study</a></p>
+          </li>
+          <li class="card">
+            <p class="card-kind">Implemented prototype; live-provider release gate pending</p>
+            <h3><a href="./case-studies/model-identity-verifier.html">Model Identity Verifier</a></h3>
+            <p>A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.</p>
+            <p class="card-foot"><a href="./case-studies/model-identity-verifier.html">Read case study</a></p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="labels-heading">
+      <div class="container">
+        <h2 id="labels-heading">Evidence labels</h2>
+        <ul class="plain-list prose">
+          <li><strong>Formal design</strong><span class="sub">Architecture, model, or proposal with defined reasoning or evaluation methods but without empirical efficacy results.</span></li>
+          <li><strong>Implemented and tested</strong><span class="sub">Working implementation with automated evidence for stated invariants; not automatically a production-readiness claim.</span></li>
+          <li><strong>Prototype</strong><span class="sub">Implemented system or tool whose validation or release gates are still incomplete.</span></li>
+          <li><strong>Empirical</strong><span class="sub">Results backed by measurements under a documented method and population. No current THOR-SEC case study uses this label.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="./research.html">Research</a></li>
+        <li><a href="./case-studies.html">Case Studies</a></li>
+        <li><a href="./inventions.html">Inventions</a></li>
+        <li><a href="./work.html">Commission research</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./now.html">Now</a></li>
+        <li><a href="./security.html">Site security</a></li>
+        <li><a href="./.well-known/security.txt">security.txt</a></li>
+        <li><a href="./feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

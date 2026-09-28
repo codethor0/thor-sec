@@ -44,6 +44,7 @@
         <nav class="site-nav" aria-label="Primary">
           <ul>
             <li><a href="./research.html">Research</a></li>
+            <li><a href="./case-studies.html">Case Studies</a></li>
             <li><a href="./#projects">Projects</a></li>
             <li><a href="./#writing">Writing</a></li>
             <li><a href="./about.html">About</a></li>
@@ -103,6 +104,35 @@
           </li>
           <!-- build:latest:end -->
         </ol>
+      </div>
+    </section>
+
+    <section id="case-studies" aria-labelledby="case-studies-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="case-studies-heading">Case studies</h2>
+          <a class="section-link" href="./case-studies.html">Full case-study archive</a>
+        </div>
+        <p class="prose">THOR-SEC separates what is proposed, what is implemented, what is tested, and what is still unproven.</p>
+        <ul class="card-grid">
+          <!-- build:case-studies:start -->
+          <li class="card">
+            <p class="card-kind">Implemented and tested reference implementation</p>
+            <h3><a href="./case-studies/llm-agent-control-plane.html">LLM Agent Control Plane</a></h3>
+            <p>A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.</p>
+          </li>
+          <li class="card">
+            <p class="card-kind">Formal design; empirical validation pending</p>
+            <h3><a href="./case-studies/miam.html">Mission-Invariant Architecture Morphing (MIAM)</a></h3>
+            <p>A formal architecture for changing an application's internal service graph so post-access reconnaissance can lose value across security epochs.</p>
+          </li>
+          <li class="card">
+            <p class="card-kind">Implemented prototype; live-provider release gate pending</p>
+            <h3><a href="./case-studies/model-identity-verifier.html">Model Identity Verifier</a></h3>
+            <p>A CLI that flags model identity drift, provider or route mismatches, downgrade signals, and baseline changes without treating self-description as attestation.</p>
+          </li>
+          <!-- build:case-studies:end -->
+        </ul>
       </div>
     </section>
 
@@ -234,6 +264,7 @@
     <div class="container">
       <ul>
         <li><a href="./research.html">Research</a></li>
+        <li><a href="./case-studies.html">Case Studies</a></li>
         <li><a href="./inventions.html">Inventions</a></li>
         <li><a href="./work.html">Commission research</a></li>
         <li><a href="./about.html">About</a></li>

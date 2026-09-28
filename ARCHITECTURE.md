@@ -18,7 +18,8 @@ No custom domain is in use. GitHub Pages is never redirected to the mirror.
 ## Security invariants
 
 - Static-first. Pages are plain HTML and CSS.
-- Build tools may write static files; nothing they write runs in the visitor's browser. `scripts/build_research.py` runs on the author's machine, its output is committed, and CI (`--check`) fails if the committed output drifts from `scripts/research.json`.
+- Build tools may write static files; nothing they write runs in the visitor's browser. `scripts/build_research.py` and `scripts/build_case_studies.py` run on the author's machine, their output is committed, and CI (`--check`) fails if committed pages drift from `scripts/research.json` or `scripts/case_studies.json`. The research builder remains the sole writer of `sitemap.xml`.
+- Case-study claims are evidence-labeled as `formal-design`, `implemented-and-tested`, `prototype`, or `empirical`. Every generated case study must include explicit limitations and current status.
 - Light and dark themes follow the device setting through `prefers-color-scheme`. No control, script, or storage is involved.
 - No client-side JavaScript: `script-src 'none'`, `connect-src 'none'`, and no `<script>` tags.
 - No cookies, browser analytics, advertising trackers, or visitor counters.

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <meta name="thor-sec:evidence-status" content="implemented-and-tested">
+  <title>LLM Agent Control Plane Case Study | THOR-SEC</title>
+  <meta name="description" content="A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/case-studies/llm-agent-control-plane.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="LLM Agent Control Plane Case Study | THOR-SEC">
+  <meta property="og:description" content="A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/case-studies/llm-agent-control-plane.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LLM Agent Control Plane Case Study | THOR-SEC">
+  <meta name="twitter:description" content="A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Agent security case study &middot; <a href="../case-studies.html">Case Studies</a></p>
+        <h1>LLM Agent Control Plane</h1>
+        <p class="lead">A deterministic control boundary for tool-connected LLM agents, with authorization kept outside the model and mapped to automated tests.</p>
+        <p class="entry-meta"><span class="tag">implemented-and-tested</span> &middot; Implemented and tested reference implementation</p>
+      </div>
+    </div>
+
+    <section aria-labelledby="problem-heading">
+      <div class="container">
+        <h2 id="problem-heading">Problem</h2>
+        <div class="prose">
+          <p>Tool-connected language-model agents can turn generated text into actions with real effects. If the model itself is treated as the authority, prompt injection, retrieved content, or a bad model decision can become an authorization decision.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="common-heading">
+      <div class="container">
+        <h2 id="common-heading">Why common approaches fall short</h2>
+        <ul class="bullet-list prose">
+          <li>Prompt instructions are not an authorization boundary. A model can ignore, reinterpret, or be induced to override them.</li>
+          <li>Schema validation proves structure, not permission. A well-formed tool call can still be unauthorized.</li>
+          <li>Sensitive actions need provenance, role, tenant, and approval checks that do not depend on model judgment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="approach-heading">
+      <div class="container">
+        <h2 id="approach-heading">THOR-SEC approach</h2>
+        <div class="prose">
+          <p>The reference implementation puts a deterministic control plane between model output and simulated tools. The model proposes an action; the broker, policy engine, provenance checks, approval gate, tenant checks, and output filter decide whether the action can proceed.</p>
+          <p>Audit logging records allow and deny decisions with redaction, and the protected path is compared with a deliberately vulnerable simulation path.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="evidence-heading">
+      <div class="container">
+        <h2 id="evidence-heading">Evidence</h2>
+        <ul class="bullet-list prose">
+          <li>The repository maps security invariants to 293 automated tests, including deny-by-default behavior, broker authority, provenance enforcement, approval gates, tenant isolation, output filtering, audit logging, and refusal to execute a real shell.</li>
+          <li>Release v0.3.0 documents a validation gate covering the test suite, Docker/Compose validation, repository and policy checks, Bandit, pip-audit, CodeQL, Gitleaks, Trivy, and SBOM generation.</li>
+          <li>The project includes a FastAPI interface, CLI demonstrations, deployment reference profiles, defensive-control documentation, a threat model, and operator guidance.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="limitations-heading">
+      <div class="container">
+        <h2 id="limitations-heading">Limitations</h2>
+        <ul class="bullet-list prose">
+          <li>This is a local, simulated defensive reference implementation, not a drop-in production service.</li>
+          <li>It does not execute real shell commands, send real email, scan networks, or call production LLM APIs by default.</li>
+          <li>Production deployment still requires enterprise identity, persistence, key management, DLP, observability, deployment hardening, and operational review.</li>
+          <li>Release checksums are documented as unsigned and do not provide signed artifact provenance.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel panel-accent">
+          <p class="eyebrow">Current status</p>
+          <h2 id="status-heading">Implemented and tested reference implementation</h2>
+          <p class="prose">Implemented reference architecture with tested security invariants. Production integration and operational validation remain outside the demonstrated scope.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>Repository</span><a href="https://github.com/codethor0/llm-agent-control-plane">Source and documentation</a></li>
+          <li><span>Release</span><a href="https://github.com/codethor0/llm-agent-control-plane/releases/tag/v0.3.0">v0.3.0</a></li>
+          <li><span>Controls</span><a href="https://github.com/codethor0/llm-agent-control-plane/blob/main/docs/defensive-controls.md">Tested defensive controls</a></li>
+          <li><span>Threat model</span><a href="https://github.com/codethor0/llm-agent-control-plane/blob/main/docs/threat-model.md">Threats, assumptions, mitigations, and non-goals</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

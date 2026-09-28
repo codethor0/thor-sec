@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML_FILES = [
     Path("index.html"),
     Path("research.html"),
+    Path("case-studies.html"),
     Path("work.html"),
     Path("about.html"),
     Path("inventions.html"),
@@ -23,6 +24,8 @@ HTML_FILES = [
     Path("request-received.html"),
     # Paper pages built from scripts/research.json.
     *sorted(p.relative_to(ROOT) for p in (ROOT / "research").glob("*.html")),
+    # Evidence-labeled case studies built from scripts/case_studies.json.
+    *sorted(p.relative_to(ROOT) for p in (ROOT / "case-studies").glob("*.html")),
 ]
 PAPER_META = (
     'name="citation_title"', 'name="citation_author"', 'name="citation_publication_date"',
@@ -54,6 +57,8 @@ REQUIRED_FILES = [
     Path("assets/apple-touch-icon.png"),
     Path("scripts/build_research.py"),
     Path("scripts/research.json"),
+    Path("scripts/build_case_studies.py"),
+    Path("scripts/case_studies.json"),
 ]
 CANONICAL_BASE = "https://codethor0.github.io/thor-sec/"
 REQUIRED_META = (
@@ -410,6 +415,26 @@ def main() -> None:
         if rel.as_posix() not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
             errors.append(f"sitemap.xml: {rel} must be listed")
 
+    case_pages = [rel for rel in HTML_FILES if rel.parts[0] == "case-studies"]
+    if len(case_pages) < 3:
+        errors.append("case-studies/: three generated case-study pages are required")
+    allowed_case_status = {"formal-design", "implemented-and-tested", "prototype", "empirical"}
+    for rel in case_pages:
+        page = (ROOT / rel).read_text(encoding="utf-8")
+        m = re.search(r'<meta name="thor-sec:evidence-status" content="([^"]+)">', page)
+        if not m or m.group(1) not in allowed_case_status:
+            errors.append(f"{rel}: missing or invalid thor-sec:evidence-status")
+        if 'id="limitations-heading"' not in page:
+            errors.append(f"{rel}: limitations section is required")
+        if 'id="status-heading"' not in page:
+            errors.append(f"{rel}: current status section is required")
+        if f'<link rel="canonical" href="{CANONICAL_BASE}{rel.as_posix()}">' not in page:
+            errors.append(f"{rel}: canonical URL must be {CANONICAL_BASE}{rel.as_posix()}")
+        if rel.as_posix() not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
+            errors.append(f"sitemap.xml: {rel} must be listed")
+    if "case-studies.html" not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
+        errors.append("sitemap.xml: case-studies.html must be listed")
+
     public_suffixes = {".html", ".md", ".css", ".xml", ".txt", ".py", ".yml", ".yaml", ".sh", ".jsonc", ".js", ".mjs"}
     for path in ROOT.rglob("*"):
         if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in public_suffixes:
@@ -470,6 +495,7 @@ def main() -> None:
     print("Cloudflare asset exclusions: OK")
     print("Public identity/research records: OK")
     print(f"Paper pages with citation metadata: {len([r for r in HTML_FILES if r.parts[0] == 'research'])}")
+    print(f"Case-study pages with evidence labels: {len([r for r in HTML_FILES if r.parts[0] == 'case-studies'])}")
 
 
 if __name__ == "__main__":

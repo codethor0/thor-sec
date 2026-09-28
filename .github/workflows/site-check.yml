@@ -30,6 +30,11 @@ jobs:
           set -euo pipefail
           python3 scripts/build_research.py --check
 
+      - name: Check case-study pages match scripts/case_studies.json
+        run: |
+          set -euo pipefail
+          python3 scripts/build_case_studies.py --check
+
       - name: Run intake Worker unit tests
         run: |
           set -euo pipefail
@@ -47,6 +52,10 @@ jobs:
             / \
             /research.html \
             /research/miam.html \
+            /case-studies.html \
+            /case-studies/llm-agent-control-plane.html \
+            /case-studies/miam.html \
+            /case-studies/model-identity-verifier.html \
             /work.html \
             /about.html \
             /inventions.html \

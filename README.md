@@ -47,6 +47,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full design and security invarian
 Public indexes:
 
 - **Research archive:** https://codethor0.github.io/thor-sec/research.html
+- **Case studies:** https://codethor0.github.io/thor-sec/case-studies.html
 - **Commission research:** https://codethor0.github.io/thor-sec/work.html
 - **About:** https://codethor0.github.io/thor-sec/about.html
 - **Patents & inventions:** https://codethor0.github.io/thor-sec/inventions.html
