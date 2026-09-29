@@ -71,6 +71,11 @@ REQUIRED_META = (
     'name="twitter:title"', 'name="twitter:description"', 'name="twitter:image"',
     'name="twitter:image:alt"', 'rel="icon"', 'rel="apple-touch-icon"', 'name="theme-color"',
 )
+MISSION = "THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work."
+MISSION_PAGES = (Path("index.html"), Path("about.html"))
+NAV_TARGETS = ("research.html", "case-studies.html", "about.html", "work.html")
+FOOTER_TARGETS = ("research.html", "case-studies.html", "work.html")
+HOME_REQUEST_LINK = 'href="./work.html#request"'
 FORM_PAGE = Path("work.html")
 FORM_ACTION = "https://thor-sec.codethor0.workers.dev/api/request"
 FORM_ACTION_CSP = "form-action https://thor-sec.codethor0.workers.dev https://codethor0.github.io"
@@ -438,6 +443,24 @@ def main() -> None:
     if "case-studies.html" not in (ROOT / "sitemap.xml").read_text(encoding="utf-8"):
         errors.append("sitemap.xml: case-studies.html must be listed")
 
+    # Navigation and mission must not silently regress on any page.
+    for rel in HTML_FILES:
+        text = (ROOT / rel).read_text(encoding="utf-8")
+        for block, targets in (("nav", NAV_TARGETS), ("footer", FOOTER_TARGETS)):
+            m = re.search(rf"<{block}\b.*?</{block}>", text, re.S)
+            if not m:
+                errors.append(f"{rel}: missing <{block}>")
+                continue
+            hrefs = {h.split("#")[0].lstrip("./") for h in re.findall(r'href="([^"]+)"', m.group(0))}
+            for target in targets:
+                if target not in hrefs:
+                    errors.append(f"{rel}: {block} must link to {target}")
+    for rel in MISSION_PAGES:
+        if MISSION not in (ROOT / rel).read_text(encoding="utf-8"):
+            errors.append(f"{rel}: mission statement missing or changed")
+    if HOME_REQUEST_LINK not in (ROOT / "index.html").read_text(encoding="utf-8"):
+        errors.append("index.html: commission call to action must link to work.html#request")
+
     invention_data = ROOT / "scripts/invention_publications.json"
     if invention_data.exists():
         import json
@@ -522,6 +545,7 @@ def main() -> None:
     print(f"Paper pages with citation metadata: {len([r for r in HTML_FILES if r.parts[0] == 'research'])}")
     print(f"Case-study pages with evidence labels: {len([r for r in HTML_FILES if r.parts[0] == 'case-studies'])}")
     print("Invention publication gate: OK")
+    print("Navigation and mission: OK")
 
 
 if __name__ == "__main__":
