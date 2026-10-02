@@ -9,14 +9,14 @@
   <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
   <title>Research | THOR-SEC</title>
-  <meta name="description" content="Papers, open-source security tools, and field notes by Thor Thor: MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta name="description" content="Papers, open-source security tools, and field notes by Thor Thor: MECI, MIAM, LLM agent authorization, model identity verification, and more.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/research.html">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
   <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="THOR-SEC">
   <meta property="og:title" content="Research | THOR-SEC">
-  <meta property="og:description" content="Papers, open-source security tools, and field notes by Thor Thor: MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta property="og:description" content="Papers, open-source security tools, and field notes by Thor Thor: MECI, MIAM, LLM agent authorization, model identity verification, and more.">
   <meta property="og:url" content="https://codethor0.github.io/thor-sec/research.html">
   <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta property="og:image:type" content="image/png">
@@ -26,7 +26,7 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Research | THOR-SEC">
-  <meta name="twitter:description" content="Papers, open-source security tools, and field notes by Thor Thor: MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta name="twitter:description" content="Papers, open-source security tools, and field notes by Thor Thor: MECI, MIAM, LLM agent authorization, model identity verification, and more.">
   <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <link rel="stylesheet" href="styles.css">
@@ -69,6 +69,25 @@
         <h2 id="papers-heading">Papers</h2>
         <ol class="entry-list">
           <!-- build:papers:start -->
+          <li class="entry" id="meci">
+            <p class="entry-meta"><time datetime="2026-10-02">2026-10-02</time> &middot; <span class="tag">preprint</span> &middot; version 1.0.0 &middot; CC BY 4.0</p>
+            <h3><a href="./research/meci.html">Memory-Egress Cryptographic Interlock (MECI)</a></h3>
+            <p>A Hardware-Enforced Capability-Separation Model for AI Memory Security.</p>
+            <p>A hardware-oriented formal model for separating unreleased protected AI memory from gated egress authority. It defines reflexive-transitive high-to-egress reachability, a generation-checked SafeOpen transition, cryptographic epoch non-resurrection, and noninterference modulo authorized release. The finite safety core is checked by TLC and an independent reference checker; no hardware prototype or measured performance is claimed.</p>
+            <ul class="inline-links">
+              <li><a href="./research/meci.html">Paper page</a></li>
+              <li><a href="https://doi.org/10.5281/zenodo.23109676">DOI 10.5281/zenodo.23109676</a></li>
+              <li><a href="https://github.com/codethor0/meci/raw/v1.0.0/paper/MECI.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/meci">Source</a></li>
+              <li><a href="https://github.com/codethor0/meci/releases/tag/v1.0.0">Release</a></li>
+            </ul>
+            <details>
+              <summary>Cite this paper</summary>
+              <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Memory-Egress Cryptographic Interlock: A Hardware-Enforced
+Capability-Separation Model for AI Memory Security (1.0.0). Zenodo.
+https://doi.org/10.5281/zenodo.23109676</code></pre>
+            </details>
+          </li>
           <li class="entry" id="miam">
             <p class="entry-meta"><time datetime="2026-09-27">2026-09-27</time> &middot; <span class="tag">preprint</span> &middot; version 1.0.0 &middot; CC BY 4.0</p>
             <h3><a href="./research/miam.html">Mission-Invariant Architecture Morphing (MIAM)</a></h3>

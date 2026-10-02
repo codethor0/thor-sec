@@ -306,7 +306,7 @@ def paper_page(e: dict) -> str:
 # ------------------------------------------------------------------ feed and sitemap
 
 def feed() -> str:
-    items = [e for e in ENTRIES if e.get("feed_summary")]
+    items = sorted((e for e in ENTRIES if e.get("feed_summary")), key=lambda e: (e["updated"], e["date"]), reverse=True)
     updated = max(e["updated"] for e in items)
     out = [
         '<?xml version="1.0" encoding="utf-8"?>',

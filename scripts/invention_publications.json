@@ -5,6 +5,16 @@
   },
   "entries": [
     {
+      "id": "meci",
+      "title": "Memory-Egress Cryptographic Interlock (MECI)",
+      "year": "2026",
+      "tag": "AI memory security",
+      "record_type": "DOI-backed publication",
+      "url": "https://doi.org/10.5281/zenodo.23109676",
+      "summary": "Hardware-oriented capability-separation model that keeps unreleased protected information unreachable from enabled gated egress channels, with SafeOpen, epoch non-resurrection, executable models, and explicit release boundaries.",
+      "decision": "publish-intentionally"
+    },
+    {
       "id": "miam",
       "title": "Mission-Invariant Architecture Morphing (MIAM)",
       "year": "2026",

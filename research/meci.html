@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>Memory-Egress Cryptographic Interlock (MECI) | THOR-SEC</title>
+  <meta name="description" content="MECI is a hardware-oriented capability-separation model for keeping unreleased protected AI memory unreachable from enabled gated egress channels.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research/meci.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta name="citation_title" content="Memory-Egress Cryptographic Interlock: A Hardware-Enforced Capability-Separation Model for AI Memory Security">
+  <meta name="citation_author" content="Thor, Thor">
+  <meta name="citation_publication_date" content="2026/10/02">
+  <meta name="citation_publisher" content="Zenodo">
+  <meta name="citation_doi" content="10.5281/zenodo.23109676">
+  <meta name="citation_pdf_url" content="https://github.com/codethor0/meci/raw/v1.0.0/paper/MECI.pdf">
+  <meta name="citation_abstract_html_url" content="https://codethor0.github.io/thor-sec/research/meci.html">
+  <meta name="citation_language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Memory-Egress Cryptographic Interlock (MECI) | THOR-SEC">
+  <meta property="og:description" content="MECI is a hardware-oriented capability-separation model for keeping unreleased protected AI memory unreachable from enabled gated egress channels.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research/meci.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Memory-Egress Cryptographic Interlock (MECI) | THOR-SEC">
+  <meta name="twitter:description" content="MECI is a hardware-oriented capability-separation model for keeping unreleased protected AI memory unreachable from enabled gated egress channels.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
+        <h1>Memory-Egress Cryptographic Interlock (MECI)</h1>
+        <p class="lead">A Hardware-Enforced Capability-Separation Model for AI Memory Security.</p>
+        <p class="entry-meta"><time datetime="2026-10-02">2026-10-02</time> &middot; <span class="tag">preprint</span> &middot; version 1.0.0 &middot; CC BY 4.0 &middot; DOI 10.5281/zenodo.23109676</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/codethor0/meci/raw/v1.0.0/paper/MECI.pdf">Read the paper (PDF)</a>
+          <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.23109676">DOI record</a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel">
+          <h2 id="status-heading">Research status</h2>
+          <p class="prose">Formal specification and falsifiable research program. Gated-egress safety and epoch non-resurrection are proved under stated obligations, and the finite safety projection is checked by TLC and an independent reference checker. The work reports no hardware prototype or measured performance and makes no claim of peer review.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="abstract-heading">
+      <div class="container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="prose">
+          <p>AI agents increasingly combine persistent memory with network, tool, file, and device capabilities. A compromised or manipulated agent can then hold readable protected state and a path through which that state can leave the trust boundary at the same time, and no instruction-level control removes that combination. This paper develops the Memory-Egress Cryptographic Interlock (MECI), a capability-separation pattern intended for hardware enforcement that makes unreleased protected information unreachable from every enabled gated egress channel. MECI formalizes high-to-egress reachability as reflexive-transitive closure over a state-dependent influence graph, gives an explicit labeling rule for sealed objects, defines a generation-checked, linearizable SafeOpen operation evaluated on the post-commit configuration, and separates gated egress from ambient observations such as timing, access patterns, and memory-bus traffic. We prove gated-egress safety from two local implementation obligations, show that a finite hazard projection refines the graph invariant under a stated soundness condition, prove epoch non-resurrection, give a counterexample showing that memory-egress mutual exclusion does not imply noninterference, and prove noninterference modulo an explicit authorized-release function in which the MECI invariant, rather than an assumed output property, carries the gated-output step. The finite safety core is specified in TLA+ and checked exhaustively within stated bounds by TLC and by an independent dependency-free reference checker. The two agree exactly on reachable-state counts for all five modeled designs, find no violation in the atomic and generation-checked designs, and return shortest counterexamples for three deliberately weakened designs. The paper also gives an Arm CCA/RMM refinement path, a GPU quiescence contract, a representative declassification policy for an AI incident-triage agent, and a comparison with CHERI, seL4, and WASI. No current confidential-computing platform is claimed to implement MECI; the work is a formal specification and falsifiable research program.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-heading">
+      <div class="container">
+        <h2 id="limits-heading">Known limitations</h2>
+        <ul class="bullet-list prose">
+          <li>Model checking is bounded (GenBound=3, MaxEpoch=3, with sensitivity runs to (5,4)) and covers the finite projection, not the full influence graph; transfer to the gated-egress invariant rests on the paper's projection-soundness assumption.</li>
+          <li>The safety and noninterference theorems are paper proofs; there is not yet a mechanized relational proof of the noninterference theorem.</li>
+          <li>There is no hardware prototype and no performance measurement; the performance section is a cost model.</li>
+          <li>Ambient channels and physical attacks are outside the baseline theorem unless a deployment profile proves equivalence for them.</li>
+          <li>Declassifier correctness is assumed. LLM-generated text stays high until a verifier or authorized reviewer releases it, which limits utility for free-form outputs.</li>
+          <li>The influence graph is only as good as its edges; an omitted concrete dependency makes the abstraction unsound.</li>
+        </ul>
+        <p class="note">Summarized from the paper. The full list is in its section on limitations, failure modes, and open research problems.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.23109676">10.5281/zenodo.23109676</a></li>
+          <li><span>Paper</span><a href="https://github.com/codethor0/meci/raw/v1.0.0/paper/MECI.pdf">PDF, version 1.0.0</a></li>
+          <li><span>Source</span><a href="https://github.com/codethor0/meci">Paper source and reproduction script</a></li>
+          <li><span>Release</span><a href="https://github.com/codethor0/meci/releases/tag/v1.0.0">Version 1.0.0</a></li>
+          <li><span>Archive</span><a href="https://zenodo.org/records/23109676">Zenodo record</a></li>
+          <li><span>Author</span><a href="https://orcid.org/0009-0001-6573-385X">ORCID 0009-0001-6573-385X</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="cite-heading">
+      <div class="container">
+        <h2 id="cite-heading">Cite this work</h2>
+        <p class="code-label">Plain text</p>
+        <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Memory-Egress Cryptographic Interlock: A Hardware-Enforced
+Capability-Separation Model for AI Memory Security (1.0.0). Zenodo.
+https://doi.org/10.5281/zenodo.23109676</code></pre>
+        <p class="code-label">BibTeX</p>
+        <pre class="code-snippet" tabindex="0"><code>@misc{thor2026meci,
+  author    = {Thor, Thor},
+  title     = {Memory-Egress Cryptographic Interlock: A Hardware-Enforced Capability-Separation Model for AI Memory Security},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23109676},
+  url       = {https://doi.org/10.5281/zenodo.23109676}
+}</code></pre>
+      </div>
+    </section>
+
+    <section aria-labelledby="versions-heading">
+      <div class="container">
+        <h2 id="versions-heading">Version history</h2>
+        <ul class="plain-list">
+          <li>Version 1.0.0<span class="sub"><time datetime="2026-10-02">2026-10-02</time> &middot; Archival release on Zenodo; concepts first shared publicly on 2026-08-10.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer &middot; Last updated September 2026</p>
+    </div>
+  </footer>
+</body>
+</html>

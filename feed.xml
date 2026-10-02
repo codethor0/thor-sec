@@ -4,19 +4,19 @@
   <link href="https://codethor0.github.io/thor-sec/" rel="alternate"/>
   <link href="https://codethor0.github.io/thor-sec/feed.xml" rel="self"/>
   <id>https://codethor0.github.io/thor-sec/feed.xml</id>
-  <updated>2026-09-28T00:00:00Z</updated>
+  <updated>2026-10-02T00:00:00Z</updated>
   <author>
     <name>Thor Thor</name>
     <uri>https://orcid.org/0009-0001-6573-385X</uri>
   </author>
 
   <entry>
-    <title>Commission research from THOR-SEC</title>
-    <link href="https://codethor0.github.io/thor-sec/work.html" rel="alternate"/>
-    <id>https://codethor0.github.io/thor-sec/work.html</id>
-    <updated>2026-09-27T00:00:00Z</updated>
-    <published>2026-09-27T00:00:00Z</published>
-    <summary>THOR-SEC now accepts commissioned research: sponsored research, security architecture review, AI and LLM security assessment, and technical writing.</summary>
+    <title>Memory-Egress Cryptographic Interlock (MECI)</title>
+    <link href="https://codethor0.github.io/thor-sec/research/meci.html" rel="alternate"/>
+    <id>https://doi.org/10.5281/zenodo.23109676</id>
+    <updated>2026-10-02T00:00:00Z</updated>
+    <published>2026-10-02T00:00:00Z</published>
+    <summary>Formal AI memory-security model for separating unreleased protected state from gated egress authority, with SafeOpen, epoch non-resurrection, TLA+ checks, and reproducibility artifacts.</summary>
   </entry>
 
   <entry>
@@ -29,12 +29,12 @@
   </entry>
 
   <entry>
-    <title>Model Identity Verifier</title>
-    <link href="https://github.com/codethor0/model-identity-verifier" rel="alternate"/>
-    <id>https://github.com/codethor0/model-identity-verifier</id>
-    <updated>2026-08-26T00:00:00Z</updated>
-    <published>2026-07-08T00:00:00Z</published>
-    <summary>Open-source CLI research tooling for LLM identity drift, suspicious provider or route mismatch, and downgrade or substitution signals.</summary>
+    <title>Commission research from THOR-SEC</title>
+    <link href="https://codethor0.github.io/thor-sec/work.html" rel="alternate"/>
+    <id>https://codethor0.github.io/thor-sec/work.html</id>
+    <updated>2026-09-27T00:00:00Z</updated>
+    <published>2026-09-27T00:00:00Z</published>
+    <summary>THOR-SEC now accepts commissioned research: sponsored research, security architecture review, AI and LLM security assessment, and technical writing.</summary>
   </entry>
 
   <entry>
@@ -44,6 +44,15 @@
     <updated>2026-09-24T00:00:00Z</updated>
     <published>2026-05-30T00:00:00Z</published>
     <summary>Defensive LLM infrastructure security lab for comparing vulnerable and hardened blast-radius controls.</summary>
+  </entry>
+
+  <entry>
+    <title>Model Identity Verifier</title>
+    <link href="https://github.com/codethor0/model-identity-verifier" rel="alternate"/>
+    <id>https://github.com/codethor0/model-identity-verifier</id>
+    <updated>2026-08-26T00:00:00Z</updated>
+    <published>2026-07-08T00:00:00Z</published>
+    <summary>Open-source CLI research tooling for LLM identity drift, suspicious provider or route mismatch, and downgrade or substitution signals.</summary>
   </entry>
 
   <entry>

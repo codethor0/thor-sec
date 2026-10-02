@@ -7,17 +7,87 @@
     "feed_title": "THOR-SEC Research Notes"
   },
   "sitemap": [
-    {"path": "", "lastmod": "2026-09-28"},
-    {"path": "research.html", "lastmod": "2026-09-28"},
-    {"path": "work.html", "lastmod": "2026-09-28"},
-    {"path": "about.html", "lastmod": "2026-09-28"},
-    {"path": "inventions.html", "lastmod": "2026-09-28"},
-    {"path": "security.html", "lastmod": "2026-09-28"},
-    {"path": "now.html", "lastmod": "2026-09-29"},
-    {"path": "feed.xml", "lastmod": "2026-09-28"},
-    {"path": ".well-known/security.txt", "lastmod": "2026-09-27"}
+    {
+      "path": "",
+      "lastmod": "2026-10-02"
+    },
+    {
+      "path": "research.html",
+      "lastmod": "2026-10-02"
+    },
+    {
+      "path": "work.html",
+      "lastmod": "2026-09-28"
+    },
+    {
+      "path": "about.html",
+      "lastmod": "2026-09-28"
+    },
+    {
+      "path": "inventions.html",
+      "lastmod": "2026-10-02"
+    },
+    {
+      "path": "security.html",
+      "lastmod": "2026-09-28"
+    },
+    {
+      "path": "now.html",
+      "lastmod": "2026-09-29"
+    },
+    {
+      "path": "feed.xml",
+      "lastmod": "2026-10-02"
+    },
+    {
+      "path": ".well-known/security.txt",
+      "lastmod": "2026-09-27"
+    }
   ],
   "entries": [
+    {
+      "id": "meci",
+      "kind": "paper",
+      "title": "Memory-Egress Cryptographic Interlock (MECI)",
+      "full_title": "Memory-Egress Cryptographic Interlock: A Hardware-Enforced Capability-Separation Model for AI Memory Security",
+      "subtitle": "A Hardware-Enforced Capability-Separation Model for AI Memory Security.",
+      "date": "2026-10-02",
+      "updated": "2026-10-02",
+      "status": "preprint",
+      "status_note": "Formal specification and falsifiable research program. Gated-egress safety and epoch non-resurrection are proved under stated obligations, and the finite safety projection is checked by TLC and an independent reference checker. The work reports no hardware prototype or measured performance and makes no claim of peer review.",
+      "version": "1.0.0",
+      "license": "CC BY 4.0",
+      "doi": "10.5281/zenodo.23109676",
+      "publisher": "Zenodo",
+      "pdf": "https://github.com/codethor0/meci/raw/v1.0.0/paper/MECI.pdf",
+      "source": "https://github.com/codethor0/meci",
+      "release": "https://github.com/codethor0/meci/releases/tag/v1.0.0",
+      "record": "https://zenodo.org/records/23109676",
+      "defensive_publication": false,
+      "feed_id": "https://doi.org/10.5281/zenodo.23109676",
+      "description": "MECI is a hardware-oriented capability-separation model for keeping unreleased protected AI memory unreachable from enabled gated egress channels.",
+      "home_summary": "MECI treats AI memory protection as a machine-enforced capability-separation problem: unreleased protected information must not be reachable from any enabled gated egress channel. The release includes formal safety and epoch arguments, TLA+ models, negative controls, and an independent reference checker.",
+      "archive_summary": "A hardware-oriented formal model for separating unreleased protected AI memory from gated egress authority. It defines reflexive-transitive high-to-egress reachability, a generation-checked SafeOpen transition, cryptographic epoch non-resurrection, and noninterference modulo authorized release. The finite safety core is checked by TLC and an independent reference checker; no hardware prototype or measured performance is claimed.",
+      "feed_summary": "Formal AI memory-security model for separating unreleased protected state from gated egress authority, with SafeOpen, epoch non-resurrection, TLA+ checks, and reproducibility artifacts.",
+      "abstract": [
+        "AI agents increasingly combine persistent memory with network, tool, file, and device capabilities. A compromised or manipulated agent can then hold readable protected state and a path through which that state can leave the trust boundary at the same time, and no instruction-level control removes that combination. This paper develops the Memory-Egress Cryptographic Interlock (MECI), a capability-separation pattern intended for hardware enforcement that makes unreleased protected information unreachable from every enabled gated egress channel. MECI formalizes high-to-egress reachability as reflexive-transitive closure over a state-dependent influence graph, gives an explicit labeling rule for sealed objects, defines a generation-checked, linearizable SafeOpen operation evaluated on the post-commit configuration, and separates gated egress from ambient observations such as timing, access patterns, and memory-bus traffic. We prove gated-egress safety from two local implementation obligations, show that a finite hazard projection refines the graph invariant under a stated soundness condition, prove epoch non-resurrection, give a counterexample showing that memory-egress mutual exclusion does not imply noninterference, and prove noninterference modulo an explicit authorized-release function in which the MECI invariant, rather than an assumed output property, carries the gated-output step. The finite safety core is specified in TLA+ and checked exhaustively within stated bounds by TLC and by an independent dependency-free reference checker. The two agree exactly on reachable-state counts for all five modeled designs, find no violation in the atomic and generation-checked designs, and return shortest counterexamples for three deliberately weakened designs. The paper also gives an Arm CCA/RMM refinement path, a GPU quiescence contract, a representative declassification policy for an AI incident-triage agent, and a comparison with CHERI, seL4, and WASI. No current confidential-computing platform is claimed to implement MECI; the work is a formal specification and falsifiable research program."
+      ],
+      "limitations": [
+        "Model checking is bounded (GenBound=3, MaxEpoch=3, with sensitivity runs to (5,4)) and covers the finite projection, not the full influence graph; transfer to the gated-egress invariant rests on the paper's projection-soundness assumption.",
+        "The safety and noninterference theorems are paper proofs; there is not yet a mechanized relational proof of the noninterference theorem.",
+        "There is no hardware prototype and no performance measurement; the performance section is a cost model.",
+        "Ambient channels and physical attacks are outside the baseline theorem unless a deployment profile proves equivalence for them.",
+        "Declassifier correctness is assumed. LLM-generated text stays high until a verifier or authorized reviewer releases it, which limits utility for free-form outputs.",
+        "The influence graph is only as good as its edges; an omitted concrete dependency makes the abstraction unsound."
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-02",
+          "note": "Archival release on Zenodo; concepts first shared publicly on 2026-08-10."
+        }
+      ]
+    },
     {
       "id": "commission",
       "kind": "announcement",
@@ -64,7 +134,11 @@
         "Control-plane compromise is catastrophic, and telemetry poisoning can turn adaptation into an attack primitive."
       ],
       "versions": [
-        {"version": "1.0.0", "date": "2026-09-27", "note": "Initial public release, archived on Zenodo."}
+        {
+          "version": "1.0.0",
+          "date": "2026-09-27",
+          "note": "Initial public release, archived on Zenodo."
+        }
       ]
     },
     {

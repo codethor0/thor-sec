@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "37 13 * * 1"
 
 permissions:
   contents: read
@@ -53,31 +56,53 @@ jobs:
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
           sleep 2
 
-          for path in \
-            / \
-            /research.html \
-            /research/miam.html \
-            /case-studies.html \
-            /case-studies/llm-agent-control-plane.html \
-            /case-studies/miam.html \
-            /case-studies/model-identity-verifier.html \
-            /work.html \
-            /about.html \
-            /inventions.html \
-            /security.html \
-            /now.html \
-            /robots.txt \
-            /sitemap.xml \
-            /feed.xml \
-            /404.html \
-            /request-received.html \
-            /LICENSE \
-            /SECURITY.md \
-            /README.md \
-            /.well-known/security.txt; do
+          check_path() {
+            local path="$1"
+            local code
             code=$(curl --fail --silent --show-error --output /dev/null --write-out "%{http_code}" "http://127.0.0.1:8080${path}")
             if [ "$code" != "200" ]; then
               echo "Unexpected HTTP $code for $path"
               exit 1
             fi
+          }
+
+          static_paths=(
+            /
+            /research.html
+            /case-studies.html
+            /work.html
+            /about.html
+            /inventions.html
+            /security.html
+            /now.html
+            /robots.txt
+            /sitemap.xml
+            /feed.xml
+            /404.html
+            /request-received.html
+            /LICENSE
+            /SECURITY.md
+            /README.md
+            /.well-known/security.txt
+          )
+
+          for path in "${static_paths[@]}"; do
+            check_path "$path"
           done
+
+          python3 - <<'PY' >/tmp/thor-sec-generated-paths
+          import json
+
+          research = json.load(open("scripts/research.json"))
+          for entry in research["entries"]:
+              if entry.get("kind") == "paper":
+                  print(f"/research/{entry['id']}.html")
+
+          cases = json.load(open("scripts/case_studies.json"))
+          for entry in cases["entries"]:
+              print(f"/case-studies/{entry['id']}.html")
+          PY
+
+          while IFS= read -r path; do
+            check_path "$path"
+          done </tmp/thor-sec-generated-paths

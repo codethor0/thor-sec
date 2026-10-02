@@ -1,5 +1,7 @@
 # THOR-SEC
 
+[![Site Check](https://github.com/codethor0/thor-sec/actions/workflows/site-check.yml/badge.svg?branch=main)](https://github.com/codethor0/thor-sec/actions/workflows/site-check.yml)
+
 Independent security research lab and public website for Thor Thor.
 
 **Mission:** THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work.
@@ -10,9 +12,10 @@ Independent security research lab and public website for Thor Thor.
 
 - **Researcher:** Thor Thor
 - **ORCID:** https://orcid.org/0009-0001-6573-385X
-- **Featured publication:** Mission-Invariant Architecture Morphing (MIAM), version 1.0.0
-- **DOI:** https://doi.org/10.5281/zenodo.23001045
-- **Source and reproducibility artifacts:** https://github.com/codethor0/miam
+- **Latest archival publication:** Memory-Egress Cryptographic Interlock (MECI), version 1.0.0
+- **DOI:** https://doi.org/10.5281/zenodo.23109676
+- **Source and reproducibility artifacts:** https://github.com/codethor0/meci
+- **Research archive:** https://codethor0.github.io/thor-sec/research.html
 
 ## Selected Research Projects
 
