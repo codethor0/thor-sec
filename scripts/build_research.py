@@ -48,25 +48,40 @@ def doi_url(entry: dict) -> str:
     return f"https://doi.org/{entry['doi']}"
 
 
+def version_value(e: dict) -> str:
+    return str(e.get("version", "")).strip()
+
+
+def version_meta(e: dict) -> str:
+    version = version_value(e)
+    return f" &middot; version {h(version)}" if version else ""
+
+
 def plain_citation(e: dict) -> str:
     year = e["date"][:4]
-    text = f"{SITE['author_citation'].split(',')[0]}, T. ({year}). {e['full_title']} ({e['version']}). {e['publisher']}. {doi_url(e)}"
+    version = version_value(e)
+    version_suffix = f" ({version})" if version else ""
+    text = f"{SITE['author_citation'].split(',')[0]}, T. ({year}). {e['full_title']}{version_suffix}. {e['publisher']}. {doi_url(e)}"
     return "\n".join(textwrap.wrap(text, 78))
 
 
 def bibtex(e: dict) -> str:
     key = f"{SITE['author_citation'].split(',')[0].lower()}{e['date'][:4]}{e['id']}"
-    return "\n".join([
+    lines = [
         f"@misc{{{key},",
         f"  author    = {{{SITE['author_citation']}}},",
         f"  title     = {{{e['full_title']}}},",
         f"  year      = {{{e['date'][:4]}}},",
-        f"  version   = {{{e['version']}}},",
+    ]
+    if version_value(e):
+        lines.append(f"  version   = {{{version_value(e)}}},")
+    lines += [
         f"  publisher = {{{e['publisher']}}},",
         f"  doi       = {{{e['doi']}}},",
         f"  url       = {{{doi_url(e)}}}",
         "}",
-    ])
+    ]
+    return "\n".join(lines)
 
 
 def replace_block(text: str, name: str, body: str, path: str) -> str:
@@ -112,7 +127,7 @@ def papers_block() -> str:
         cite = h(plain_citation(e))
         out += [
             f'          <li class="entry" id="{e["id"]}">',
-            f'            <p class="entry-meta"><time datetime="{e["date"]}">{e["date"]}</time> &middot; <span class="tag">{h(e["status"])}</span> &middot; version {h(e["version"])} &middot; {h(e["license"])}</p>',
+            f'            <p class="entry-meta"><time datetime="{e["date"]}">{e["date"]}</time> &middot; <span class="tag">{h(e["status"])}</span>{version_meta(e)} &middot; {h(e["license"])}</p>',
             f'            <h3><a href="./{paper_path(e)}">{h(e["title"])}</a></h3>',
             f'            <p>{h(e["subtitle"])}</p>',
             f'            <p>{h(e["archive_summary"])}</p>',
@@ -121,7 +136,7 @@ def papers_block() -> str:
             f'              <li><a href="{doi_url(e)}">DOI {h(e["doi"])}</a></li>',
             f'              <li><a href="{h(e["pdf"])}">PDF</a></li>',
             f'              <li><a href="{h(e["source"])}">Source</a></li>',
-            f'              <li><a href="{h(e["release"])}">Release</a></li>',
+            *([f'              <li><a href="{h(e["release"])}">Release</a></li>'] if e.get("release") else []),
             '            </ul>',
             '            <details>',
             '              <summary>Cite this paper</summary>',
@@ -159,8 +174,27 @@ def paper_page(e: dict) -> str:
     limits = "\n".join(f"          <li>{h(item)}</li>" for item in e["limitations"])
     versions = "\n".join(
         f'          <li>Version {h(v["version"])}<span class="sub"><time datetime="{v["date"]}">{v["date"]}</time> &middot; {h(v["note"])}</span></li>'
-        for v in e["versions"]
+        for v in e.get("versions", [])
     )
+    versions_section = ""
+    if versions:
+        versions_section = (
+            '\n\n    <section aria-labelledby="versions-heading">\n'
+            '      <div class="container">\n'
+            '        <h2 id="versions-heading">Version history</h2>\n'
+            '        <ul class="plain-list">\n'
+            f'{versions}\n'
+            '        </ul>\n'
+            '      </div>\n'
+            '    </section>'
+        )
+    paper_label = "PDF" + ((", version " + h(version_value(e))) if version_value(e) else "")
+    release_artifact = ""
+    if e.get("release"):
+        release_artifact = (
+            f'          <li><span>Release</span><a href="{h(e["release"])}">'
+            f'Version {h(version_value(e))}</a></li>\n'
+        )
     defensive = ""
     if e.get("defensive_publication"):
         defensive = (
@@ -228,7 +262,7 @@ def paper_page(e: dict) -> str:
         <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
         <h1>{h(e['title'])}</h1>
         <p class="lead">{h(e['subtitle'])}</p>
-        <p class="entry-meta"><time datetime="{e['date']}">{e['date']}</time> &middot; <span class="tag">{h(e['status'])}</span> &middot; version {h(e['version'])} &middot; {h(e['license'])} &middot; DOI {h(e['doi'])}</p>
+        <p class="entry-meta"><time datetime="{e['date']}">{e['date']}</time> &middot; <span class="tag">{h(e['status'])}</span>{version_meta(e)} &middot; {h(e['license'])} &middot; DOI {h(e['doi'])}</p>
         <div class="actions">
           <a class="btn btn-primary" href="{h(e['pdf'])}">Read the paper (PDF)</a>
           <a class="btn btn-secondary" href="{doi_url(e)}">DOI record</a>
@@ -269,10 +303,9 @@ def paper_page(e: dict) -> str:
         <h2 id="artifacts-heading">Artifacts</h2>
         <ul class="contact-grid">
           <li><span>DOI</span><a href="{doi_url(e)}">{h(e['doi'])}</a></li>
-          <li><span>Paper</span><a href="{h(e['pdf'])}">PDF, version {h(e['version'])}</a></li>
-          <li><span>Source</span><a href="{h(e['source'])}">Paper source and reproduction script</a></li>
-          <li><span>Release</span><a href="{h(e['release'])}">Version {h(e['version'])}</a></li>
-          <li><span>Archive</span><a href="{h(e['record'])}">{h(e['publisher'])} record</a></li>
+          <li><span>Paper</span><a href="{h(e['pdf'])}">{paper_label}</a></li>
+          <li><span>Source</span><a href="{h(e['source'])}">Paper source and reproducibility artifacts</a></li>
+{release_artifact}          <li><span>Archive</span><a href="{h(e['record'])}">{h(e['publisher'])} record</a></li>
           <li><span>Author</span><a href="https://orcid.org/{SITE['orcid']}">ORCID {SITE['orcid']}</a></li>
         </ul>
       </div>
@@ -288,14 +321,7 @@ def paper_page(e: dict) -> str:
       </div>
     </section>
 
-    <section aria-labelledby="versions-heading">
-      <div class="container">
-        <h2 id="versions-heading">Version history</h2>
-        <ul class="plain-list">
-{versions}
-        </ul>
-      </div>
-    </section>{defensive}
+{versions_section}{defensive}
   </main>
 
 {footer}</body>

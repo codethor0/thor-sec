@@ -9,11 +9,11 @@
   "sitemap": [
     {
       "path": "",
-      "lastmod": "2026-10-02"
+      "lastmod": "2026-10-04"
     },
     {
       "path": "research.html",
-      "lastmod": "2026-10-02"
+      "lastmod": "2026-10-04"
     },
     {
       "path": "work.html",
@@ -33,11 +33,11 @@
     },
     {
       "path": "now.html",
-      "lastmod": "2026-09-29"
+      "lastmod": "2026-10-04"
     },
     {
       "path": "feed.xml",
-      "lastmod": "2026-10-02"
+      "lastmod": "2026-10-04"
     },
     {
       "path": ".well-known/security.txt",
@@ -45,6 +45,41 @@
     }
   ],
   "entries": [
+    {
+      "id": "ascp",
+      "kind": "paper",
+      "title": "The Agent Security Control Plane",
+      "full_title": "The Agent Security Control Plane: Toward a Zero-Trust Architecture for Autonomous Machine Cognition",
+      "subtitle": "Toward a Zero-Trust Architecture for Autonomous Machine Cognition.",
+      "date": "2026-10-04",
+      "updated": "2026-10-04",
+      "status": "preprint",
+      "status_note": "Open-source architecture-and-evidence synthesis. ASCP is a proposed reference architecture, not a production standard or an end-to-end validated system. It treats model reasoning as untrusted compute, moves consequential authority to deterministic external control boundaries, and keeps authorized-but-harmful behavior and control-plane compromise inside the residual-risk model.",
+      "license": "CC BY 4.0",
+      "doi": "10.5281/zenodo.23146801",
+      "publisher": "Zenodo",
+      "pdf": "https://zenodo.org/records/23146801/files/The-Agent-Security-Control-Plane.pdf?download=1",
+      "source": "https://github.com/codethor0/agent-security-control-plane",
+      "record": "https://zenodo.org/records/23146801",
+      "defensive_publication": false,
+      "feed_id": "https://doi.org/10.5281/zenodo.23146801",
+      "description": "Zero-trust reference architecture for autonomous agents that keeps consequential authority outside the model at deterministic effect boundaries.",
+      "home_summary": "ASCP treats autonomous-agent reasoning as untrusted compute and moves consequential authority outside the model: workload identity, sponsor-preserving delegation, deterministic authorization, complete mediation at network and local effect boundaries, provenance, revocation, behavioral monitoring, and effect-level accountability.",
+      "archive_summary": "A zero-trust reference architecture and evidence synthesis for autonomous agents. ASCP separates model reasoning from authorization, distinguishes vertical authority attenuation from horizontal specialist handoff, requires complete mediation at the actual effect boundary, models correlated multi-agent failure without assuming independence, and explicitly preserves authorized-but-harmful behavior as residual risk.",
+      "feed_summary": "Zero-trust agent-security reference architecture that externalizes consequential authority from model reasoning and enforces it at deterministic effect boundaries.",
+      "abstract": [
+        "Autonomous software agents increasingly combine language-model reasoning with browsers, code execution, APIs, credentials, enterprise systems, and other effectful capabilities. That combination creates a security problem larger than prompt injection alone: a manipulated model can become a confused deputy if the same component that interprets untrusted semantics also serves as the effective authorization root.",
+        "The Agent Security Control Plane (ASCP) proposes a four-plane reference architecture built around identity and delegation, deterministic policy decision, policy enforcement at network and local effect boundaries, and observability and provenance. The paper formalizes sponsor-preserving delegation, vertical authority attenuation and horizontal specialist handoff, complete mediation, revocation, effect-level accountability, correlated multi-agent risk, and explicit residual-risk boundaries. It is presented as a testable architecture-and-evidence synthesis rather than a claim of production validation or a finished standard."
+      ],
+      "limitations": [
+        "ASCP is a proposed reference architecture and has not been benchmarked or validated end to end as a production system.",
+        "Deterministic authorization bounds structured effects but does not solve semantic alignment; an authenticated and authorized action can still be harmful inside delegated scope.",
+        "A compromised policy decision point, policy enforcement point, policy artifact, or privileged local bypass remains a high-value failure mode.",
+        "Complete mediation fails if a consequential local or network effect can bypass the enforcement boundary.",
+        "The normalized policy-risk score is a heuristic for policy thresholds, not a calibrated probability of compromise without deployment validation.",
+        "Correlated multi-agent risk depends on shared models, frameworks, prompts, credentials, policy code, and other common-cause dependencies that require empirical measurement in real deployments."
+      ]
+    },
     {
       "id": "meci",
       "kind": "paper",

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>The Agent Security Control Plane | THOR-SEC</title>
+  <meta name="description" content="Zero-trust reference architecture for autonomous agents that keeps consequential authority outside the model at deterministic effect boundaries.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research/ascp.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta name="citation_title" content="The Agent Security Control Plane: Toward a Zero-Trust Architecture for Autonomous Machine Cognition">
+  <meta name="citation_author" content="Thor, Thor">
+  <meta name="citation_publication_date" content="2026/10/04">
+  <meta name="citation_publisher" content="Zenodo">
+  <meta name="citation_doi" content="10.5281/zenodo.23146801">
+  <meta name="citation_pdf_url" content="https://zenodo.org/records/23146801/files/The-Agent-Security-Control-Plane.pdf?download=1">
+  <meta name="citation_abstract_html_url" content="https://codethor0.github.io/thor-sec/research/ascp.html">
+  <meta name="citation_language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="The Agent Security Control Plane | THOR-SEC">
+  <meta property="og:description" content="Zero-trust reference architecture for autonomous agents that keeps consequential authority outside the model at deterministic effect boundaries.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research/ascp.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Agent Security Control Plane | THOR-SEC">
+  <meta name="twitter:description" content="Zero-trust reference architecture for autonomous agents that keeps consequential authority outside the model at deterministic effect boundaries.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
+        <h1>The Agent Security Control Plane</h1>
+        <p class="lead">Toward a Zero-Trust Architecture for Autonomous Machine Cognition.</p>
+        <p class="entry-meta"><time datetime="2026-10-04">2026-10-04</time> &middot; <span class="tag">preprint</span> &middot; CC BY 4.0 &middot; DOI 10.5281/zenodo.23146801</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://zenodo.org/records/23146801/files/The-Agent-Security-Control-Plane.pdf?download=1">Read the paper (PDF)</a>
+          <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.23146801">DOI record</a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel">
+          <h2 id="status-heading">Research status</h2>
+          <p class="prose">Open-source architecture-and-evidence synthesis. ASCP is a proposed reference architecture, not a production standard or an end-to-end validated system. It treats model reasoning as untrusted compute, moves consequential authority to deterministic external control boundaries, and keeps authorized-but-harmful behavior and control-plane compromise inside the residual-risk model.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="abstract-heading">
+      <div class="container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="prose">
+          <p>Autonomous software agents increasingly combine language-model reasoning with browsers, code execution, APIs, credentials, enterprise systems, and other effectful capabilities. That combination creates a security problem larger than prompt injection alone: a manipulated model can become a confused deputy if the same component that interprets untrusted semantics also serves as the effective authorization root.</p>
+          <p>The Agent Security Control Plane (ASCP) proposes a four-plane reference architecture built around identity and delegation, deterministic policy decision, policy enforcement at network and local effect boundaries, and observability and provenance. The paper formalizes sponsor-preserving delegation, vertical authority attenuation and horizontal specialist handoff, complete mediation, revocation, effect-level accountability, correlated multi-agent risk, and explicit residual-risk boundaries. It is presented as a testable architecture-and-evidence synthesis rather than a claim of production validation or a finished standard.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-heading">
+      <div class="container">
+        <h2 id="limits-heading">Known limitations</h2>
+        <ul class="bullet-list prose">
+          <li>ASCP is a proposed reference architecture and has not been benchmarked or validated end to end as a production system.</li>
+          <li>Deterministic authorization bounds structured effects but does not solve semantic alignment; an authenticated and authorized action can still be harmful inside delegated scope.</li>
+          <li>A compromised policy decision point, policy enforcement point, policy artifact, or privileged local bypass remains a high-value failure mode.</li>
+          <li>Complete mediation fails if a consequential local or network effect can bypass the enforcement boundary.</li>
+          <li>The normalized policy-risk score is a heuristic for policy thresholds, not a calibrated probability of compromise without deployment validation.</li>
+          <li>Correlated multi-agent risk depends on shared models, frameworks, prompts, credentials, policy code, and other common-cause dependencies that require empirical measurement in real deployments.</li>
+        </ul>
+        <p class="note">Summarized from the paper. The full list is in its section on limitations, failure modes, and open research problems.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.23146801">10.5281/zenodo.23146801</a></li>
+          <li><span>Paper</span><a href="https://zenodo.org/records/23146801/files/The-Agent-Security-Control-Plane.pdf?download=1">PDF</a></li>
+          <li><span>Source</span><a href="https://github.com/codethor0/agent-security-control-plane">Paper source and reproducibility artifacts</a></li>
+          <li><span>Archive</span><a href="https://zenodo.org/records/23146801">Zenodo record</a></li>
+          <li><span>Author</span><a href="https://orcid.org/0009-0001-6573-385X">ORCID 0009-0001-6573-385X</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="cite-heading">
+      <div class="container">
+        <h2 id="cite-heading">Cite this work</h2>
+        <p class="code-label">Plain text</p>
+        <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). The Agent Security Control Plane: Toward a Zero-Trust
+Architecture for Autonomous Machine Cognition. Zenodo.
+https://doi.org/10.5281/zenodo.23146801</code></pre>
+        <p class="code-label">BibTeX</p>
+        <pre class="code-snippet" tabindex="0"><code>@misc{thor2026ascp,
+  author    = {Thor, Thor},
+  title     = {The Agent Security Control Plane: Toward a Zero-Trust Architecture for Autonomous Machine Cognition},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23146801},
+  url       = {https://doi.org/10.5281/zenodo.23146801}
+}</code></pre>
+      </div>
+    </section>
+
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer</p>
+    </div>
+  </footer>
+</body>
+</html>
