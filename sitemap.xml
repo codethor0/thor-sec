@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://codethor0.github.io/thor-sec/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/research.html</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/work.html</loc>
@@ -26,15 +26,19 @@
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/now.html</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/feed.xml</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/.well-known/security.txt</loc>
     <lastmod>2026-09-27</lastmod>
+  </url>
+  <url>
+    <loc>https://codethor0.github.io/thor-sec/research/ascp.html</loc>
+    <lastmod>2026-10-04</lastmod>
   </url>
   <url>
     <loc>https://codethor0.github.io/thor-sec/research/meci.html</loc>

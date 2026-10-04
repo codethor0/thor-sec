@@ -4,11 +4,20 @@
   <link href="https://codethor0.github.io/thor-sec/" rel="alternate"/>
   <link href="https://codethor0.github.io/thor-sec/feed.xml" rel="self"/>
   <id>https://codethor0.github.io/thor-sec/feed.xml</id>
-  <updated>2026-10-02T00:00:00Z</updated>
+  <updated>2026-10-04T00:00:00Z</updated>
   <author>
     <name>Thor Thor</name>
     <uri>https://orcid.org/0009-0001-6573-385X</uri>
   </author>
+
+  <entry>
+    <title>The Agent Security Control Plane (ASCP)</title>
+    <link href="https://codethor0.github.io/thor-sec/research/ascp.html" rel="alternate"/>
+    <id>https://doi.org/10.5281/zenodo.23146801</id>
+    <updated>2026-10-04T00:00:00Z</updated>
+    <published>2026-10-04T00:00:00Z</published>
+    <summary>Zero-trust control-plane architecture for autonomous AI agents: workload identity, sponsor-preserving delegation, deterministic authorization, complete mediation at effect boundaries, and falsifiable forecasts through 2030.</summary>
+  </entry>
 
   <entry>
     <title>Memory-Egress Cryptographic Interlock (MECI)</title>

@@ -9,11 +9,11 @@
   "sitemap": [
     {
       "path": "",
-      "lastmod": "2026-10-02"
+      "lastmod": "2026-10-04"
     },
     {
       "path": "research.html",
-      "lastmod": "2026-10-02"
+      "lastmod": "2026-10-04"
     },
     {
       "path": "work.html",
@@ -33,11 +33,11 @@
     },
     {
       "path": "now.html",
-      "lastmod": "2026-09-29"
+      "lastmod": "2026-10-04"
     },
     {
       "path": "feed.xml",
-      "lastmod": "2026-10-02"
+      "lastmod": "2026-10-04"
     },
     {
       "path": ".well-known/security.txt",
@@ -45,6 +45,53 @@
     }
   ],
   "entries": [
+    {
+      "id": "ascp",
+      "kind": "paper",
+      "title": "The Agent Security Control Plane (ASCP)",
+      "full_title": "The Agent Security Control Plane: Toward a Zero-Trust Architecture for Autonomous Machine Cognition",
+      "subtitle": "Toward a Zero-Trust Architecture for Autonomous Machine Cognition.",
+      "date": "2026-10-04",
+      "updated": "2026-10-04",
+      "status": "preprint",
+      "status_note": "Architecture-and-evidence synthesis and testable design hypothesis. The paper labels synthesis as inference rather than fact, keeps authorized-but-harmful actions inside the threat model, and makes no claim of peer review or end-to-end production validation. The publication artifacts are SHA-256 pinned to the Zenodo deposit and checked by continuous CI.",
+      "version": "1.0.0",
+      "license": "CC BY 4.0",
+      "doi": "10.5281/zenodo.23146801",
+      "publisher": "Zenodo",
+      "pdf": "https://github.com/codethor0/agent-security-control-plane/raw/main/The-Agent-Security-Control-Plane.pdf",
+      "source": "https://github.com/codethor0/agent-security-control-plane",
+      "release": "https://zenodo.org/records/23146801",
+      "record": "https://zenodo.org/records/23146801",
+      "defensive_publication": false,
+      "feed_id": "https://doi.org/10.5281/zenodo.23146801",
+      "description": "ASCP is a zero-trust control-plane architecture for autonomous AI agents: identity, delegation, and authorization stay outside the model.",
+      "home_summary": "ASCP treats the model as untrusted compute: it may propose an action, but it is not the authorization root. Consequential effects must cross deterministic policy and complete mediation at the real effect boundary, including local paths that bypass a network gateway. The publication artifacts are SHA-256 pinned and CI-verified.",
+      "archive_summary": "An architecture-and-evidence synthesis for securing autonomous software agents. It composes workload identity, sponsor-preserving delegation, deterministic authorization, complete mediation at network and local effect boundaries, provenance, revocation, and behavioral monitoring outside the model. The contribution is composition and evidence synthesis, not first invention; no end-to-end production validation is claimed.",
+      "feed_summary": "Zero-trust control-plane architecture for autonomous AI agents: workload identity, sponsor-preserving delegation, deterministic authorization, complete mediation at effect boundaries, and falsifiable forecasts through 2030.",
+      "abstract": [
+        "Autonomous AI agents are moving from isolated conversational interfaces into software actors that discover capabilities, read metadata, call tools, retain memory, delegate work, and produce external effects. That transition combines familiar security problems in an unfamiliar operating model: the requesting software is partly nondeterministic, authority may cross several hops, structured and natural-language inputs can steer behavior, and actions can occur at machine speed.",
+        "This paper argues that these pressures create demand for a distinct architectural separation, which it calls the Agent Security Control Plane (ASCP). The ASCP is not a new protocol, a single product, or a claim that existing application security has become obsolete. It is a proposed composition of workload identity, sponsor-preserving delegation, deterministic authorization, complete mediation at effect boundaries, metadata and schema validation, data-flow controls, provenance, revocation, and behavioral monitoring outside the language model. The core rule is: the LLM may propose an action, but it must not be the trust anchor that authorizes the action.",
+        "The public record suggests a convergent trajectory, not a coordinated ASCP program. MCP and A2A increasingly protocolize agent-to-tool and agent-to-agent communication; IETF WIMSE/AIMS applies workload identity and delegation concepts to agents; OpenID AuthZEN standardizes PDP/PEP authorization interfaces; OWASP defines agentic threat classes and runtime-control hooks; and NIST is coordinating agent standards, identity, and authorization work. These efforts have different scopes and did not set out to implement the architecture proposed here. Their relevance is that they expose compatible control points and primitives that can be composed. Network mediation is also incomplete: agents that invoke embedded Python, local libraries, shell functions, or in-process tools can bypass an HTTP gateway unless equivalent enforcement exists at the local dispatcher, runtime, sandbox, kernel, or transaction boundary. [2-13]",
+        "The vulnerability evidence must be read with the same discipline. mcp-remote, Claude Code, and Gemini CLI demonstrate ordinary command-injection, configuration, credential-exposure, and pre-sandbox failures in agent-adjacent software; they are not proof of a novel class of “agentic vulnerability.” Semantic Kernel and the disclosed evaluation incidents show how model-controlled or semantically influenced inputs can chain into those familiar failure modes. The architectural inference is therefore narrower: agent runtimes combine untrusted semantic inputs with powerful host and service capabilities, making complete mediation and externally enforced authority increasingly important. [14-25]",
+        "The paper contributes: (1) a source-disciplined synthesis across protocols, standards, vulnerabilities, incidents, patents, and capital while labeling synthesis as inference rather than fact; (2) a deterministic access-control model that distinguishes vertical attenuation from sponsor-authorized horizontal handoffs; (3) a reference architecture and threat model supported by eight diagrams; (4) fifteen testable synthesis claims with explicit counterarguments and residual risks; and (5) falsifiable forecasts through 2030 with declared subjective probabilities and an ex-post Brier-score rule. The ASCP does not solve semantic alignment: an authenticated, authorized, schema-valid action can still be harmful. Its narrower security objective is to reduce the ability of manipulated or incorrect reasoning to produce unbounded or out-of-scope external effects, while preserving evidence about who authorized what and where enforcement occurred."
+      ],
+      "limitations": [
+        "ASCP bounds external effects outside delegated authority; it does not solve semantic alignment. An authenticated, authorized, schema-valid action can still be harmful.",
+        "Complete mediation fails if an embedded Python runtime, local library, shell function, or in-process tool remains reachable around the gateway; enforcement must also exist at the local dispatcher, runtime, sandbox, kernel, or transaction boundary.",
+        "A compromised policy decision or enforcement point is a high-value failure mode; tamper-evident records improve detection and accountability but do not make a compromised enforcement point trustworthy.",
+        "The correlated multi-agent risk expression is an identity, not a measured exploit-rate estimator; the paper deliberately avoids assigning probabilities where no validated measurement exists.",
+        "The forecasts through 2030 carry declared subjective probabilities and are scored ex post with a Brier rule; they are falsifiable judgments, not validated predictions.",
+        "The contribution is composition and evidence synthesis from public sources through October 4, 2026, not first invention of the underlying primitives."
+      ],
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-10-04",
+          "note": "Initial public release, archived on Zenodo."
+        }
+      ]
+    },
     {
       "id": "meci",
       "kind": "paper",
