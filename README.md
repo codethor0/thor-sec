@@ -12,13 +12,14 @@ Independent security research lab and public website for Thor Thor.
 
 - **Researcher:** Thor Thor
 - **ORCID:** https://orcid.org/0009-0001-6573-385X
-- **Latest archival publication:** Memory-Egress Cryptographic Interlock (MECI), version 1.0.0
-- **DOI:** https://doi.org/10.5281/zenodo.23109676
-- **Source and reproducibility artifacts:** https://github.com/codethor0/meci
+- **Latest archival publication:** The Agent Security Control Plane: Toward a Zero-Trust Architecture for Autonomous Machine Cognition
+- **DOI:** https://doi.org/10.5281/zenodo.23146801
+- **Source and reproducibility artifacts:** https://github.com/codethor0/agent-security-control-plane
 - **Research archive:** https://codethor0.github.io/thor-sec/research.html
 
 ## Selected Research Projects
 
+- **Agent Security Control Plane (ASCP):** https://github.com/codethor0/agent-security-control-plane
 - **llm-agent-control-plane:** https://github.com/codethor0/llm-agent-control-plane
 - **Model Identity Verifier:** https://github.com/codethor0/model-identity-verifier
 - **BoundaryLayer:** https://github.com/codethor0/boundary-layer
