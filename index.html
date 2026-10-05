@@ -64,7 +64,7 @@
         <p class="hero-intro">THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work. Papers, reference implementations, and labs by Thor Thor on AI and LLM security, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
         <ul class="status-line" aria-label="Research status">
           <li><span class="status-dot" aria-hidden="true"></span><strong>Accepting research requests</strong></li>
-          <li><span>latest</span> <strong>MIAM 1.0.0</strong></li>
+          <li><span>latest</span> <strong>ASCP 1.0.0</strong></li>
           <li><span>orcid</span> <a href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
         </ul>
         <div class="actions">
@@ -82,6 +82,16 @@
         </div>
         <ol class="entry-list">
           <!-- build:latest:start -->
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-10-04">2026-10-04</time> &middot; <span class="tag">paper</span> &middot; DOI 10.5281/zenodo.23146801</p>
+            <h3><a href="./research/ascp.html">The Agent Security Control Plane (ASCP)</a></h3>
+            <p>ASCP treats the model as untrusted compute: it may propose an action, but it is not the authorization root. Consequential effects must cross deterministic policy and complete mediation at the real effect boundary, including local paths that bypass a network gateway. The publication artifacts are SHA-256 pinned and CI-verified.</p>
+            <ul class="inline-links">
+              <li><a href="https://doi.org/10.5281/zenodo.23146801">DOI</a></li>
+              <li><a href="https://github.com/codethor0/agent-security-control-plane/raw/main/The-Agent-Security-Control-Plane.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/agent-security-control-plane">Source and reproduction</a></li>
+            </ul>
+          </li>
           <li class="entry">
             <p class="entry-meta"><time datetime="2026-10-02">2026-10-02</time> &middot; <span class="tag">paper</span> &middot; DOI 10.5281/zenodo.23109676</p>
             <h3><a href="./research/meci.html">Memory-Egress Cryptographic Interlock (MECI)</a></h3>
@@ -101,11 +111,6 @@
               <li><a href="https://github.com/codethor0/miam/raw/v1.0.0/paper/MIAM.pdf">PDF</a></li>
               <li><a href="https://github.com/codethor0/miam">Source and reproduction</a></li>
             </ul>
-          </li>
-          <li class="entry">
-            <p class="entry-meta"><time datetime="2026-07-08">2026-07-08</time> &middot; <span class="tag">tool</span></p>
-            <h3><a href="https://github.com/codethor0/model-identity-verifier">Model Identity Verifier</a></h3>
-            <p>Detects LLM identity drift, route or provider mismatch, and downgrade or substitution signals, without treating a model's self-description as proof of what is running.</p>
           </li>
           <!-- build:latest:end -->
         </ol>
