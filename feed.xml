@@ -56,15 +56,6 @@
   </entry>
 
   <entry>
-    <title>BoundaryLayer</title>
-    <link href="https://github.com/codethor0/boundary-layer" rel="alternate"/>
-    <id>https://github.com/codethor0/boundary-layer</id>
-    <updated>2026-09-24T00:00:00Z</updated>
-    <published>2026-05-30T00:00:00Z</published>
-    <summary>Defensive LLM infrastructure security lab for comparing vulnerable and hardened blast-radius controls.</summary>
-  </entry>
-
-  <entry>
     <title>Model Identity Verifier</title>
     <link href="https://github.com/codethor0/model-identity-verifier" rel="alternate"/>
     <id>https://github.com/codethor0/model-identity-verifier</id>

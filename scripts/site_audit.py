@@ -518,7 +518,6 @@ def main() -> None:
         "10.5281/zenodo.23001045",
         "Mission-Invariant Architecture Morphing (MIAM)",
         "Model Identity Verifier",
-        "BoundaryLayer",
         "Impact Forecast Algorithm (IFA)",
         "Security Stack Engineering (SSE)",
         "./research.html",
