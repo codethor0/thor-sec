@@ -246,16 +246,6 @@
       "feed_summary": "Open-source CLI research tooling for LLM identity drift, suspicious provider or route mismatch, and downgrade or substitution signals."
     },
     {
-      "id": "boundary-layer",
-      "kind": "lab",
-      "title": "BoundaryLayer",
-      "url": "https://github.com/codethor0/boundary-layer",
-      "date": "2026-05-30",
-      "updated": "2026-09-24",
-      "home_summary": "A local lab for the infrastructure boundaries that decide blast radius after a model or agent is tricked: tool routing, sessions, authorization, uploads, caching, and alerting.",
-      "feed_summary": "Defensive LLM infrastructure security lab for comparing vulnerable and hardened blast-radius controls."
-    },
-    {
       "id": "llm-agent-authorization-boundary",
       "kind": "note",
       "title": "LLM Agent Authorization Boundary",
