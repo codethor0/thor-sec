@@ -40,7 +40,13 @@ code="${out%% *}"; loc="${out#* }"
 ok "self-test accepted (303 to request-received.html)"
 
 sleep 3
-num="$(gh issue list -R "$REPO" --state open --search "\"$MARK\" in:body" --json number --jq '.[0].number // empty')"
+num=""
+for _ in 1 2 3 4 5 6 7 8 9 10; do
+  num="$(gh issue list -R "$REPO" --state open --limit 20 --json number,title \
+    --jq "map(select(.title | contains(\"$MARK\"))) | .[0].number // empty")"
+  [ -n "$num" ] && break
+  sleep 3
+done
 [ -n "$num" ] || die "self-test issue not found in $REPO"
 [ "$(open_count)" = "$((before + 1))" ] || die "expected exactly one new issue"
 body="$(gh issue view "$num" -R "$REPO" --json body --jq .body)"
