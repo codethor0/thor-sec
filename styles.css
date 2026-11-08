@@ -44,6 +44,12 @@
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, "Liberation Mono", monospace;
   --radius: 6px;
+  --banner-bg: #050607;
+  --banner-text: #ffffff;
+  --banner-text-soft: #e6e9ed;
+  --banner-accent: #3ddc84;
+  --banner-scrim: linear-gradient(to right, rgba(5, 6, 7, 0.88) 0%, rgba(5, 6, 7, 0.6) 50%, rgba(5, 6, 7, 0) 80%), linear-gradient(to top, rgba(5, 6, 7, 0.7) 0%, rgba(5, 6, 7, 0) 75%);
+  --banner-scrim-narrow: linear-gradient(to top, rgba(5, 6, 7, 0.94) 0%, rgba(5, 6, 7, 0.8) 50%, rgba(5, 6, 7, 0) 100%);
   --measure: 68ch;
 }
 
@@ -308,21 +314,59 @@ section:last-of-type {
 /* Hero */
 
 .hero {
-  padding: 4.5rem 0 3.5rem;
+  padding: 2.5rem 0 3.5rem;
 }
 
 .hero h1 {
-  margin: 0 0 1rem;
-  font-size: clamp(2.25rem, 7vw, 3.5rem);
+  margin: 0 0 0.5rem;
+  font-size: clamp(2.25rem, 7vw, 3.75rem);
   letter-spacing: -0.03em;
+}
+
+/* Cover with the title set on it. Text stays real HTML for screen readers, search, and sharp rendering. */
+.hero-banner {
+  display: grid;
+  margin: 0 0 1.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--banner-bg);
+}
+
+.hero-banner > * {
+  grid-area: 1 / 1;
+  min-width: 0;
 }
 
 .hero-cover {
   display: block;
   width: 100%;
-  height: auto;
-  margin: 0 0 1.75rem;
-  border: 1px solid var(--border);
+  height: 100%;
+  aspect-ratio: 1702 / 630;
+  object-fit: cover;
+  object-position: 44% 35%;
+}
+
+.hero-banner-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem clamp(1.25rem, 4vw, 2.5rem) clamp(1.25rem, 3.5vw, 2.25rem);
+  background: var(--banner-scrim);
+  color: var(--banner-text);
+}
+
+.hero-banner-text .eyebrow {
+  color: var(--banner-accent);
+}
+
+.hero-banner-text h1 {
+  color: var(--banner-text);
+}
+
+.hero-banner-text .hero-tagline {
+  margin: 0;
+  color: var(--banner-text-soft);
 }
 
 .hero-tagline {
@@ -856,6 +900,12 @@ main a[href^="https://"]:not(.btn)::after {
   font-size: 0.75em;
 }
 
+@media (max-width: 900px) and (min-width: 721px) {
+  .hero-cover {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 @media (max-width: 720px) {
   .site-header {
     position: static;
@@ -870,7 +920,15 @@ main a[href^="https://"]:not(.btn)::after {
   }
 
   .hero {
-    padding: 3rem 0 2.5rem;
+    padding: 1.5rem 0 2.5rem;
+  }
+
+  .hero-cover {
+    aspect-ratio: 1 / 1;
+  }
+
+  .hero-banner-text {
+    background: var(--banner-scrim-narrow);
   }
 
   section {
@@ -885,8 +943,23 @@ main a[href^="https://"]:not(.btn)::after {
   }
 
   .site-header,
-  .actions {
+  .actions,
+  .hero-cover {
     display: none;
+  }
+
+  .hero-banner {
+    border: 0;
+    background: none;
+  }
+
+  .hero-banner-text,
+  .hero-banner-text h1,
+  .hero-banner-text .eyebrow,
+  .hero-banner-text .hero-tagline {
+    padding: 0;
+    background: none;
+    color: #000;
   }
 }
 
