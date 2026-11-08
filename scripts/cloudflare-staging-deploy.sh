@@ -34,7 +34,7 @@ case "${1:-}" in
   *) printf 'unknown argument: %s\n' "$1" >&2; exit 2 ;;
 esac
 
-PAGES="/ /research.html /research/echo-trace.html /research/ascp.html /research/meci.html /research/miam.html /case-studies.html /case-studies/llm-agent-control-plane.html /case-studies/miam.html /case-studies/model-identity-verifier.html /work.html /about.html /inventions.html /security.html /now.html /request-received.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/echo-trace-first-page.png /assets/thor-thor-profile.webp /assets/fonts/InterVariable.woff2 /assets/thor-sec-social-card.png /assets/favicon.png /assets/apple-touch-icon.png"
+PAGES="/ /research.html /research/echo-trace.html /research/ascp.html /research/meci.html /research/miam.html /case-studies.html /case-studies/llm-agent-control-plane.html /case-studies/miam.html /case-studies/model-identity-verifier.html /work.html /about.html /inventions.html /security.html /now.html /request-received.html /robots.txt /sitemap.xml /feed.xml /styles.css /.well-known/security.txt /assets/echo-trace-first-page.png /assets/thor-sec-cover.jpg /assets/thor-thor-profile.webp /assets/fonts/InterVariable.woff2 /assets/thor-sec-social-card.png /assets/favicon.png /assets/apple-touch-icon.png"
 BLOCKED="/.git/config /.git/HEAD /.github/CODEOWNERS /scripts/site_audit.py /scripts/cloudflare-staging-deploy.sh /worker/intake.mjs /worker/intake.test.mjs /wrangler.jsonc /.assetsignore /.gitignore /README.md /SECURITY.md /ARCHITECTURE.md /INVENTION-GATE.md /LICENSE /_headers"
 
 say()  { printf '\n==> %s\n' "$*"; }

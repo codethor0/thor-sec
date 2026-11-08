@@ -35,3 +35,6 @@ screenshots/
 private/
 drafts/
 notes/
+
+# Wrangler local state
+.wrangler/
