@@ -317,6 +317,14 @@ section:last-of-type {
   letter-spacing: -0.03em;
 }
 
+.hero-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 1.75rem;
+  border: 1px solid var(--border);
+}
+
 .hero-tagline {
   max-width: 36ch;
   margin: 0 0 1.25rem;
