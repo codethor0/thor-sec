@@ -30,6 +30,7 @@
   <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
   <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
@@ -58,10 +59,14 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-heading">
       <div class="container">
-        <p class="eyebrow">Independent security research</p>
-        <h1 id="hero-heading">THOR-SEC</h1>
-        <img class="hero-cover" src="assets/thor-sec-cover.jpg" width="1702" height="630" alt="Black-and-white photograph of silhouetted figures in protective helmets." fetchpriority="high" decoding="async">
-        <p class="hero-tagline">Research on how attackers use access, and how systems can make that access worthless.</p>
+        <div class="hero-banner">
+          <img class="hero-cover" src="assets/thor-sec-cover.jpg" width="1702" height="630" alt="Black-and-white photograph of silhouetted figures in protective helmets." fetchpriority="high">
+          <div class="hero-banner-text">
+            <p class="eyebrow">Independent security research</p>
+            <h1 id="hero-heading">THOR-SEC</h1>
+            <p class="hero-tagline">Research on how attackers use access, and how systems can make that access worthless.</p>
+          </div>
+        </div>
         <p class="hero-intro">THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work. Papers, reference implementations, and labs by Thor Thor on AI and LLM security, firmware observability, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
         <ul class="status-line" aria-label="Research status">
           <li><span class="status-dot" aria-hidden="true"></span><strong>Accepting research requests</strong></li>
