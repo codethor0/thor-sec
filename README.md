@@ -12,13 +12,14 @@ Independent security research lab and public website for Thor Thor.
 
 - **Researcher:** Thor Thor
 - **ORCID:** https://orcid.org/0009-0001-6573-385X
-- **Latest archival publication:** The Agent Security Control Plane: Toward a Zero-Trust Architecture for Autonomous Machine Cognition
-- **DOI:** https://doi.org/10.5281/zenodo.23146801
-- **Source and reproducibility artifacts:** https://github.com/codethor0/agent-security-control-plane
+- **Latest archival publication:** ECHO TRACE: AirPods 4 ANC Firmware-Update Observability (November 8, 2026)
+- **DOI:** https://doi.org/10.5281/zenodo.24056722
+- **Source and reproducibility artifacts:** https://github.com/codethor0/echo-trace-a3056-firmware-study
 - **Research archive:** https://codethor0.github.io/thor-sec/research.html
 
 ## Selected Research Projects
 
+- **ECHO TRACE:** https://github.com/codethor0/echo-trace-a3056-firmware-study
 - **Agent Security Control Plane (ASCP):** https://github.com/codethor0/agent-security-control-plane
 - **llm-agent-control-plane:** https://github.com/codethor0/llm-agent-control-plane
 - **Model Identity Verifier:** https://github.com/codethor0/model-identity-verifier
@@ -70,6 +71,8 @@ Papers are recorded once, in `scripts/research.json`. `scripts/build_research.py
 python3 scripts/build_research.py          # rewrite the built files
 python3 scripts/build_research.py --check  # CI: fail if any built file is out of date
 ```
+
+Paper records may include a `cover` with a same-origin `assets/` image path, descriptive `alt`, caption, and positive pixel dimensions, plus optional `methods` and `observations` lists. The builder checks the cover path and file before rendering.
 
 Edit only the JSON and rerun the script; do not hand-edit text between `<!-- build:... -->` markers.
 

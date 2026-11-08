@@ -99,7 +99,7 @@
       <div class="container">
         <h2 id="evidence-heading">Evidence</h2>
         <ul class="bullet-list prose">
-          <li>The repository maps security invariants to 293 automated tests, including deny-by-default behavior, broker authority, provenance enforcement, approval gates, tenant isolation, output filtering, audit logging, and refusal to execute a real shell.</li>
+          <li>Public repository documentation maps security invariants to automated tests for deny-by-default behavior, broker authority, provenance enforcement, approval gates, tenant isolation, output filtering, audit logging, and refusal to execute a real shell. This case study does not assert a newly verified test total.</li>
           <li>Release v0.3.0 documents a validation gate covering the test suite, Docker/Compose validation, repository and policy checks, Bandit, pip-audit, CodeQL, Gitleaks, Trivy, and SBOM generation.</li>
           <li>The project includes a FastAPI interface, CLI demonstrations, deployment reference profiles, defensive-control documentation, a threat model, and operator guidance.</li>
         </ul>
@@ -114,6 +114,7 @@
           <li>It does not execute real shell commands, send real email, scan networks, or call production LLM APIs by default.</li>
           <li>Production deployment still requires enterprise identity, persistence, key management, DLP, observability, deployment hardening, and operational review.</li>
           <li>Release checksums are documented as unsigned and do not provide signed artifact provenance.</li>
+          <li>API-test isolation remains incomplete in the public source reviewed on November 8, 2026: tests/test_api.py obtains the cached application without a temporary audit-directory override. Passing those tests does not establish isolation from environment configuration or the default audit location.</li>
         </ul>
       </div>
     </section>

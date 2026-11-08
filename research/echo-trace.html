@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>ECHO TRACE: AirPods 4 ANC Firmware-Update Observability | THOR-SEC</title>
+  <meta name="description" content="Single-earbud AirPods 4 ANC firmware case study separating asset discovery, update initiation, transfer, and activation, with evidence and limitations.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research/echo-trace.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta name="citation_title" content="Firmware-Update Observability in a Single-Earbud AirPods 4 ANC Configuration: A macOS UARP Case Study of Asset Discovery, Update Initiation, Device-State Verification, and Bounded Direct-Transport Diagnostics">
+  <meta name="citation_author" content="Thor, Thor">
+  <meta name="citation_publication_date" content="2026/11/08">
+  <meta name="citation_publisher" content="Zenodo">
+  <meta name="citation_doi" content="10.5281/zenodo.24056722">
+  <meta name="citation_pdf_url" content="https://github.com/codethor0/echo-trace-a3056-firmware-study/raw/3d19a3b9541f652de8f6e59483f174c6f4c189db/paper/ECHO_TRACE_A3056_Research_Paper.pdf">
+  <meta name="citation_abstract_html_url" content="https://codethor0.github.io/thor-sec/research/echo-trace.html">
+  <meta name="citation_language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="ECHO TRACE: AirPods 4 ANC Firmware-Update Observability | THOR-SEC">
+  <meta property="og:description" content="Single-earbud AirPods 4 ANC firmware case study separating asset discovery, update initiation, transfer, and activation, with evidence and limitations.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research/echo-trace.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ECHO TRACE: AirPods 4 ANC Firmware-Update Observability | THOR-SEC">
+  <meta name="twitter:description" content="Single-earbud AirPods 4 ANC firmware case study separating asset discovery, update initiation, transfer, and activation, with evidence and limitations.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
+        <h1>ECHO TRACE: AirPods 4 ANC Firmware-Update Observability</h1>
+        <p class="lead">A macOS UARP case study in a single-earbud configuration.</p>
+        <p class="entry-meta"><time datetime="2026-11-08">2026-11-08</time> &middot; <span class="tag">independent research preprint</span> &middot; version 1.0 &middot; CC BY 4.0 &middot; DOI 10.5281/zenodo.24056722</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/codethor0/echo-trace-a3056-firmware-study/raw/3d19a3b9541f652de8f6e59483f174c6f4c189db/paper/ECHO_TRACE_A3056_Research_Paper.pdf">Read the paper (PDF)</a>
+          <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.24056722">DOI record</a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel">
+          <h2 id="status-heading">Research status</h2>
+          <p class="prose">Single-device empirical case study, published on Zenodo. Asset discovery, update initiation, device-state verification, and bounded transport diagnostics were observed separately. The study establishes neither a successful firmware update nor a firmware defect; the missing companion earbud remains a hypothesis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="preview-heading">
+      <div class="container">
+        <h2 id="preview-heading">Paper preview</h2>
+        <figure class="paper-preview">
+          <a href="../assets/echo-trace-first-page.png"><img src="../assets/echo-trace-first-page.png" width="1224" height="1584" alt="Complete first page of the ECHO TRACE paper, with title, author and ORCID, research dates, conceptual earbud illustration and disclaimer, opening abstract, and page number 1." loading="lazy" decoding="async"></a>
+          <figcaption>Complete first page of the published paper. The earbud cutaway is AI-generated conceptual artwork, not a device scan or verified A3056 internal layout.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="abstract-heading">
+      <div class="container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="prose">
+          <p>The surviving left AirPods 4 ANC earbud (A3056) continued reporting firmware 8B21 while a newer family release, 9A348, and a matching macOS UARP asset were available. This independent investigation follows the observable update stages rather than treating catalog availability or an initiated scan as proof of installation.</p>
+          <p>Host-state reconstruction, 60 ANC host-state observations, updater-log triage, and bounded GATT, AAP, and UARP diagnostics distinguish accessory identification from firmware delivery. Three explicitly authorized offer sessions were acknowledged but produced terminal processing notifications before any firmware-image request. No image bytes were served and no staging or Apply command was issued. The cause remains unresolved.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="methods-heading">
+      <div class="container">
+        <h2 id="methods-heading">Methods</h2>
+        <ul class="bullet-list prose">
+          <li>Compared published family release information and cached macOS UARP asset metadata with connected-device firmware readbacks, keeping a separate non-ANC AirPods device distinct from the A3056 target.</li>
+          <li>Reconstructed host-side scan initiation, reviewed 60 ANC host-state samples under three conditions, and triaged 3,257 updater log records.</li>
+          <li>Performed bounded direct-transport diagnostics, mostly information-only, with three explicitly authorized sessions each sending one firmware offer. Public artifacts contain sanitized datasets; raw diagnostic logs and device identifiers are excluded.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="observations-heading">
+      <div class="container">
+        <h2 id="observations-heading">Key observations</h2>
+        <ul class="bullet-list prose">
+          <li>The remaining left A3056 reported 8B21; family release 9A348 had been published and macOS contained the corresponding cached UARP asset.</li>
+          <li>Connected host verification continued to report 8B21 after the manual scan request. The preserved transcript does not establish the case-closed dwell time.</li>
+          <li>All three authorized direct firmware offers were acknowledged. No firmware-image requests were observed, no firmware-image bytes were served, and no staging or Apply command was issued.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-heading">
+      <div class="container">
+        <h2 id="limits-heading">Known limitations</h2>
+        <ul class="bullet-list prose">
+          <li>One device and one host do not establish behavior for all AirPods 4 ANC configurations; no matched complete pair was available as a control.</li>
+          <li>The missing companion earbud is a testable dependency hypothesis, not an established cause or a demonstrated firmware-update requirement for A3056.</li>
+          <li>Client-decoded terminal notifications, including flags 0x0003, have ambiguous interpretations; prior-session state was not eliminated as a possible explanation.</li>
+          <li>The cached firmware signature was not independently cryptographically verified, and the case-closed dwell time cannot be reconstructed from the preserved transcript.</li>
+          <li>ANC host-state telemetry is not an acoustic or RF exposure measurement. The study proves neither a firmware defect nor a successful update.</li>
+        </ul>
+        <p class="note">Summarized from the paper. The full list is in its section on limitations, failure modes, and open research problems.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.24056722">10.5281/zenodo.24056722</a></li>
+          <li><span>Paper</span><a href="https://github.com/codethor0/echo-trace-a3056-firmware-study/raw/3d19a3b9541f652de8f6e59483f174c6f4c189db/paper/ECHO_TRACE_A3056_Research_Paper.pdf">PDF, version 1.0</a></li>
+          <li><span>Source</span><a href="https://github.com/codethor0/echo-trace-a3056-firmware-study">Paper source and reproducibility artifacts</a></li>
+          <li><span>Archive</span><a href="https://zenodo.org/records/24056722">Zenodo record</a></li>
+          <li><span>Author</span><a href="https://orcid.org/0009-0001-6573-385X">ORCID 0009-0001-6573-385X</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="cite-heading">
+      <div class="container">
+        <h2 id="cite-heading">Cite this work</h2>
+        <p class="code-label">Plain text</p>
+        <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Firmware-Update Observability in a Single-Earbud AirPods 4
+ANC Configuration: A macOS UARP Case Study of Asset Discovery, Update
+Initiation, Device-State Verification, and Bounded Direct-Transport
+Diagnostics (1.0). Zenodo. https://doi.org/10.5281/zenodo.24056722</code></pre>
+        <p class="code-label">BibTeX</p>
+        <pre class="code-snippet" tabindex="0"><code>@misc{thor2026echo-trace,
+  author    = {Thor, Thor},
+  title     = {Firmware-Update Observability in a Single-Earbud AirPods 4 ANC Configuration: A macOS UARP Case Study of Asset Discovery, Update Initiation, Device-State Verification, and Bounded Direct-Transport Diagnostics},
+  year      = {2026},
+  version   = {1.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24056722},
+  url       = {https://doi.org/10.5281/zenodo.24056722}
+}</code></pre>
+      </div>
+    </section>
+
+
+
+    <section aria-labelledby="versions-heading">
+      <div class="container">
+        <h2 id="versions-heading">Version history</h2>
+        <ul class="plain-list">
+          <li>Version 1.0<span class="sub"><time datetime="2026-11-08">2026-11-08</time> &middot; Initial public preprint, archived on Zenodo.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer</p>
+    </div>
+  </footer>
+</body>
+</html>

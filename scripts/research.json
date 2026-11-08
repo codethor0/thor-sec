@@ -9,11 +9,11 @@
   "sitemap": [
     {
       "path": "",
-      "lastmod": "2026-10-04"
+      "lastmod": "2026-11-08"
     },
     {
       "path": "research.html",
-      "lastmod": "2026-10-04"
+      "lastmod": "2026-11-08"
     },
     {
       "path": "work.html",
@@ -33,11 +33,11 @@
     },
     {
       "path": "now.html",
-      "lastmod": "2026-10-04"
+      "lastmod": "2026-11-08"
     },
     {
       "path": "feed.xml",
-      "lastmod": "2026-10-04"
+      "lastmod": "2026-11-08"
     },
     {
       "path": ".well-known/security.txt",
@@ -45,6 +45,65 @@
     }
   ],
   "entries": [
+    {
+      "id": "echo-trace",
+      "kind": "paper",
+      "title": "ECHO TRACE: AirPods 4 ANC Firmware-Update Observability",
+      "full_title": "Firmware-Update Observability in a Single-Earbud AirPods 4 ANC Configuration: A macOS UARP Case Study of Asset Discovery, Update Initiation, Device-State Verification, and Bounded Direct-Transport Diagnostics",
+      "subtitle": "A macOS UARP case study in a single-earbud configuration.",
+      "date": "2026-11-08",
+      "updated": "2026-11-08",
+      "status": "independent research preprint",
+      "status_note": "Single-device empirical case study, published on Zenodo. Asset discovery, update initiation, device-state verification, and bounded transport diagnostics were observed separately. The study establishes neither a successful firmware update nor a firmware defect; the missing companion earbud remains a hypothesis.",
+      "version": "1.0",
+      "license": "CC BY 4.0",
+      "doi": "10.5281/zenodo.24056722",
+      "publisher": "Zenodo",
+      "pdf": "https://github.com/codethor0/echo-trace-a3056-firmware-study/raw/3d19a3b9541f652de8f6e59483f174c6f4c189db/paper/ECHO_TRACE_A3056_Research_Paper.pdf",
+      "source": "https://github.com/codethor0/echo-trace-a3056-firmware-study",
+      "record": "https://zenodo.org/records/24056722",
+      "defensive_publication": false,
+      "feed_id": "https://doi.org/10.5281/zenodo.24056722",
+      "description": "Single-earbud AirPods 4 ANC firmware case study separating asset discovery, update initiation, transfer, and activation, with evidence and limitations.",
+      "home_summary": "A single-earbud firmware investigation that separates a published update and cached macOS UARP asset from transport, staging, and installation. Three authorized firmware offers were acknowledged; no image-data request or image transfer was observed, and the cause remains unresolved.",
+      "archive_summary": "An independent single-device case study of an AirPods 4 ANC A3056 still reporting 8B21 while family firmware 9A348 and a matching cached macOS UARP asset were available. It combines host-state verification, sanitized observations, and bounded direct-transport trials without establishing a successful update or a firmware defect.",
+      "feed_summary": "Single-earbud AirPods 4 ANC case study: acknowledged firmware offers without observed image requests or image transfer. The missing companion earbud remains a hypothesis.",
+      "abstract": [
+        "The surviving left AirPods 4 ANC earbud (A3056) continued reporting firmware 8B21 while a newer family release, 9A348, and a matching macOS UARP asset were available. This independent investigation follows the observable update stages rather than treating catalog availability or an initiated scan as proof of installation.",
+        "Host-state reconstruction, 60 ANC host-state observations, updater-log triage, and bounded GATT, AAP, and UARP diagnostics distinguish accessory identification from firmware delivery. Three explicitly authorized offer sessions were acknowledged but produced terminal processing notifications before any firmware-image request. No image bytes were served and no staging or Apply command was issued. The cause remains unresolved."
+      ],
+      "methods": [
+        "Compared published family release information and cached macOS UARP asset metadata with connected-device firmware readbacks, keeping a separate non-ANC AirPods device distinct from the A3056 target.",
+        "Reconstructed host-side scan initiation, reviewed 60 ANC host-state samples under three conditions, and triaged 3,257 updater log records.",
+        "Performed bounded direct-transport diagnostics, mostly information-only, with three explicitly authorized sessions each sending one firmware offer. Public artifacts contain sanitized datasets; raw diagnostic logs and device identifiers are excluded."
+      ],
+      "observations": [
+        "The remaining left A3056 reported 8B21; family release 9A348 had been published and macOS contained the corresponding cached UARP asset.",
+        "Connected host verification continued to report 8B21 after the manual scan request. The preserved transcript does not establish the case-closed dwell time.",
+        "All three authorized direct firmware offers were acknowledged. No firmware-image requests were observed, no firmware-image bytes were served, and no staging or Apply command was issued."
+      ],
+      "limitations": [
+        "One device and one host do not establish behavior for all AirPods 4 ANC configurations; no matched complete pair was available as a control.",
+        "The missing companion earbud is a testable dependency hypothesis, not an established cause or a demonstrated firmware-update requirement for A3056.",
+        "Client-decoded terminal notifications, including flags 0x0003, have ambiguous interpretations; prior-session state was not eliminated as a possible explanation.",
+        "The cached firmware signature was not independently cryptographically verified, and the case-closed dwell time cannot be reconstructed from the preserved transcript.",
+        "ANC host-state telemetry is not an acoustic or RF exposure measurement. The study proves neither a firmware defect nor a successful update."
+      ],
+      "cover": {
+        "path": "assets/echo-trace-first-page.png",
+        "width": 1224,
+        "height": 1584,
+        "alt": "Complete first page of the ECHO TRACE paper, with title, author and ORCID, research dates, conceptual earbud illustration and disclaimer, opening abstract, and page number 1.",
+        "caption": "Complete first page of the published paper. The earbud cutaway is AI-generated conceptual artwork, not a device scan or verified A3056 internal layout."
+      },
+      "versions": [
+        {
+          "version": "1.0",
+          "date": "2026-11-08",
+          "note": "Initial public preprint, archived on Zenodo."
+        }
+      ]
+    },
     {
       "id": "ascp",
       "kind": "paper",
