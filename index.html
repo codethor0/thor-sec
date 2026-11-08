@@ -9,14 +9,14 @@
   <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
   <title>THOR-SEC | Independent Security Research by Thor Thor</title>
-  <meta name="description" content="Independent security research by Thor Thor on AI and LLM security, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
+  <meta name="description" content="Independent security research by Thor Thor on AI and LLM security, firmware observability, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
   <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="THOR-SEC">
   <meta property="og:title" content="THOR-SEC | Independent Security Research by Thor Thor">
-  <meta property="og:description" content="Independent security research by Thor Thor on AI and LLM security, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
+  <meta property="og:description" content="Independent security research by Thor Thor on AI and LLM security, firmware observability, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
   <meta property="og:url" content="https://codethor0.github.io/thor-sec/">
   <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta property="og:image:type" content="image/png">
@@ -26,7 +26,7 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="THOR-SEC | Independent Security Research by Thor Thor">
-  <meta name="twitter:description" content="Independent security research by Thor Thor on AI and LLM security, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
+  <meta name="twitter:description" content="Independent security research by Thor Thor on AI and LLM security, firmware observability, moving target defense, and security architecture. Papers, open-source tools, and commissioned research.">
   <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <link rel="stylesheet" href="styles.css">
@@ -61,10 +61,10 @@
         <p class="eyebrow">Independent security research</p>
         <h1 id="hero-heading">THOR-SEC</h1>
         <p class="hero-tagline">Research on how attackers use access, and how systems can make that access worthless.</p>
-        <p class="hero-intro">THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work. Papers, reference implementations, and labs by Thor Thor on AI and LLM security, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
+        <p class="hero-intro">THOR-SEC finds hard security and infrastructure problems, develops original solutions, and publishes the evidence that they work. Papers, reference implementations, and labs by Thor Thor on AI and LLM security, firmware observability, moving target defense, and security architecture. Every claim ships with the artifacts to check it.</p>
         <ul class="status-line" aria-label="Research status">
           <li><span class="status-dot" aria-hidden="true"></span><strong>Accepting research requests</strong></li>
-          <li><span>latest</span> <strong>ASCP</strong></li>
+          <li><span>latest</span> <a href="./research/echo-trace.html">ECHO TRACE</a></li>
           <li><span>orcid</span> <a href="https://orcid.org/0009-0001-6573-385X">0009-0001-6573-385X</a></li>
         </ul>
         <div class="actions">
@@ -82,6 +82,16 @@
         </div>
         <ol class="entry-list">
           <!-- build:latest:start -->
+          <li class="entry">
+            <p class="entry-meta"><time datetime="2026-11-08">2026-11-08</time> &middot; <span class="tag">paper</span> &middot; DOI 10.5281/zenodo.24056722</p>
+            <h3><a href="./research/echo-trace.html">ECHO TRACE: AirPods 4 ANC Firmware-Update Observability</a></h3>
+            <p>A single-earbud firmware investigation that separates a published update and cached macOS UARP asset from transport, staging, and installation. Three authorized firmware offers were acknowledged; no image-data request or image transfer was observed, and the cause remains unresolved.</p>
+            <ul class="inline-links">
+              <li><a href="https://doi.org/10.5281/zenodo.24056722">DOI</a></li>
+              <li><a href="https://github.com/codethor0/echo-trace-a3056-firmware-study/raw/3d19a3b9541f652de8f6e59483f174c6f4c189db/paper/ECHO_TRACE_A3056_Research_Paper.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/echo-trace-a3056-firmware-study">Source and reproduction</a></li>
+            </ul>
+          </li>
           <li class="entry">
             <p class="entry-meta"><time datetime="2026-10-04">2026-10-04</time> &middot; <span class="tag">paper</span> &middot; DOI 10.5281/zenodo.23146801</p>
             <h3><a href="./research/ascp.html">The Agent Security Control Plane</a></h3>

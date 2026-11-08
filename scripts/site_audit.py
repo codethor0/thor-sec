@@ -513,6 +513,8 @@ def main() -> None:
     home = (ROOT / "index.html").read_text(encoding="utf-8")
     for required in (
         "0009-0001-6573-385X",
+        "10.5281/zenodo.24056722",
+        "ECHO TRACE: AirPods 4 ANC Firmware-Update Observability",
         "10.5281/zenodo.23001045",
         "Mission-Invariant Architecture Morphing (MIAM)",
         "Model Identity Verifier",

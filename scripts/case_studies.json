@@ -26,7 +26,7 @@
         "Audit logging records allow and deny decisions with redaction, and the protected path is compared with a deliberately vulnerable simulation path."
       ],
       "evidence": [
-        "The repository maps security invariants to 293 automated tests, including deny-by-default behavior, broker authority, provenance enforcement, approval gates, tenant isolation, output filtering, audit logging, and refusal to execute a real shell.",
+        "Public repository documentation maps security invariants to automated tests for deny-by-default behavior, broker authority, provenance enforcement, approval gates, tenant isolation, output filtering, audit logging, and refusal to execute a real shell. This case study does not assert a newly verified test total.",
         "Release v0.3.0 documents a validation gate covering the test suite, Docker/Compose validation, repository and policy checks, Bandit, pip-audit, CodeQL, Gitleaks, Trivy, and SBOM generation.",
         "The project includes a FastAPI interface, CLI demonstrations, deployment reference profiles, defensive-control documentation, a threat model, and operator guidance."
       ],
@@ -34,7 +34,8 @@
         "This is a local, simulated defensive reference implementation, not a drop-in production service.",
         "It does not execute real shell commands, send real email, scan networks, or call production LLM APIs by default.",
         "Production deployment still requires enterprise identity, persistence, key management, DLP, observability, deployment hardening, and operational review.",
-        "Release checksums are documented as unsigned and do not provide signed artifact provenance."
+        "Release checksums are documented as unsigned and do not provide signed artifact provenance.",
+        "API-test isolation remains incomplete in the public source reviewed on November 8, 2026: tests/test_api.py obtains the cached application without a temporary audit-directory override. Passing those tests does not establish isolation from environment configuration or the default audit location."
       ],
       "status": "Implemented reference architecture with tested security invariants. Production integration and operational validation remain outside the demonstrated scope.",
       "artifacts": [
@@ -59,7 +60,7 @@
           "Threats, assumptions, mitigations, and non-goals"
         ]
       ],
-      "updated": "2026-09-28"
+      "updated": "2026-11-08"
     },
     {
       "id": "miam",

@@ -30,7 +30,7 @@ CASE_DATA_PATH = ROOT / "scripts/case_studies.json"
 CASE_DATA = json.loads(CASE_DATA_PATH.read_text(encoding="utf-8")) if CASE_DATA_PATH.exists() else {"entries": []}
 CASE_STUDIES = CASE_DATA["entries"]
 LATEST_KINDS = ("paper", "tool", "lab")
-LATEST_COUNT = 3
+LATEST_COUNT = 4
 SOCIAL_IMAGE = BASE + "assets/thor-sec-social-card.png"
 SOCIAL_ALT = "THOR-SEC: independent security research by Thor Thor"
 
@@ -163,6 +163,53 @@ def shared_chrome() -> tuple[str, str, str]:
     return csp, relink(header), relink(footer)
 
 
+
+def cover_section(e: dict) -> str:
+    cover = e.get("cover")
+    if cover is None:
+        return ""
+    path = cover["path"]
+    if not re.fullmatch(r"assets/[A-Za-z0-9_-]+\.(?:png|jpg|webp)", path):
+        raise ValueError(f"{e['id']}: cover must be a same-origin image in assets/")
+    if not (ROOT / path).is_file():
+        raise ValueError(f"{e['id']}: cover image is missing: {path}")
+    for dimension in ("width", "height"):
+        if type(cover[dimension]) is not int or cover[dimension] <= 0:
+            raise ValueError(f"{e['id']}: cover {dimension} must be a positive integer")
+    if not cover["alt"].strip():
+        raise ValueError(f"{e['id']}: cover requires descriptive alternative text")
+    return (
+        '\n\n    <section aria-labelledby="preview-heading">\n'
+        '      <div class="container">\n'
+        '        <h2 id="preview-heading">Paper preview</h2>\n'
+        '        <figure class="paper-preview">\n'
+        f'          <a href="../{h(path)}"><img src="../{h(path)}" width="{cover["width"]}" height="{cover["height"]}" alt="{h(cover["alt"])}" loading="lazy" decoding="async"></a>\n'
+        f'          <figcaption>{h(cover["caption"])}</figcaption>\n'
+        '        </figure>\n'
+        '      </div>\n'
+        '    </section>'
+    )
+
+
+def evidence_sections(e: dict) -> str:
+    out = []
+    for key, title in (("methods", "Methods"), ("observations", "Key observations")):
+        if not e.get(key):
+            continue
+        items = "\n".join(f"          <li>{h(item)}</li>" for item in e[key])
+        out.append(
+            f'\n\n    <section aria-labelledby="{key}-heading">\n'
+            '      <div class="container">\n'
+            f'        <h2 id="{key}-heading">{title}</h2>\n'
+            '        <ul class="bullet-list prose">\n'
+            f'{items}\n'
+            '        </ul>\n'
+            '      </div>\n'
+            '    </section>'
+        )
+    return "".join(out)
+
+
 def paper_page(e: dict) -> str:
     csp, header, footer = shared_chrome()
     url = BASE + paper_path(e)
@@ -277,7 +324,7 @@ def paper_page(e: dict) -> str:
           <p class="prose">{h(e['status_note'])}</p>
         </div>
       </div>
-    </section>
+    </section>{cover_section(e)}
 
     <section aria-labelledby="abstract-heading">
       <div class="container">
@@ -286,7 +333,7 @@ def paper_page(e: dict) -> str:
 {abstract}
         </div>
       </div>
-    </section>
+    </section>{evidence_sections(e)}
 
     <section aria-labelledby="limits-heading">
       <div class="container">
