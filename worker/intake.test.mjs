@@ -1,7 +1,7 @@
 // Unit tests for worker/intake.mjs. Run: node --test worker/
 import test from "node:test";
 import assert from "node:assert/strict";
-import worker, { handleIntake, SUCCESS_URL, MAX_BODY_BYTES } from "./intake.mjs";
+import worker, { handleIntake, readBody, SUCCESS_URL, MAX_BODY_BYTES } from "./intake.mjs";
 
 const ORIGIN = "https://codethor0.github.io";
 const VALID = {
@@ -139,4 +139,84 @@ test("responses carry security headers", async () => {
 test("other paths are served from static assets", async () => {
   const res = await worker.fetch(new Request("https://thor-sec.codethor0.workers.dev/work.html"), env());
   assert.equal(await res.text(), "asset");
+});
+
+// A request whose body arrives as a stream with no Content-Length header.
+function streamReq(chunks, headers = {}) {
+  let pulled = 0;
+  const body = new ReadableStream({
+    pull(controller) {
+      if (pulled < chunks.length) controller.enqueue(chunks[pulled++]);
+      else controller.close();
+    },
+  });
+  const request = {
+    method: "POST",
+    headers: new Headers({ Origin: ORIGIN, "Content-Type": "application/x-www-form-urlencoded", ...headers }),
+    body,
+  };
+  return { request, pulled: () => pulled };
+}
+
+const enc = new TextEncoder();
+const VALID_BYTES = enc.encode(new URLSearchParams(VALID).toString());
+
+test("missing limiter binding fails closed", async () => {
+  const e = env();
+  delete e.INTAKE_LIMITER;
+  const res = await handleIntake(req(VALID), e);
+  assert.equal(res.status, 503);
+  assert.equal(calls.length, 0);
+});
+
+test("limiter error fails closed", async () => {
+  const e = env();
+  e.INTAKE_LIMITER = { limit: async () => { throw new Error("limiter down"); } };
+  const res = await handleIntake(req(VALID), e);
+  assert.equal(res.status, 503);
+  assert.doesNotMatch(await res.text(), /limiter down/);
+  assert.equal(calls.length, 0);
+});
+
+test("oversized streamed body without Content-Length is rejected early", async () => {
+  const chunk = new Uint8Array(4096).fill(0x61);
+  const { request, pulled } = streamReq(Array.from({ length: 64 }, () => chunk));
+  const res = await handleIntake(request, env());
+  assert.equal(res.status, 413);
+  assert.equal(calls.length, 0);
+  assert.ok(pulled() < 64, "stream was cancelled before it was fully read");
+});
+
+test("misleading Content-Length does not bypass the limit", async () => {
+  const chunk = new Uint8Array(8192).fill(0x61);
+  const { request } = streamReq([chunk, chunk, chunk, chunk], { "Content-Length": "10" });
+  const res = await handleIntake(request, env());
+  assert.equal(res.status, 413);
+  assert.equal(calls.length, 0);
+});
+
+test("valid body streamed in one-byte chunks is accepted", async () => {
+  const { request } = streamReq(Array.from(VALID_BYTES, (b) => Uint8Array.of(b)));
+  const res = await handleIntake(request, env());
+  assert.equal(res.status, 303);
+  assert.equal(calls.length, 1);
+});
+
+test("multibyte UTF-8 split across chunks is decoded intact", async () => {
+  const question = "Pr\u00fcfung \u6e2c\u8a66 \u2603 authorization boundary";
+  const bytes = enc.encode(new URLSearchParams({ ...VALID, question }).toString());
+  const { request } = streamReq(Array.from(bytes, (b) => Uint8Array.of(b)));
+  const res = await handleIntake(request, env());
+  assert.equal(res.status, 303);
+  assert.match(JSON.parse(calls[0].init.body).body, /Pr\u00fcfung \u6e2c\u8a66 \u2603/);
+});
+
+test("body at exactly the limit is read; one byte more is rejected", async () => {
+  const exact = new Uint8Array(MAX_BODY_BYTES).fill(0x61);
+  assert.equal((await readBody(streamReq([exact]).request)).length, MAX_BODY_BYTES);
+  assert.equal(await readBody(streamReq([exact, Uint8Array.of(0x61)]).request), null);
+});
+
+test("empty body is treated as empty input", async () => {
+  assert.equal(await readBody({ body: null }), "");
 });
