@@ -122,6 +122,33 @@ export function buildIssue(data, requestId, submittedAt) {
   return { title, body };
 }
 
+// Reads at most maxBytes from the request body. Returns null as soon as the
+// limit is exceeded and cancels the rest of the stream, so an oversized body
+// is never buffered in full, whatever Content-Length claims.
+export async function readBody(request, maxBytes = MAX_BODY_BYTES) {
+  if (!request.body) return "";
+  const reader = request.body.getReader();
+  const chunks = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) {
+      await reader.cancel().catch(() => {});
+      return null;
+    }
+    chunks.push(value);
+  }
+  const bytes = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return new TextDecoder().decode(bytes);
+}
+
 export async function handleIntake(request, env) {
   if (request.method !== "POST") return reply(405, "Method not allowed.", { Allow: "POST" });
   if (!ALLOWED_ORIGINS.has(request.headers.get("Origin") || "")) return reply(403, "Request origin not allowed.");
@@ -129,13 +156,18 @@ export async function handleIntake(request, env) {
   if (type !== "application/x-www-form-urlencoded") return reply(415, "Unsupported content type.");
   if (Number(request.headers.get("Content-Length") || 0) > MAX_BODY_BYTES) return reply(413, "Request too large.");
 
-  if (env.INTAKE_LIMITER) {
-    const { success } = await env.INTAKE_LIMITER.limit({ key: INTAKE_PATH });
-    if (!success) return reply(429, "Too many requests. Please try again in a minute.");
+  // Rate limiting is mandatory: a missing binding or a limiter error fails closed.
+  if (!env.INTAKE_LIMITER) return reply(503, "The request form is temporarily unavailable.");
+  let limited;
+  try {
+    limited = (await env.INTAKE_LIMITER.limit({ key: INTAKE_PATH })).success !== true;
+  } catch {
+    return reply(503, "The request form is temporarily unavailable.");
   }
+  if (limited) return reply(429, "Too many requests. Please try again in a minute.");
 
-  const raw = await request.text();
-  if (new TextEncoder().encode(raw).length > MAX_BODY_BYTES) return reply(413, "Request too large.");
+  const raw = await readBody(request);
+  if (raw === null) return reply(413, "Request too large.");
   const params = new URLSearchParams(raw);
 
   if (params.get(HONEYPOT)) return accepted();
