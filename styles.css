@@ -23,6 +23,7 @@
   --bg-inset: #0d1116;
   --border: #1e252e;
   --border-strong: #2c3541;
+  --field-border: #6b7581;
   --text: #e6e9ed;
   --text-body: #c9cfd6;
   --text-muted: #939da8;
@@ -62,6 +63,7 @@
     --bg-inset: #eeeeea;
     --border: #deded8;
     --border-strong: #c7c7c0;
+    --field-border: #84847c;
     --text: #111418;
     --text-body: #2a3037;
     --text-muted: #525c67;
@@ -1010,7 +1012,7 @@ main a[href^="https://"]:not(.btn)::after {
   font: inherit;
   color: var(--text);
   background: var(--bg-inset);
-  border: 1px solid var(--border);
+  border: 1px solid var(--field-border);
   border-radius: var(--radius);
 }
 

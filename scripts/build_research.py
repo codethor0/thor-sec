@@ -109,7 +109,7 @@ def latest_block() -> str:
             out.append('            <ul class="inline-links">')
             out.append(f'              <li><a href="{doi_url(e)}">DOI</a></li>')
             out.append(f'              <li><a href="{h(e["pdf"])}">PDF</a></li>')
-            out.append(f'              <li><a href="{h(e["source"])}">Source and reproduction</a></li>')
+            out.append(f'              <li><a href="{h(e["source"])}">{h(e.get("source_label", "Source and reproduction"))}</a></li>')
             out.append('            </ul>')
         else:
             out.append(f'            <p class="entry-meta"><time datetime="{e["date"]}">{e["date"]}</time> &middot; <span class="tag">{h(e["kind"])}</span></p>')
