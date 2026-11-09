@@ -48,6 +48,7 @@
     {
       "id": "echo-trace",
       "kind": "paper",
+      "source_label": "Source and data",
       "title": "ECHO TRACE: AirPods 4 ANC Firmware-Update Observability",
       "full_title": "Firmware-Update Observability in a Single-Earbud AirPods 4 ANC Configuration: A macOS UARP Case Study of Asset Discovery, Update Initiation, Device-State Verification, and Bounded Direct-Transport Diagnostics",
       "subtitle": "A macOS UARP case study in a single-earbud configuration.",

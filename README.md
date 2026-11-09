@@ -23,7 +23,6 @@ Independent security research lab and public website for Thor Thor.
 - **Agent Security Control Plane (ASCP):** https://github.com/codethor0/agent-security-control-plane
 - **llm-agent-control-plane:** https://github.com/codethor0/llm-agent-control-plane
 - **Model Identity Verifier:** https://github.com/codethor0/model-identity-verifier
-- **BoundaryLayer:** https://github.com/codethor0/boundary-layer
 - **Impact Forecast Algorithm (IFA):** https://github.com/codethor0/impact-forecast
 - **Security Stack Engineering (SSE):** https://github.com/codethor0/security-stack-engineering
 
