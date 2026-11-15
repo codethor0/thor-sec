@@ -114,3 +114,7 @@ See [SECURITY.md](SECURITY.md) for vulnerability disclosure guidance.
 ## License
 
 MIT License. See [LICENSE](LICENSE).
+
+## Support
+
+If this research is useful to you, you can support continued independent work through [GitHub Sponsors](https://github.com/sponsors/codethor0).
