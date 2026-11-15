@@ -9,11 +9,11 @@
   "sitemap": [
     {
       "path": "",
-      "lastmod": "2026-11-08"
+      "lastmod": "2026-11-15"
     },
     {
       "path": "research.html",
-      "lastmod": "2026-11-08"
+      "lastmod": "2026-11-15"
     },
     {
       "path": "work.html",
@@ -37,7 +37,7 @@
     },
     {
       "path": "feed.xml",
-      "lastmod": "2026-11-08"
+      "lastmod": "2026-11-15"
     },
     {
       "path": ".well-known/security.txt",
@@ -45,6 +45,68 @@
     }
   ],
   "entries": [
+    {
+      "id": "rift",
+      "kind": "paper",
+      "source_label": "Source code",
+      "title": "RIFT: Reach-Invariant Firewall for Trust",
+      "full_title": "RIFT: Reach-Invariant Firewall for Trust - An Executable Static Kernel for Pre-Commit Information-Flow Certification",
+      "subtitle": "An executable static kernel for pre-commit information-flow certification.",
+      "date": "2026-11-14",
+      "updated": "2026-11-14",
+      "status": "open research software",
+      "status_note": "Open-source research software with an illustrated research paper, archived on Zenodo. Not a peer-reviewed article. Results are model-relative: 37 tests and a bounded oracle support the static kernel, but they are not a formal proof and do not demonstrate runtime enforcement. Every edge removal returns UNKNOWN, so revocation is not supported in version 0.1.1.",
+      "version": "0.1.1",
+      "license": "MIT",
+      "doi": "10.5281/zenodo.24239735",
+      "publisher": "Zenodo",
+      "pdf": "https://github.com/codethor0/rift/releases/download/v0.1.1/RIFT_Research_Paper.pdf",
+      "source": "https://github.com/codethor0/rift",
+      "release": "https://github.com/codethor0/rift/releases/tag/v0.1.1",
+      "record": "https://zenodo.org/records/24239735",
+      "defensive_publication": false,
+      "feed_id": "https://doi.org/10.5281/zenodo.24239735",
+      "description": "Open-source Python kernel that checks proposed changes to a trusted static information-flow graph before commit and returns ALLOW, DENY, or UNKNOWN.",
+      "home_summary": "An executable static information-flow research kernel that evaluates proposed graph changes before commitment. The release includes 37 reproducible tests, an independent bounded DFS oracle, documented counterexamples, and explicit security limitations.",
+      "archive_summary": "RIFT evaluates whether proposed changes to a finite, trusted information-flow graph introduce prohibited reachability between protected facts and forbidden sinks. Version 0.1.1 includes an executable Python reference implementation, 37 regression tests, an independent bounded DFS oracle over 512 states and 3,072 single-edge proposals, an illustrated paper, and checksum-verified research artifacts. Every edge removal returns UNKNOWN; secure revocation is not supported.",
+      "feed_summary": "Open-source Python research kernel for pre-commit information-flow certification over a trusted static graph: ALLOW, DENY, or UNKNOWN. Revocation is not supported in version 0.1.1.",
+      "abstract": [
+        "How can a proposed change to an information-flow graph be evaluated before it becomes part of the trusted static state? RIFT provides an executable Python kernel for pre-commit certification over a finite, trusted, static information-flow graph. For a supported mutation, it constructs a candidate state and decides ALLOW, DENY, or UNKNOWN using reachability from actual protected holdings to forbidden sinks.",
+        "A counterexample found during adversarial review showed that topology deletion can erase evidence of a possible earlier transfer. The hardened kernel contains this defect by refusing every edge removal: secure revocation and persistent taint are not implemented. These are model-relative results, not machine-checked verification or production enforcement."
+      ],
+      "methods": [
+        "Build the candidate graph for a proposed mutation without changing the committed state.",
+        "Compute directed reachability from nodes that actually hold protected facts to forbidden sinks, honoring explicit policy exceptions and counting zero-hop occupancy.",
+        "Return ALLOW, DENY with a shortest-path witness, or noncommitting UNKNOWN when coverage, versioning, or supported semantics are insufficient. Every edge removal returns UNKNOWN."
+      ],
+      "observations": [
+        "37 reproducible Python standard-library tests pass against the hardened source.",
+        "An independent bounded DFS oracle agrees with the kernel over 512 finite static states and 3,072 single-edge proposals.",
+        "A documented sequential counterexample (add an edge, remove it, add an onward edge) motivated refusing all edge removals in the hardened kernel.",
+        "The executable reference kernel, illustrated paper, and SHA-256 checksum manifest are archived on Zenodo."
+      ],
+      "limitations": [
+        "RIFT is a conditional static research model, not an operational firewall.",
+        "The results are not a machine-checked formal proof; the bounded oracle covers a finite state space and does not establish universal correctness.",
+        "Runtime enforcement and complete mediation of real data transfers are not demonstrated.",
+        "Every edge removal returns UNKNOWN. Secure revocation, verified purge, durable historical information-flow state, and time-respecting guarantees are not implemented.",
+        "Decisions depend on the completeness and correctness of the trusted graph, fact holdings, sensitivity labels, and writer authentication."
+      ],
+      "cover": {
+        "path": "assets/rift-sphere-flow-figure.png",
+        "width": 1774,
+        "height": 887,
+        "alt": "Black-and-white RIFT research illustration depicting a glass-like sphere surrounded by curved information-flow paths and network nodes.",
+        "caption": "Research figure from the paper, shown above its abstract. Conceptual illustration, not a diagram of the algorithm."
+      },
+      "versions": [
+        {
+          "version": "0.1.1",
+          "date": "2026-11-14",
+          "note": "Initial public release, archived on Zenodo. All-versions DOI 10.5281/zenodo.24239734."
+        }
+      ]
+    },
     {
       "id": "echo-trace",
       "kind": "paper",
