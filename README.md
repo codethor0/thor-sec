@@ -12,13 +12,14 @@ Independent security research lab and public website for Thor Thor.
 
 - **Researcher:** Thor Thor
 - **ORCID:** https://orcid.org/0009-0001-6573-385X
-- **Latest archival publication:** ECHO TRACE: AirPods 4 ANC Firmware-Update Observability (November 8, 2026)
-- **DOI:** https://doi.org/10.5281/zenodo.24056722
-- **Source and reproducibility artifacts:** https://github.com/codethor0/echo-trace-a3056-firmware-study
+- **Latest archival publication:** RIFT: Reach-Invariant Firewall for Trust, version 0.1.1 (November 14, 2026)
+- **DOI:** https://doi.org/10.5281/zenodo.24239735
+- **Source and reproducibility artifacts:** https://github.com/codethor0/rift
 - **Research archive:** https://codethor0.github.io/thor-sec/research.html
 
 ## Selected Research Projects
 
+- **RIFT:** https://github.com/codethor0/rift
 - **ECHO TRACE:** https://github.com/codethor0/echo-trace-a3056-firmware-study
 - **Agent Security Control Plane (ASCP):** https://github.com/codethor0/agent-security-control-plane
 - **llm-agent-control-plane:** https://github.com/codethor0/llm-agent-control-plane

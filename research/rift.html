@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>RIFT: Reach-Invariant Firewall for Trust | THOR-SEC</title>
+  <meta name="description" content="Open-source Python kernel that checks proposed changes to a trusted static information-flow graph before commit and returns ALLOW, DENY, or UNKNOWN.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research/rift.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta name="citation_title" content="RIFT: Reach-Invariant Firewall for Trust - An Executable Static Kernel for Pre-Commit Information-Flow Certification">
+  <meta name="citation_author" content="Thor, Thor">
+  <meta name="citation_publication_date" content="2026/11/14">
+  <meta name="citation_publisher" content="Zenodo">
+  <meta name="citation_doi" content="10.5281/zenodo.24239735">
+  <meta name="citation_pdf_url" content="https://github.com/codethor0/rift/releases/download/v0.1.1/RIFT_Research_Paper.pdf">
+  <meta name="citation_abstract_html_url" content="https://codethor0.github.io/thor-sec/research/rift.html">
+  <meta name="citation_language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="RIFT: Reach-Invariant Firewall for Trust | THOR-SEC">
+  <meta property="og:description" content="Open-source Python kernel that checks proposed changes to a trusted static information-flow graph before commit and returns ALLOW, DENY, or UNKNOWN.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research/rift.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="RIFT: Reach-Invariant Firewall for Trust | THOR-SEC">
+  <meta name="twitter:description" content="Open-source Python kernel that checks proposed changes to a trusted static information-flow graph before commit and returns ALLOW, DENY, or UNKNOWN.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
+        <h1>RIFT: Reach-Invariant Firewall for Trust</h1>
+        <p class="lead">An executable static kernel for pre-commit information-flow certification.</p>
+        <p class="entry-meta"><time datetime="2026-11-14">2026-11-14</time> &middot; <span class="tag">open research software</span> &middot; version 0.1.1 &middot; MIT &middot; DOI 10.5281/zenodo.24239735</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/codethor0/rift/releases/download/v0.1.1/RIFT_Research_Paper.pdf">Read the paper (PDF)</a>
+          <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.24239735">DOI record</a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel">
+          <h2 id="status-heading">Research status</h2>
+          <p class="prose">Open-source research software with an illustrated research paper, archived on Zenodo. Not a peer-reviewed article. Results are model-relative: 37 tests and a bounded oracle support the static kernel, but they are not a formal proof and do not demonstrate runtime enforcement. Every edge removal returns UNKNOWN, so revocation is not supported in version 0.1.1.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="preview-heading">
+      <div class="container">
+        <h2 id="preview-heading">Paper preview</h2>
+        <figure class="paper-preview">
+          <a href="../assets/rift-sphere-flow-figure.png"><img src="../assets/rift-sphere-flow-figure.png" width="1774" height="887" alt="Black-and-white RIFT research illustration depicting a glass-like sphere surrounded by curved information-flow paths and network nodes." loading="lazy" decoding="async"></a>
+          <figcaption>Research figure from the paper, shown above its abstract. Conceptual illustration, not a diagram of the algorithm.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="abstract-heading">
+      <div class="container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="prose">
+          <p>How can a proposed change to an information-flow graph be evaluated before it becomes part of the trusted static state? RIFT provides an executable Python kernel for pre-commit certification over a finite, trusted, static information-flow graph. For a supported mutation, it constructs a candidate state and decides ALLOW, DENY, or UNKNOWN using reachability from actual protected holdings to forbidden sinks.</p>
+          <p>A counterexample found during adversarial review showed that topology deletion can erase evidence of a possible earlier transfer. The hardened kernel contains this defect by refusing every edge removal: secure revocation and persistent taint are not implemented. These are model-relative results, not machine-checked verification or production enforcement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="methods-heading">
+      <div class="container">
+        <h2 id="methods-heading">Methods</h2>
+        <ul class="bullet-list prose">
+          <li>Build the candidate graph for a proposed mutation without changing the committed state.</li>
+          <li>Compute directed reachability from nodes that actually hold protected facts to forbidden sinks, honoring explicit policy exceptions and counting zero-hop occupancy.</li>
+          <li>Return ALLOW, DENY with a shortest-path witness, or noncommitting UNKNOWN when coverage, versioning, or supported semantics are insufficient. Every edge removal returns UNKNOWN.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="observations-heading">
+      <div class="container">
+        <h2 id="observations-heading">Key observations</h2>
+        <ul class="bullet-list prose">
+          <li>37 reproducible Python standard-library tests pass against the hardened source.</li>
+          <li>An independent bounded DFS oracle agrees with the kernel over 512 finite static states and 3,072 single-edge proposals.</li>
+          <li>A documented sequential counterexample (add an edge, remove it, add an onward edge) motivated refusing all edge removals in the hardened kernel.</li>
+          <li>The executable reference kernel, illustrated paper, and SHA-256 checksum manifest are archived on Zenodo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-heading">
+      <div class="container">
+        <h2 id="limits-heading">Known limitations</h2>
+        <ul class="bullet-list prose">
+          <li>RIFT is a conditional static research model, not an operational firewall.</li>
+          <li>The results are not a machine-checked formal proof; the bounded oracle covers a finite state space and does not establish universal correctness.</li>
+          <li>Runtime enforcement and complete mediation of real data transfers are not demonstrated.</li>
+          <li>Every edge removal returns UNKNOWN. Secure revocation, verified purge, durable historical information-flow state, and time-respecting guarantees are not implemented.</li>
+          <li>Decisions depend on the completeness and correctness of the trusted graph, fact holdings, sensitivity labels, and writer authentication.</li>
+        </ul>
+        <p class="note">Summarized from the paper. The full list is in its section on limitations, failure modes, and open research problems.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.24239735">10.5281/zenodo.24239735</a></li>
+          <li><span>Paper</span><a href="https://github.com/codethor0/rift/releases/download/v0.1.1/RIFT_Research_Paper.pdf">PDF, version 0.1.1</a></li>
+          <li><span>Source</span><a href="https://github.com/codethor0/rift">Paper source and reproducibility artifacts</a></li>
+          <li><span>Release</span><a href="https://github.com/codethor0/rift/releases/tag/v0.1.1">Version 0.1.1</a></li>
+          <li><span>Archive</span><a href="https://zenodo.org/records/24239735">Zenodo record</a></li>
+          <li><span>Author</span><a href="https://orcid.org/0009-0001-6573-385X">ORCID 0009-0001-6573-385X</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="cite-heading">
+      <div class="container">
+        <h2 id="cite-heading">Cite this work</h2>
+        <p class="code-label">Plain text</p>
+        <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). RIFT: Reach-Invariant Firewall for Trust - An Executable
+Static Kernel for Pre-Commit Information-Flow Certification (0.1.1). Zenodo.
+https://doi.org/10.5281/zenodo.24239735</code></pre>
+        <p class="code-label">BibTeX</p>
+        <pre class="code-snippet" tabindex="0"><code>@misc{thor2026rift,
+  author    = {Thor, Thor},
+  title     = {RIFT: Reach-Invariant Firewall for Trust - An Executable Static Kernel for Pre-Commit Information-Flow Certification},
+  year      = {2026},
+  version   = {0.1.1},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24239735},
+  url       = {https://doi.org/10.5281/zenodo.24239735}
+}</code></pre>
+      </div>
+    </section>
+
+
+
+    <section aria-labelledby="versions-heading">
+      <div class="container">
+        <h2 id="versions-heading">Version history</h2>
+        <ul class="plain-list">
+          <li>Version 0.1.1<span class="sub"><time datetime="2026-11-14">2026-11-14</time> &middot; Initial public release, archived on Zenodo. All-versions DOI 10.5281/zenodo.24239734.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer</p>
+    </div>
+  </footer>
+</body>
+</html>
