@@ -12,13 +12,14 @@ Independent security research lab and public website for Thor Thor.
 
 - **Researcher:** Thor Thor
 - **ORCID:** https://orcid.org/0009-0001-6573-385X
-- **Latest archival publication:** RIFT: Reach-Invariant Firewall for Trust, version 0.1.1 (November 14, 2026)
-- **DOI:** https://doi.org/10.5281/zenodo.24239735
-- **Source and reproducibility artifacts:** https://github.com/codethor0/rift
+- **Latest archival publication:** Ghost Portal Cartographer: Evidence-Tiered Mapping of Indirect Sensitive-Data Egress, version 1.0.0 (November 15, 2026)
+- **DOI:** https://doi.org/10.5281/zenodo.24267416
+- **Source and reproducibility artifacts:** https://github.com/codethor0/ghost-portal-cartographer
 - **Research archive:** https://codethor0.github.io/thor-sec/research.html
 
 ## Selected Research Projects
 
+- **Ghost Portal Cartographer:** https://github.com/codethor0/ghost-portal-cartographer
 - **RIFT:** https://github.com/codethor0/rift
 - **ECHO TRACE:** https://github.com/codethor0/echo-trace-a3056-firmware-study
 - **Agent Security Control Plane (ASCP):** https://github.com/codethor0/agent-security-control-plane
