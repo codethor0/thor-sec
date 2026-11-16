@@ -46,6 +46,68 @@
   ],
   "entries": [
     {
+      "id": "gpc",
+      "kind": "paper",
+      "source_label": "Source code",
+      "title": "Ghost Portal Cartographer",
+      "full_title": "Ghost Portal Cartographer: Evidence-Tiered Mapping of Indirect Sensitive-Data Egress",
+      "subtitle": "Evidence-tiered mapping of indirect sensitive-data egress.",
+      "date": "2026-11-15",
+      "updated": "2026-11-15",
+      "status": "open research software",
+      "status_note": "Open-source research software with a research paper, archived on Zenodo. Not a peer-reviewed article. Results are graph-relative: 171 tests, two separately coded oracles, and exhaustive small-graph enumeration support the kernel's search properties, but they are not a formal proof and do not demonstrate real-world leak detection. All evaluation uses synthetic graphs.",
+      "version": "1.0.0",
+      "license": "MIT",
+      "doi": "10.5281/zenodo.24267416",
+      "publisher": "Zenodo",
+      "pdf": "https://github.com/codethor0/ghost-portal-cartographer/releases/download/v1.0.0/GPC_Research_Paper.pdf",
+      "source": "https://github.com/codethor0/ghost-portal-cartographer",
+      "release": "https://github.com/codethor0/ghost-portal-cartographer/releases/tag/v1.0.0",
+      "record": "https://zenodo.org/records/24267416",
+      "defensive_publication": false,
+      "feed_id": "https://doi.org/10.5281/zenodo.24267416",
+      "description": "Open-source Python kernel that maps indirect sensitive-data routes through logs, telemetry, memory, and caches, and grades the evidence for each route.",
+      "home_summary": "A metadata-only research kernel that maps indirect sensitive-data routes through logs, traces, memory artifacts, caches, and integrations, and separates ordered, reported, and possible evidence. The release includes 171 reproducible tests, two separately coded oracles, eleven detected deliberate mutations, and explicit limitations.",
+      "archive_summary": "Ghost Portal Cartographer analyzes a finite, declared artifact-version graph without reading payload contents. Three independently budgeted searches distinguish reported scalar-ordered lineage, reported lineage with unresolved order, and possible data or unknown-content reachability. A route found by one search is never erased by another search's limit, trace parentage is diagnostic only, and an authenticated transformation claim never removes a route. Version 1.0.0 includes a standard-library Python kernel, 171 tests, two separately coded oracles, exhaustive small-graph enumeration, eleven detected deliberate mutations, a research paper, and checksum-verified artifacts.",
+      "feed_summary": "Open-source Python research kernel for evidence-tiered mapping of indirect sensitive-data routes over a declared artifact graph: ordered, reported, or possible lineage, with explicit unknowns.",
+      "abstract": [
+        "Sensitive information can cross a security boundary through logs, traces, memory artifacts, caches, backups, and integrations even when the primary application response is protected. Ghost Portal Cartographer (GPC) analyzes these indirect routes as a finite, declared artifact-version graph without inspecting payload contents. Three independently bounded searches distinguish reported scalar-ordered lineage, reported lineage with unresolved order, and possible data or unknown-content reachability.",
+        "A positive witness survives resource exhaustion in another search, and the selected witness is labeled by the strongest relation it satisfies. Trace parentage remains unauthenticated context, not proof of transferred data. A local HMAC demonstration authenticates declared transformation metadata, bound to the artifacts and trust domains it describes; it cannot establish sanitization or exclude a candidate route. These results support graph-relative search properties under stated assumptions; they do not establish verified exfiltration, complete observation, formal verification, or production readiness."
+      ],
+      "methods": [
+        "Derive three nested edge relations from the declared graph: possible, reported (observed with an evidence locator), and ordered-eligible (reported with a sequence).",
+        "Run an ordered search over (vertex, last sequence) states and vertex searches over the reported and possible relations, each with its own budget.",
+        "Select the first returned witness, re-verify it against the stronger predicates, and report UNKNOWN_LIMIT only when no witness was found and the broadest search did not finish."
+      ],
+      "observations": [
+        "171 Python standard-library tests pass on CPython 3.9 through 3.15.",
+        "Two separately coded oracles agree with the kernel on randomized graphs, and exhaustive enumeration covers 512 possible-edge graphs and 625 observation mappings.",
+        "Eleven deliberately faulty variants of the kernel are detected by the test suite.",
+        "The research paper, source archive, and SHA-256 checksum manifest are archived on Zenodo."
+      ],
+      "limitations": [
+        "GPC is a read-only research model, not a data-loss-prevention product, runtime collector, or enforcement mechanism.",
+        "Inputs are unauthenticated declarations; a fabricated edge can create a false route and an omitted edge can hide a real one.",
+        "Declared digests are not verified against artifact bytes, and an authenticated transformation claim does not establish sanitization.",
+        "The results are not a machine-checked formal proof, and no real-world or canary-based detection study has been performed.",
+        "The search budget bounds popped states, not memory; large inputs must be size-limited upstream."
+      ],
+      "cover": {
+        "path": "assets/gpc-conceptual-cover.png",
+        "width": 1536,
+        "height": 1024,
+        "alt": "Monochrome pencil-style illustration on a white background: a source box at left sends branching solid and dashed routes through smaller boxes toward layered gateways that fade to the right.",
+        "caption": "Illustration from the paper, shown below its abstract. Conceptual illustration of candidate artifact routes, not an empirical flow trace."
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "date": "2026-11-15",
+          "note": "Initial public release, archived on Zenodo. All-versions DOI 10.5281/zenodo.24267415."
+        }
+      ]
+    },
+    {
       "id": "rift",
       "kind": "paper",
       "source_label": "Source code",

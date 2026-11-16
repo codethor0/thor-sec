@@ -4,11 +4,20 @@
   <link href="https://codethor0.github.io/thor-sec/" rel="alternate"/>
   <link href="https://codethor0.github.io/thor-sec/feed.xml" rel="self"/>
   <id>https://codethor0.github.io/thor-sec/feed.xml</id>
-  <updated>2026-11-14T00:00:00Z</updated>
+  <updated>2026-11-15T00:00:00Z</updated>
   <author>
     <name>Thor Thor</name>
     <uri>https://orcid.org/0009-0001-6573-385X</uri>
   </author>
+
+  <entry>
+    <title>Ghost Portal Cartographer</title>
+    <link href="https://codethor0.github.io/thor-sec/research/gpc.html" rel="alternate"/>
+    <id>https://doi.org/10.5281/zenodo.24267416</id>
+    <updated>2026-11-15T00:00:00Z</updated>
+    <published>2026-11-15T00:00:00Z</published>
+    <summary>Open-source Python research kernel for evidence-tiered mapping of indirect sensitive-data routes over a declared artifact graph: ordered, reported, or possible lineage, with explicit unknowns.</summary>
+  </entry>
 
   <entry>
     <title>RIFT: Reach-Invariant Firewall for Trust</title>

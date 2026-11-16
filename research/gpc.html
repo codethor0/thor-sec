@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'none'; img-src 'self'; style-src 'self'; script-src 'none'; connect-src 'none'; font-src 'self'; media-src 'self'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Thor Thor">
+  <meta name="robots" content="index,follow">
+  <title>Ghost Portal Cartographer | THOR-SEC</title>
+  <meta name="description" content="Open-source Python kernel that maps indirect sensitive-data routes through logs, telemetry, memory, and caches, and grades the evidence for each route.">
+  <link rel="canonical" href="https://codethor0.github.io/thor-sec/research/gpc.html">
+  <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
+  <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
+  <meta name="citation_title" content="Ghost Portal Cartographer: Evidence-Tiered Mapping of Indirect Sensitive-Data Egress">
+  <meta name="citation_author" content="Thor, Thor">
+  <meta name="citation_publication_date" content="2026/11/15">
+  <meta name="citation_publisher" content="Zenodo">
+  <meta name="citation_doi" content="10.5281/zenodo.24267416">
+  <meta name="citation_pdf_url" content="https://github.com/codethor0/ghost-portal-cartographer/releases/download/v1.0.0/GPC_Research_Paper.pdf">
+  <meta name="citation_abstract_html_url" content="https://codethor0.github.io/thor-sec/research/gpc.html">
+  <meta name="citation_language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="THOR-SEC">
+  <meta property="og:title" content="Ghost Portal Cartographer | THOR-SEC">
+  <meta property="og:description" content="Open-source Python kernel that maps indirect sensitive-data routes through logs, telemetry, memory, and caches, and grades the evidence for each route.">
+  <meta property="og:url" content="https://codethor0.github.io/thor-sec/research/gpc.html">
+  <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ghost Portal Cartographer | THOR-SEC">
+  <meta name="twitter:description" content="Open-source Python kernel that maps indirect sensitive-data routes through logs, telemetry, memory, and caches, and grades the evidence for each route.">
+  <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
+  <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" type="image/png" sizes="96x96" href="../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f3" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-brand" href="../">THOR-SEC</a>
+      <div class="header-right">
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="../research.html">Research</a></li>
+            <li><a href="../case-studies.html">Case Studies</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#writing">Writing</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a class="nav-cta" href="../work.html">Commission</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <div class="container">
+        <p class="eyebrow">Research paper &middot; <a href="../research.html">Research archive</a></p>
+        <h1>Ghost Portal Cartographer</h1>
+        <p class="lead">Evidence-tiered mapping of indirect sensitive-data egress.</p>
+        <p class="entry-meta"><time datetime="2026-11-15">2026-11-15</time> &middot; <span class="tag">open research software</span> &middot; version 1.0.0 &middot; MIT &middot; DOI 10.5281/zenodo.24267416</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/codethor0/ghost-portal-cartographer/releases/download/v1.0.0/GPC_Research_Paper.pdf">Read the paper (PDF)</a>
+          <a class="btn btn-secondary" href="https://doi.org/10.5281/zenodo.24267416">DOI record</a>
+        </div>
+      </div>
+    </div>
+
+    <section aria-labelledby="status-heading">
+      <div class="container">
+        <div class="panel">
+          <h2 id="status-heading">Research status</h2>
+          <p class="prose">Open-source research software with a research paper, archived on Zenodo. Not a peer-reviewed article. Results are graph-relative: 171 tests, two separately coded oracles, and exhaustive small-graph enumeration support the kernel's search properties, but they are not a formal proof and do not demonstrate real-world leak detection. All evaluation uses synthetic graphs.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="preview-heading">
+      <div class="container">
+        <h2 id="preview-heading">Paper preview</h2>
+        <figure class="paper-preview">
+          <a href="../assets/gpc-conceptual-cover.png"><img src="../assets/gpc-conceptual-cover.png" width="1536" height="1024" alt="Monochrome pencil-style illustration on a white background: a source box at left sends branching solid and dashed routes through smaller boxes toward layered gateways that fade to the right." loading="lazy" decoding="async"></a>
+          <figcaption>Illustration from the paper, shown below its abstract. Conceptual illustration of candidate artifact routes, not an empirical flow trace.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section aria-labelledby="abstract-heading">
+      <div class="container">
+        <h2 id="abstract-heading">Abstract</h2>
+        <div class="prose">
+          <p>Sensitive information can cross a security boundary through logs, traces, memory artifacts, caches, backups, and integrations even when the primary application response is protected. Ghost Portal Cartographer (GPC) analyzes these indirect routes as a finite, declared artifact-version graph without inspecting payload contents. Three independently bounded searches distinguish reported scalar-ordered lineage, reported lineage with unresolved order, and possible data or unknown-content reachability.</p>
+          <p>A positive witness survives resource exhaustion in another search, and the selected witness is labeled by the strongest relation it satisfies. Trace parentage remains unauthenticated context, not proof of transferred data. A local HMAC demonstration authenticates declared transformation metadata, bound to the artifacts and trust domains it describes; it cannot establish sanitization or exclude a candidate route. These results support graph-relative search properties under stated assumptions; they do not establish verified exfiltration, complete observation, formal verification, or production readiness.</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="methods-heading">
+      <div class="container">
+        <h2 id="methods-heading">Methods</h2>
+        <ul class="bullet-list prose">
+          <li>Derive three nested edge relations from the declared graph: possible, reported (observed with an evidence locator), and ordered-eligible (reported with a sequence).</li>
+          <li>Run an ordered search over (vertex, last sequence) states and vertex searches over the reported and possible relations, each with its own budget.</li>
+          <li>Select the first returned witness, re-verify it against the stronger predicates, and report UNKNOWN_LIMIT only when no witness was found and the broadest search did not finish.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="observations-heading">
+      <div class="container">
+        <h2 id="observations-heading">Key observations</h2>
+        <ul class="bullet-list prose">
+          <li>171 Python standard-library tests pass on CPython 3.9 through 3.15.</li>
+          <li>Two separately coded oracles agree with the kernel on randomized graphs, and exhaustive enumeration covers 512 possible-edge graphs and 625 observation mappings.</li>
+          <li>Eleven deliberately faulty variants of the kernel are detected by the test suite.</li>
+          <li>The research paper, source archive, and SHA-256 checksum manifest are archived on Zenodo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-heading">
+      <div class="container">
+        <h2 id="limits-heading">Known limitations</h2>
+        <ul class="bullet-list prose">
+          <li>GPC is a read-only research model, not a data-loss-prevention product, runtime collector, or enforcement mechanism.</li>
+          <li>Inputs are unauthenticated declarations; a fabricated edge can create a false route and an omitted edge can hide a real one.</li>
+          <li>Declared digests are not verified against artifact bytes, and an authenticated transformation claim does not establish sanitization.</li>
+          <li>The results are not a machine-checked formal proof, and no real-world or canary-based detection study has been performed.</li>
+          <li>The search budget bounds popped states, not memory; large inputs must be size-limited upstream.</li>
+        </ul>
+        <p class="note">Summarized from the paper. The full list is in its section on limitations, failure modes, and open research problems.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="artifacts-heading">
+      <div class="container">
+        <h2 id="artifacts-heading">Artifacts</h2>
+        <ul class="contact-grid">
+          <li><span>DOI</span><a href="https://doi.org/10.5281/zenodo.24267416">10.5281/zenodo.24267416</a></li>
+          <li><span>Paper</span><a href="https://github.com/codethor0/ghost-portal-cartographer/releases/download/v1.0.0/GPC_Research_Paper.pdf">PDF, version 1.0.0</a></li>
+          <li><span>Source</span><a href="https://github.com/codethor0/ghost-portal-cartographer">Paper source and reproducibility artifacts</a></li>
+          <li><span>Release</span><a href="https://github.com/codethor0/ghost-portal-cartographer/releases/tag/v1.0.0">Version 1.0.0</a></li>
+          <li><span>Archive</span><a href="https://zenodo.org/records/24267416">Zenodo record</a></li>
+          <li><span>Author</span><a href="https://orcid.org/0009-0001-6573-385X">ORCID 0009-0001-6573-385X</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section aria-labelledby="cite-heading">
+      <div class="container">
+        <h2 id="cite-heading">Cite this work</h2>
+        <p class="code-label">Plain text</p>
+        <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Ghost Portal Cartographer: Evidence-Tiered Mapping of
+Indirect Sensitive-Data Egress (1.0.0). Zenodo.
+https://doi.org/10.5281/zenodo.24267416</code></pre>
+        <p class="code-label">BibTeX</p>
+        <pre class="code-snippet" tabindex="0"><code>@misc{thor2026gpc,
+  author    = {Thor, Thor},
+  title     = {Ghost Portal Cartographer: Evidence-Tiered Mapping of Indirect Sensitive-Data Egress},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24267416},
+  url       = {https://doi.org/10.5281/zenodo.24267416}
+}</code></pre>
+      </div>
+    </section>
+
+
+
+    <section aria-labelledby="versions-heading">
+      <div class="container">
+        <h2 id="versions-heading">Version history</h2>
+        <ul class="plain-list">
+          <li>Version 1.0.0<span class="sub"><time datetime="2026-11-15">2026-11-15</time> &middot; Initial public release, archived on Zenodo. All-versions DOI 10.5281/zenodo.24267415.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <ul>
+        <li><a href="../research.html">Research</a></li>
+        <li><a href="../case-studies.html">Case Studies</a></li>
+        <li><a href="../inventions.html">Inventions</a></li>
+        <li><a href="../work.html">Commission research</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../now.html">Now</a></li>
+        <li><a href="../security.html">Site security</a></li>
+        <li><a href="../.well-known/security.txt">security.txt</a></li>
+        <li><a href="../feed.xml">RSS/Atom</a></li>
+        <li><a href="https://github.com/codethor0/thor-sec">Source</a></li>
+      </ul>
+      <p>&copy; 2026 THOR-SEC &middot; Thor Thor &middot; Independent research, not affiliated with any employer</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -9,14 +9,14 @@
   <meta name="author" content="Thor Thor">
   <meta name="robots" content="index,follow">
   <title>Research | THOR-SEC</title>
-  <meta name="description" content="Papers, open-source security tools, and field notes by Thor Thor: RIFT, MECI, MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta name="description" content="Papers, open-source security tools, and field notes by Thor Thor: Ghost Portal Cartographer, RIFT, MECI, MIAM, LLM agent authorization, model identity verification, and more.">
   <link rel="canonical" href="https://codethor0.github.io/thor-sec/research.html">
   <link rel="author" href="https://orcid.org/0009-0001-6573-385X">
   <link rel="alternate" type="application/atom+xml" title="THOR-SEC Research" href="https://codethor0.github.io/thor-sec/feed.xml">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="THOR-SEC">
   <meta property="og:title" content="Research | THOR-SEC">
-  <meta property="og:description" content="Papers, open-source security tools, and field notes by Thor Thor: RIFT, MECI, MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta property="og:description" content="Papers, open-source security tools, and field notes by Thor Thor: Ghost Portal Cartographer, RIFT, MECI, MIAM, LLM agent authorization, model identity verification, and more.">
   <meta property="og:url" content="https://codethor0.github.io/thor-sec/research.html">
   <meta property="og:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta property="og:image:type" content="image/png">
@@ -26,7 +26,7 @@
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Research | THOR-SEC">
-  <meta name="twitter:description" content="Papers, open-source security tools, and field notes by Thor Thor: RIFT, MECI, MIAM, LLM agent authorization, model identity verification, and more.">
+  <meta name="twitter:description" content="Papers, open-source security tools, and field notes by Thor Thor: Ghost Portal Cartographer, RIFT, MECI, MIAM, LLM agent authorization, model identity verification, and more.">
   <meta name="twitter:image" content="https://codethor0.github.io/thor-sec/assets/thor-sec-social-card.png">
   <meta name="twitter:image:alt" content="THOR-SEC: independent security research by Thor Thor">
   <link rel="stylesheet" href="styles.css">
@@ -69,6 +69,25 @@
         <h2 id="papers-heading">Papers</h2>
         <ol class="entry-list">
           <!-- build:papers:start -->
+          <li class="entry" id="gpc">
+            <p class="entry-meta"><time datetime="2026-11-15">2026-11-15</time> &middot; <span class="tag">open research software</span> &middot; version 1.0.0 &middot; MIT</p>
+            <h3><a href="./research/gpc.html">Ghost Portal Cartographer</a></h3>
+            <p>Evidence-tiered mapping of indirect sensitive-data egress.</p>
+            <p>Ghost Portal Cartographer analyzes a finite, declared artifact-version graph without reading payload contents. Three independently budgeted searches distinguish reported scalar-ordered lineage, reported lineage with unresolved order, and possible data or unknown-content reachability. A route found by one search is never erased by another search's limit, trace parentage is diagnostic only, and an authenticated transformation claim never removes a route. Version 1.0.0 includes a standard-library Python kernel, 171 tests, two separately coded oracles, exhaustive small-graph enumeration, eleven detected deliberate mutations, a research paper, and checksum-verified artifacts.</p>
+            <ul class="inline-links">
+              <li><a href="./research/gpc.html">Paper page</a></li>
+              <li><a href="https://doi.org/10.5281/zenodo.24267416">DOI 10.5281/zenodo.24267416</a></li>
+              <li><a href="https://github.com/codethor0/ghost-portal-cartographer/releases/download/v1.0.0/GPC_Research_Paper.pdf">PDF</a></li>
+              <li><a href="https://github.com/codethor0/ghost-portal-cartographer">Source</a></li>
+              <li><a href="https://github.com/codethor0/ghost-portal-cartographer/releases/tag/v1.0.0">Release</a></li>
+            </ul>
+            <details>
+              <summary>Cite this paper</summary>
+              <pre class="code-snippet" tabindex="0"><code>Thor, T. (2026). Ghost Portal Cartographer: Evidence-Tiered Mapping of
+Indirect Sensitive-Data Egress (1.0.0). Zenodo.
+https://doi.org/10.5281/zenodo.24267416</code></pre>
+            </details>
+          </li>
           <li class="entry" id="rift">
             <p class="entry-meta"><time datetime="2026-11-14">2026-11-14</time> &middot; <span class="tag">open research software</span> &middot; version 0.1.1 &middot; MIT</p>
             <h3><a href="./research/rift.html">RIFT: Reach-Invariant Firewall for Trust</a></h3>
